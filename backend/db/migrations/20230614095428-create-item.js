@@ -41,7 +41,7 @@ module.exports = {
           allowNull: false,
         },
         type: {
-          type: Sequelize.String,
+          type: Sequelize.STRING(200),
           allowNull: false,
         },
         createdAt: {
