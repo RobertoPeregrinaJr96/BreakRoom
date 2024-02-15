@@ -36,7 +36,7 @@ module.exports = {
           type: Sequelize.STRING(200),
           allowNull: false,
         },
-        waitTiem: {
+        waitTime: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
