@@ -17,6 +17,14 @@ router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 
+router.use("/items", itemRouter);
+
+router.use("/orders", orderRouter);
+
+router.use("/orderItems", orderItemsRouter);
+
+router.use("/review", reviewRouter);
+
 // POST /api/test
 router.post("/test", function (req, res) {
   res.json({ requestBody: req.body });
