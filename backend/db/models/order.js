@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       status: {
-        type: DataTypes.String,
+        type: DataTypes.STRING(250),
       },
       pointsEarned: {
         type: DataTypes.INTEGER,

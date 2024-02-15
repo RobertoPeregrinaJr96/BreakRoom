@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   Item.init(
     {
       name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
       },
       price: {
@@ -41,10 +41,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       itemImage: {
-        type: DataTypes.String,
+        type: DataTypes.STRING(250),
       },
       waitTime: {
-        type: DataTypes.Integer,
+        type: DataTypes.INTEGER,
       },
       type: {
         type: DataTypes.STRING(10),

@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       title: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
       },
       rating: {
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       reviewImage: {
-        type: DataTypes.String,
+        type: DataTypes.STRING(250),
       },
     },
     {

@@ -32,7 +32,7 @@ module.exports = {
           type: Sequelize.TEXT,
           allowNull: false,
         },
-        itemImg: {
+        itemImage: {
           type: Sequelize.STRING(200),
           allowNull: false,
         },

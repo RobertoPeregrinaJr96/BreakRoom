@@ -32,19 +32,19 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       firstName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
       },
       lastName: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
       },
       phoneNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING(250),
         allowNull: true,
       },
       username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
         validate: {
           len: [4, 30],
@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: false,
         validate: {
           len: [3, 256],
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       profileImageUrl: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(250),
         allowNull: true,
       },
       hashedPassword: {

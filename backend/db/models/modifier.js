@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Modifier.init(
     {
-      name: DataTypes.STRING,
+      name: DataTypes.STRING(250),
       price: DataTypes.INTEGER,
     },
     {

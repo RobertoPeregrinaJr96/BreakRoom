@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       customInstruction: {
-        type: DataTypes.String,
+        type: DataTypes.STRING(250),
       },
       quantity: {
         type: DataTypes.INTEGER,
