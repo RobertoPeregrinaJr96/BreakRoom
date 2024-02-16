@@ -14,22 +14,19 @@ const createEntry = async (Table, body) => {
     const newEntry = await Table.create(body);
     return newEntry;
   } catch (error) {
-    console.error(`Error creating entry: ${error}`);
+    console.error(`Error creating entry in : ${error}`);
     throw error;
   }
 };
-
 const readEntry = async (Table) => {
-  findTable(Table);
   try {
     const entries = await Table.findAll();
     return entries;
   } catch (error) {
-    console.error(`Error reading entries: ${error}`);
+    console.error(`Error reading entries : ${error}`);
     throw error;
   }
 };
-
 const readEntryById = async (Table, id) => {
   try {
     const entry = await Table.findByPk(id);
@@ -43,10 +40,9 @@ const readEntryById = async (Table, id) => {
     throw error;
   }
 };
-
-const readEntryByFilter = async (Table, filter) => {
+const readEntryByAggerate = async (Table, filter) => {
   try {
-    const entries = await Table.findAll({ where: filter });
+    const entries = await Table.findAll(filter);
     console.log(entries);
     return entries;
   } catch (error) {
@@ -54,7 +50,52 @@ const readEntryByFilter = async (Table, filter) => {
     throw error;
   }
 };
+const readentriesByFilter = async (Table, filter) => {
+  try {
+    const entries = await Table.findAll({ where: filter });
+    return entries;
+  } catch (error) {
+    console.error(`Error filtering entries: ${error}`);
+    throw error;
+  }
+};
+const updateEntryById = async (Table, id, body) => {
+  try {
+    const entry = await Table.findByPk(id);
+    if (!entry) {
+      throw new Error(`Entry with ID ${id} not found.`);
+    }
+    await entry.update(body);
+    return entry;
+  } catch (error) {
+    console.error(`Error updating entry by ID: ${error}`);
+    throw error;
+  }
+};
+const deleteEntryById = async (Table, id) => {
+  try {
+    const entry = await Table.findByPk(id);
+    if (!entry) {
+      throw new Error(`Entry with ID ${id} not found.`);
+    }
+    await entry.destroy();
+  } catch (error) {
+    console.error(`Error deleting entry by ID: ${error}`);
+    throw error;
+  }
+};
 
+const paginateEntries = async (Table, options) => {
+  try {
+    const { page = 1, pageSize = 10 } = options;
+    const offset = (page - 1) * pageSize;
+    const entries = await Table.findAll({ offset, limit: pageSize });
+    return entries;
+  } catch (error) {
+    console.error(`Error paginating entries: ${error}`);
+    throw error;
+  }
+};
 const tableExist = (prompt) => {
   const tables = {
     User,
@@ -71,8 +112,14 @@ const tableExist = (prompt) => {
     throw new Error("No such table exists");
   }
 };
-
 module.exports = {
   createEntry,
   readEntry,
+  tableExist,
+  readEntryById,
+  readEntryByAggerate,
+  readentriesByFilter,
+  updateEntryById,
+  deleteEntryById,
+  paginateEntries,
 };
