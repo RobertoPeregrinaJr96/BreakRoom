@@ -11,25 +11,27 @@ const {
 
 const createEntry = async (Table, body) => {
   try {
-    const newEntry = await Table.create(body);
+    const newEntry = await tableExist(Table).create(body);
     return newEntry;
   } catch (error) {
     console.error(`Error creating entry in : ${error}`);
     throw error;
   }
 };
+//=============================================================
 const readEntry = async (Table) => {
   try {
-    const entries = await Table.findAll();
+    const entries = await tableExist(Table).findAll();
     return entries;
   } catch (error) {
     console.error(`Error reading entries : ${error}`);
     throw error;
   }
 };
+//=============================================================
 const readEntryById = async (Table, id) => {
   try {
-    const entry = await Table.findByPk(id);
+    const entry = await tableExist(Table).findByPk(id);
     if (!entry) {
       console.log(`Entry with ID ${id} not found.`);
       return null;
@@ -42,7 +44,7 @@ const readEntryById = async (Table, id) => {
 };
 const readEntryByAggerate = async (Table, filter) => {
   try {
-    const entries = await Table.findAll(filter);
+    const entries = await tableExist(Table).findAll(filter);
     console.log(entries);
     return entries;
   } catch (error) {
@@ -52,7 +54,7 @@ const readEntryByAggerate = async (Table, filter) => {
 };
 const readentriesByFilter = async (Table, filter) => {
   try {
-    const entries = await Table.findAll({ where: filter });
+    const entries = await tableExist(Table).findAll({ where: filter });
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
@@ -61,7 +63,7 @@ const readentriesByFilter = async (Table, filter) => {
 };
 const updateEntryById = async (Table, id, body) => {
   try {
-    const entry = await Table.findByPk(id);
+    const entry = await tableExist(Table).findByPk(id);
     if (!entry) {
       throw new Error(`Entry with ID ${id} not found.`);
     }
@@ -74,7 +76,7 @@ const updateEntryById = async (Table, id, body) => {
 };
 const deleteEntryById = async (Table, id) => {
   try {
-    const entry = await Table.findByPk(id);
+    const entry = await tableExist(Table).findByPk(id);
     if (!entry) {
       throw new Error(`Entry with ID ${id} not found.`);
     }
@@ -89,7 +91,10 @@ const paginateEntries = async (Table, options) => {
   try {
     const { page = 1, pageSize = 10 } = options;
     const offset = (page - 1) * pageSize;
-    const entries = await Table.findAll({ offset, limit: pageSize });
+    const entries = await tableExist(Table).findAll({
+      offset,
+      limit: pageSize,
+    });
     return entries;
   } catch (error) {
     console.error(`Error paginating entries: ${error}`);
