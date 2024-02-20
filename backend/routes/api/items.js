@@ -13,10 +13,14 @@ const {
 } = require("../../db/models");
 
 const router = express.Router();
- 
+
 router.get("/", async (req, res) => {
-  let result = await readEntry("Item");
-  res.status(200).json({ "Items:": result });
+  try {
+    let result = await readEntry("Item");
+    res.status(200).json({ "Items:": result });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
- 
+
 module.exports = router;
