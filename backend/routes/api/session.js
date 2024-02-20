@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { createEntry } = require("../../utils/crud");
+const { readOneEntriesByFilter } = require("../../utils/crud");
 
 const router = express.Router();
 
@@ -22,22 +22,22 @@ const validateLogin = [
 router.get("/", async (req, res, next) => {
   try {
     const { user } = req;
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    const responseUser = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      phoneNumber: user.phoneNumber,
-      username: user.username,
-      email: user.email,
-      profileImageUrl: user.profileImageUrl,
-    };
-
-    return res.status(200).json({ user: responseUser });
+    console.log("user:", user);
+    if (!user) res.status(200).json({ user: null });
+    if (user) {
+      const safeUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        username: user.username,
+        profileImageUrl: user.profileImageUrl,
+        phoneNumber: user.phoneNumber,
+      };
+      return res.json({
+        user: safeUser,
+      });
+    } else return res.json({ user: null });
   } catch (error) {
     console.error("Error restoring session user:", error);
     return next(error);
@@ -50,12 +50,10 @@ router.post("/", validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
 
     // Fetch user with provided credential
-    const user = await User.unscoped().findOne({
-      where: {
-        [Op.or]: {
-          username: credential,
-          email: credential,
-        },
+    const user = await readOneEntriesByFilter(User, {
+      [Op.or]: {
+        username: credential,
+        email: credential,
       },
     });
 
@@ -91,7 +89,7 @@ router.post("/", validateLogin, async (req, res, next) => {
     // Handle errors
     return next(error);
   }
-}); 
+});
 
 // Log out
 router.delete("/", (_req, res) => {

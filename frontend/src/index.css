@@ -1,0 +1,39 @@
+/* TODO Add site wide styles */
+/* apply to everything */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap");
+
+* {
+  list-style: none;
+  text-decoration: none;
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
+}
+
+.errors {
+  color: #ff385c;
+}
+
+:root {
+  --div-color: rgba(0, 0, 0, 0.878);
+  --txt-color: #56667a;
+  --modal-bg: #c8c8c8;
+  --modal-txt: #997899;
+  --button: #7b46ac;
+  --errors: red;
+}
+/* *{
+  background-color: var(--bg-color);
+} */
+/* @media screen (min-width:1440 ) {
+}
+@media screen (min-width:1024 ) {
+}
+@media screen (min-width:768 ) {
+}
+@media screen (min-width:425 ) {
+}
+@media screen (min-width:375 ) {
+}
+@media screen (min-width:320 ) {
+} */

@@ -1,0 +1,46 @@
+.login-div {
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 50%;
+  background-color: var(--modal-bg);
+  height: 30rem;
+  border-radius: 20pt;
+}
+.login-div-h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+.login-form {
+  display: flex;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-button {
+  height: 3rem;
+  border-radius: 20pt;
+}
+.login-input {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 30rem;
+  height: 2rem;
+  border-radius: 20pt;
+}
+.demo-user {
+  border: none;
+  text-decoration: underline;
+  background-color: rgba(128, 99, 40, 0);
+  font-size: 1.5rem;
+}
+.login-errors {
+  color: red;
+}

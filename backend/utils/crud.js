@@ -52,7 +52,16 @@ const readEntryByAggerate = async (Table, filter) => {
     throw error;
   }
 };
-const readEntriesByFilter = async (Table, filter) => {
+const readOneEntriesByFilter = async (Table, filter) => {
+  try {
+    const entries = await tableExist(Table).findOne({ where: filter });
+    return entries;
+  } catch (error) {
+    console.error(`Error filtering entries: ${error}`);
+    throw error;
+  }
+};
+const readAllEntriesByFilter = async (Table, filter) => {
   try {
     const entries = await tableExist(Table).findAll({ where: filter });
     return entries;
@@ -124,7 +133,8 @@ module.exports = {
   tableExist,
   readEntryById,
   readEntryByAggerate,
-  readEntriesByFilter,
+  readOneEntriesByFilter,
+  readAllEntriesByFilter,
   updateEntryById,
   deleteEntryById,
   paginateEntries,
