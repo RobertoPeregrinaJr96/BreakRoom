@@ -52,7 +52,7 @@ const readEntryByAggerate = async (Table, filter) => {
     throw error;
   }
 };
-const readentriesByFilter = async (Table, filter) => {
+const readEntriesByFilter = async (Table, filter) => {
   try {
     const entries = await tableExist(Table).findAll({ where: filter });
     return entries;
@@ -81,6 +81,7 @@ const deleteEntryById = async (Table, id) => {
       throw new Error(`Entry with ID ${id} not found.`);
     }
     await entry.destroy();
+    return true;
   } catch (error) {
     console.error(`Error deleting entry by ID: ${error}`);
     throw error;
@@ -123,7 +124,7 @@ module.exports = {
   tableExist,
   readEntryById,
   readEntryByAggerate,
-  readentriesByFilter,
+  readEntriesByFilter,
   updateEntryById,
   deleteEntryById,
   paginateEntries,
