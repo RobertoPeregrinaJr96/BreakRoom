@@ -54,7 +54,7 @@ const readEntryByAggerate = async (Table, filter) => {
 };
 const readOneEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table).findOne({ where: filter });
+    const entries = await tableExist(Table).unscoped().findOne({ where: filter });
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
@@ -63,7 +63,7 @@ const readOneEntriesByFilter = async (Table, filter) => {
 };
 const readAllEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table).findAll({ where: filter });
+    const entries = await tableExist(Table).unscoped().findAll({ where: filter });
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);

@@ -26,12 +26,10 @@ function LoginFormModal() {
   };
 
   const demoUser = (e) => {
-    return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' })).then(closeModal)
-  }
-  // let stateCheck = credential.length >= 4 && password.length >= 6 ? true : false
-  // console.log('password in Nav', password)
-  // console.log('credential in Nav', credential)
-
+    return dispatch(
+      sessionActions.login({ credential: "Demo-lition", password: "password" })
+    ).then(closeModal);
+  };
   return (
     <div className="login-div">
       <h1 className="login-div-h1">Log In</h1>
@@ -50,7 +48,7 @@ function LoginFormModal() {
         <label>
           {/* Password */}
           <input
-          className="login-input"
+            className="login-input"
             type="password"
             value={password}
             placeholder="Password"
@@ -61,12 +59,15 @@ function LoginFormModal() {
         {errors.credential && (
           <p className="login-errors">{errors.credential}</p>
         )}
-        <button type="submit" className="submit-button">Log In</button>
-        <button onClick={demoUser} type="submit" className="demo-user">Demo User</button>
+        <button type="submit" className="submit-button">
+          Log In
+        </button>
+        <button onClick={demoUser} type="submit" className="demo-user">
+          Demo User
+        </button>
       </form>
     </div>
   );
 }
 
 export default LoginFormModal;
-// disabled={!stateCheck}
