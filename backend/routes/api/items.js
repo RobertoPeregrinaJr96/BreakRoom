@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { readEntry } = require("../../utils/crud");
+const { readAllEntry } = require("../../utils/crud");
 
 const {
   User,
@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    let result = await readEntry("Item");
+    let result = await readAllEntry("Item");
     res.status(200).json({ "Items:": result });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });

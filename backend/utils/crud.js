@@ -8,7 +8,11 @@ const {
   Modifier,
   Review,
 } = require("../db/models");
+//=============================================================
+/*
+  CONTEXT: get a new entry in a table
 
+*/
 const createEntry = async (Table, body) => {
   try {
     const newEntry = await tableExist(Table).create(body);
@@ -19,7 +23,11 @@ const createEntry = async (Table, body) => {
   }
 };
 //=============================================================
-const readEntry = async (Table) => {
+/*
+  CONTEXT: get everything in a table
+
+*/
+const readAllEntry = async (Table) => {
   try {
     const entries = await tableExist(Table).findAll();
     return entries;
@@ -29,6 +37,10 @@ const readEntry = async (Table) => {
   }
 };
 //=============================================================
+/*
+CONTEXT: get one entry in a table
+  
+*/
 const readEntryById = async (Table, id) => {
   try {
     const entry = await tableExist(Table).findByPk(id);
@@ -42,6 +54,27 @@ const readEntryById = async (Table, id) => {
     throw error;
   }
 };
+//=============================================================
+/*
+CONTEXT: get one specific entry in a table
+  
+*/
+const readOneEntriesByFilter = async (Table, filter) => {
+  try {
+    const entries = await tableExist(Table)
+      .unscoped()
+      .findOne({ where: filter });
+    return entries;
+  } catch (error) {
+    console.error(`Error filtering entries: ${error}`);
+    throw error;
+  }
+};
+//=============================================================
+/*
+CONTEXT: get a group of specific entries in a table with contraints
+  
+*/
 const readEntryByAggerate = async (Table, filter) => {
   try {
     const entries = await tableExist(Table).findAll(filter);
@@ -52,24 +85,27 @@ const readEntryByAggerate = async (Table, filter) => {
     throw error;
   }
 };
-const readOneEntriesByFilter = async (Table, filter) => {
-  try {
-    const entries = await tableExist(Table).unscoped().findOne({ where: filter });
-    return entries;
-  } catch (error) {
-    console.error(`Error filtering entries: ${error}`);
-    throw error;
-  }
-};
+//=============================================================
+/*
+CONTEXT: get a group of specific entries in a table
+
+*/
 const readAllEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table).unscoped().findAll({ where: filter });
+    const entries = await tableExist(Table)
+      .unscoped()
+      .findAll({ where: filter });
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
     throw error;
   }
 };
+//=============================================================
+/*
+CONTEXT: update one entry in a table
+
+*/
 const updateEntryById = async (Table, id, body) => {
   try {
     const entry = await tableExist(Table).findByPk(id);
@@ -83,6 +119,11 @@ const updateEntryById = async (Table, id, body) => {
     throw error;
   }
 };
+//=============================================================
+/*
+CONTEXT: delete a entry in a table
+
+*/
 const deleteEntryById = async (Table, id) => {
   try {
     const entry = await tableExist(Table).findByPk(id);
@@ -96,7 +137,11 @@ const deleteEntryById = async (Table, id) => {
     throw error;
   }
 };
+//=============================================================
+/*
+CONTEXT: get a group of entries a set at a time from a table
 
+*/
 const paginateEntries = async (Table, options) => {
   try {
     const { page = 1, pageSize = 10 } = options;
@@ -111,6 +156,11 @@ const paginateEntries = async (Table, options) => {
     throw error;
   }
 };
+//=============================================================
+/*
+CONTEXT: check a string prompt agaisnt a set of values to grab The correct Value
+
+*/
 const tableExist = (prompt) => {
   const tables = {
     User,
@@ -127,9 +177,13 @@ const tableExist = (prompt) => {
     throw new Error("No such table exists");
   }
 };
+//=============================================================
+/*
+
+*/
 module.exports = {
   createEntry,
-  readEntry,
+  readAllEntry,
   tableExist,
   readEntryById,
   readEntryByAggerate,

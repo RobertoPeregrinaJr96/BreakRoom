@@ -22,7 +22,6 @@ const validateLogin = [
 router.get("/", async (req, res, next) => {
   try {
     const { user } = req;
-    console.log("user:", user);
     if (!user) res.status(200).json({ user: null });
     if (user) {
       const safeUser = {
@@ -48,7 +47,6 @@ router.get("/", async (req, res, next) => {
 router.post("/", validateLogin, async (req, res, next) => {
   try {
     const { credential, password } = req.body;
-
     // Fetch user with provided credential
     const user = await readOneEntriesByFilter("User", {
       [Op.or]: {
@@ -56,11 +54,7 @@ router.post("/", validateLogin, async (req, res, next) => {
         email: credential,
       },
     });
-    console.log("user:", user   );
-
     // If user is not found or password is incorrect
-    console.log("hashedPassword:", user.hashedPassword );
-    console.log("password:",password );
     if (
       !user ||
       !(await bcrypt.compare(password, user.hashedPassword.toString()))

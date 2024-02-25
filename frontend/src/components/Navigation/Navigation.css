@@ -1,116 +1,43 @@
-.nav-list-img {
-  height: 9rem;
-  width: 8rem;
-  padding: 15px;
-}
-.nav-button {
-  display: none;
-}
-.nav-wrapper {
-  /* background-color: #dc9e82; */
+.navigation-container {
   display: grid;
   grid-template-columns: 50% 50%;
+  border: solid 2px black;
 }
-.nav-div-topLeft {
-  display: grid;
-  grid-template-columns: 20% 50%;
+.navigation-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
-.nav-h1 {
+.navigation-list-image {
+  height: 60%;
+  width: 50%;
+  padding: 15px;
+}
+.navigation-button {
+  display: none;
+}
+.navigation-div-topLeft {
   display: grid;
-  font-size: 4rem;
+  grid-template-columns: 40% 50%;
+  border: solid 2px black;
+}
+.navigation-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.navigation-h1 {
+  display: grid;
+  font-size: 1.8rem;
   color: black;
   font-weight: bold;
+  padding: 15px;
 }
-.nav-div-topRight {
+.navigation-div-topRight {
   display: grid;
   justify-content: end;
   align-items: center;
-}
-/* quickItemModal */
-.profile-ul {
-  display: grid;
-  height: 7rem;
-  width: 25rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.nav-topRight-logged {
-  height: 3rem;
-  border-radius: 20pt;
-  width: 5rem;
-}
-
-.nav-topRight-Profile {
-  height: 3rem;
-  border-radius: 20pt;
-  width: 5rem;
-}
-.nav-topRight-modal {
-  display: grid;
-  column-gap: 40px;
-  grid-template-columns: 20% 20% 20%;
-}
-.nav-topRight-modal-loggedIn {
-  height: 3rem;
-  border-radius: 20pt;
-  width: 5rem;
-}
-.nav-topRight-modal-signUp {
-  height: 3rem;
-  border-radius: 20pt;
-  width: 5rem;
-}
-
-@media screen and (max-width: 1440px) {
-  .nav-div-topLeft {
-    display: grid;
-    grid-template-columns: 20% 50%;
-  }
-  .nav-list-img {
-    height: 7rem;
-    width: 5rem;
-    padding: 15px;
-  }
-  .nav-h1 {
-    display: grid;
-    font-size: 3rem;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .nav-div-topLeft {
-    display: grid;
-    grid-template-columns: 20% 50%;
-  }
-  .nav-list-img {
-    height: 7rem;
-    width: 5rem;
-    padding: 15px;
-  }
-  .nav-h1 {
-    display: grid;
-    font-size: 3rem;
-  }
-}
-@media screen and (max-width: 1024px) {
-  .nav-wrapper {
-    /* background-color: #dc9e82; */
-    display: grid;
-    grid-template-columns: 50% 50%;
-    height: 10rem;
-
-}
-  .nav-div-topLeft {
-    display: grid;
-    grid-template-columns: 20% 50%;
-  }
-  .nav-list-img {
-    height: 6rem;
-    width: 5rem;
-    padding: 15px;
-  }
-  .nav-h1 {
-    display: grid;
-    font-size: 2.8rem;
-  }
+  border: solid 2px black;
 }
