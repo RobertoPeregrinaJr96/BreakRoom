@@ -1,9 +1,9 @@
 // frontend/src/components/Navigation/index.js
 import React, { useEffect } from "react";
 
-function LandingPage({ isLoaded }) {
+function OrderPage({ isLoaded }) {
   useEffect(() => {}, []);
   return <></>;
 }
 
-export default LandingPage;
+export default OrderPage;

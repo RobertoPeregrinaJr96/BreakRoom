@@ -6,6 +6,11 @@ import Navigation from "./components/Navigation";
 
 // my component pages
 import LandingPage from "./components/LandingPage/index";
+import ProfilePage from "./components/Profile";
+import OrderPage from "./components/Order";
+import AdminPage from "./components/AdminView";
+import CheckoutPage from "./components/Checkout";
+import Menu from "./components/Menu";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +26,11 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/admin" component={AdminPage} />
+          <Route exact path="/menu" component={Menu} />
+          <Route exact path="/order" component={OrderPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
           <Route path="/*" component={LandingPage} />
         </Switch>
       )}
