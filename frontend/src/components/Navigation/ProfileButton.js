@@ -6,45 +6,47 @@ import OpenModalButton from "./OpenModalButton";
 import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import "./ProfileButton.css";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const history = useHistory();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  useEffect(() => {}, []);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push("/");
   };
-
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <div className="profileButton-container">
       {user ? (
         <>
-          <div>
-            <button onClick={logout}>Log Out</button>
-          </div>
+          <ul className="profileButton-ul-pageLinks">
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+            <li>
+              {" "}
+              <button onClick={history.push("/profile")}>Profile</button>
+            </li>
+            <li>
+              {" "}
+              <button onClick={history.push("/admin")}>admin</button>
+            </li>
+            <li>
+              {" "}
+              <button onClick={history.push("/menu")}>menu</button>
+            </li>
+            <li>
+              <button onClick={history.push("/order")}>order</button>
+            </li>
+            <li>
+              <button onClick={history.push("/checkout")}>checkout</button>
+            </li>
+          </ul>
         </>
       ) : (
         <>

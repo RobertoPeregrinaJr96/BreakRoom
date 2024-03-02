@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 function ProfilePage({ isLoaded }) {
   useEffect(() => {}, []);
-  return <></>;
+  return <>  <h1>ProfilePage</h1></>;
 }
 
 export default ProfilePage;

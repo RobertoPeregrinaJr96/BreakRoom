@@ -37,7 +37,10 @@
 }
 .navigation-div-topRight {
   display: grid;
-  justify-content: end;
   align-items: center;
   border: solid 2px black;
+}
+.profileButton-ul-pageLinks{
+  row-gap: 10px;
+  height: 100%;
 }

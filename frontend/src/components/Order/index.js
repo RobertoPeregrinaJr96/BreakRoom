@@ -3,7 +3,9 @@ import React, { useEffect } from "react";
 
 function OrderPage({ isLoaded }) {
   useEffect(() => {}, []);
-  return <></>;
+  return <>
+  <h1>OrderPage</h1>
+  </>;
 }
 
 export default OrderPage;

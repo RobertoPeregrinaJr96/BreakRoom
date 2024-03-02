@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 function Menu({ isLoaded }) {
   useEffect(() => {}, []);
-  return <></>;
+  return <>  <h1>Menu</h1></>;
 }
 
 export default Menu;

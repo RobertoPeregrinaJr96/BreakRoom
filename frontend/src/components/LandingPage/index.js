@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 function LandingPage({ isLoaded }) {
   useEffect(() => {}, []);
-  return <></>;
+  return <><h1>LandingPage</h1></>;
 }
 
 export default LandingPage;

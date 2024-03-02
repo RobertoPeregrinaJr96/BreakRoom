@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 function CheckoutPage({ isLoaded }) {
   useEffect(() => {}, []);
-  return <></>;
+  return <><h1>CheckoutPage</h1></>;
 }
 
 export default CheckoutPage;
