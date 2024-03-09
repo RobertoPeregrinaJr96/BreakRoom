@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-
+import Footer from "./components/Footer";
 // my component pages
 import LandingPage from "./components/LandingPage/index";
 import ProfilePage from "./components/Profile";
@@ -34,6 +34,7 @@ function App() {
           <Route path="/*" component={LandingPage} />
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

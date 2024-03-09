@@ -1,0 +1,9 @@
+.landingPage-container{
+    display: grid;
+}
+
+.landingPage-content-wrapper{
+    display: grid;
+    grid-template-columns: 65% 35%;
+    grid-template-rows: 100%;
+}
