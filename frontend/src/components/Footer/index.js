@@ -1,11 +1,9 @@
 // frontend/src/components/Navigation/index.js
-import React, { useEffect } from "react";
 
-function Footer({ isLoaded }) {
+function Footer() {
   return (
     <>
       <h1>Footer</h1>
- 
     </>
   );
 }

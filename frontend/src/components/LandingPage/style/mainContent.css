@@ -1,0 +1,21 @@
+.mainContent-container {
+  display: block;
+}
+.reviewed-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.reviewed-content-description {
+  font-size: 2rem;
+  justify-content: center;
+}
+.reviewed-image-container {
+  display: flex;
+  justify-content: center;
+}
+.reviewed-image {
+    display: flex;
+    justify-content: center;
+  height: 3rem;
+  width: 3rem;
+}
