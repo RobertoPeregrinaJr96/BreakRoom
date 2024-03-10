@@ -6,11 +6,19 @@ import OpenModalButton from "./OpenModalButton";
 import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import "./ProfileButton.css";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const navigationLinks = [
+    "/profile",
+    "/admin",
+    "/menu",
+    "/order",
+    "/checkout",
+  ];
 
   useEffect(() => {}, []);
 
@@ -25,26 +33,18 @@ function ProfileButton({ user }) {
       {user ? (
         <>
           <ul className="profileButton-ul-pageLinks">
+            {navigationLinks.map((linkItem) => {
+              {
+                console.log(linkItem);
+              }
+              <li>
+                <Link  to={`${linkItem}`}>
+                  {`${linkItem}`}
+                </Link>
+              </li> 
+            })}
             <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-            <li>
-              {" "}
-              <button onClick={history.push("/profile")}>Profile</button>
-            </li>
-            <li>
-              {" "}
-              <button onClick={history.push("/admin")}>admin</button>
-            </li>
-            <li>
-              {" "}
-              <button onClick={history.push("/menu")}>menu</button>
-            </li>
-            <li>
-              <button onClick={history.push("/order")}>order</button>
-            </li>
-            <li>
-              <button onClick={history.push("/checkout")}>checkout</button>
+              <button onClick={(e) => logout(e)}>Log out</button>
             </li>
           </ul>
         </>

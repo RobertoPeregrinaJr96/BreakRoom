@@ -17,7 +17,7 @@ function RightMenu() {
               <button>Item add to cart</button>
             </span>
           ) : (
-            menuItems.forEach((item) => {
+            menuItems.map((item) => {
               <span className="menu-item-cluster">
                 <button>{item.name}</button>
                 <button>img</button>
