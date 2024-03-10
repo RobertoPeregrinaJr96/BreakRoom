@@ -1,9 +1,9 @@
 /* border: 1px solid black; */
 
-.rightMenu-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.rightMenu-h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .menu-item-container {
   display: flex;
