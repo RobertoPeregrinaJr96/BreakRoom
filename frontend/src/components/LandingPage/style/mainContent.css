@@ -1,21 +1,48 @@
 .mainContent-container {
   display: block;
+  padding: 20px;
+  border: 1px solid black;
+}
+.mainContent-container-h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+.about-container {
+  display: block;
+  height: 15rem;
+  border: 1px solid black;
+}
+.about-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .reviewed-container {
   display: grid;
   grid-template-columns: 60% 40%;
+  height: 12rem;
+  border: 1px solid black;
 }
 .reviewed-content-description {
   font-size: 2rem;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  border: 1px solid black;
 }
 .reviewed-image-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  border: 1px solid black;
 }
 .reviewed-image {
-    display: flex;
-    justify-content: center;
-  height: 3rem;
-  width: 3rem;
+  display: flex;
+  justify-content: center;
+  height: 60%;
+  width: 60%;
+  border-radius: 50%;
+  border: 1px solid black;
 }

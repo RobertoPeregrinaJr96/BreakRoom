@@ -3,9 +3,11 @@ import "./style/mainContent.css";
 function MainContent() {
   return (
     <>
-      <h1>Main Content</h1>
+      <h1 className="mainContent-container-h1">Main Content</h1>
       <div className="mainContent-container">
-        <div>about content</div>
+        <div className="about-container">
+          <h1>about content</h1>
+        </div>
         <div className="reviewed-container">
           <h3 className="reviewed-content-description">
             Highest Reviewed Content

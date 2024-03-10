@@ -1,9 +1,13 @@
 .landingPage-container{
     display: grid;
+    border: 1px solid black;
 }
 
 .landingPage-content-wrapper{
     display: grid;
     grid-template-columns: 65% 35%;
-    grid-template-rows: 100%;
+    grid-template-rows: 35rem;
+    height: 100%;
+    border: 1px solid black;
+
 }
