@@ -1,1 +1,20 @@
 /* border: 1px solid black; */
+
+.rightMenu-h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-item-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  column-gap: 10px;
+}
+.menu-item-cluster {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
