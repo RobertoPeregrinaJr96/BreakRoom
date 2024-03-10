@@ -13,6 +13,7 @@ function ProfileButton({ user }) {
   const history = useHistory();
 
   const navigationLinks = [
+    "/",
     "/profile",
     "/admin",
     "/menu",
@@ -27,26 +28,15 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
     history.push("/");
   };
-
+  const pageLinks = (a) => {
+    return <button onClick={(e) => history.push(a)}>{a}</button>;
+  };
   return (
     <div className="profileButton-container">
       {user ? (
         <>
-          <ul className="profileButton-ul-pageLinks">
-            {navigationLinks.map((linkItem) => {
-              {
-                console.log(linkItem);
-              }
-              <li>
-                <Link  to={`${linkItem}`}>
-                  {`${linkItem}`}
-                </Link>
-              </li> 
-            })}
-            <li>
-              <button onClick={(e) => logout(e)}>Log out</button>
-            </li>
-          </ul>
+          {navigationLinks.map((link) => pageLinks(link))}
+          <button onClick={(e) => logout(e)}>Log out</button>
         </>
       ) : (
         <>
