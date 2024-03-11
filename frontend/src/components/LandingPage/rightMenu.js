@@ -1,5 +1,5 @@
 import "./style/rightMenu.css";
-import SearchComponent from "./search";
+import SearchComponent from "../Util/search";
 function RightMenu() {
   let menuItems = [{ name: "hello" }];
   const data = ["Apple", "Banana", "Orange", "Mango", "Pineapple"];
