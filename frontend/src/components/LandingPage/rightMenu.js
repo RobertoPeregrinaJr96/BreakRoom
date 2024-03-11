@@ -1,5 +1,7 @@
 import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
+import OpenModalButton from "../Navigation/OpenModalButton/index";
+import ItemModel from "../ModelComponents/ItemModel";
 function RightMenu() {
   let menuItems = [{ name: "hello" }];
   const data = ["Apple", "Banana", "Orange", "Mango", "Pineapple"];
@@ -18,9 +20,13 @@ function RightMenu() {
                 <button className="menu-item-button-name">Item name</button>
               </span>
               <span className="menu-item-button-container">
-                <button className="menu-item-button-info">
+                <OpenModalButton
+                  className="menu-item-button-info"
+                  buttonText={<i class="fa-solid fa-circle-info"></i>}
+                  modalComponent={<ItemModel />}
+                >
                   <i class="fa-solid fa-circle-info"></i>
-                </button>
+                </OpenModalButton>
               </span>
               <span className="menu-item-button-container">
                 <button className="menu-item-button-cart">
