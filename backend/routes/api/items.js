@@ -14,7 +14,7 @@ const {
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     let result = await readAllEntry("Item");
     res.status(200).json({ "Items:": result });
@@ -36,9 +36,9 @@ router.get("/:itemId", async (req, res) => {
 });
 
 // GET All Items of a certain type
-router.get("/", async (req, res) => {
+router.get("/:type", async (req, res) => {
   try {
-    const type = req.body.type;
+    const type = req.params.type;
     const items = await readEntryByAggerate("Item", {
       where: { type: type },
     });

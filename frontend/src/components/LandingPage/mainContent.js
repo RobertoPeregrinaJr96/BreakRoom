@@ -13,10 +13,7 @@ function MainContent() {
             Highest Reviewed Content
           </h3>
           <span className="reviewed-image-container">
-            <img
-              className="reviewed-image"
-              src="frontend/images/cup_of_coffee.png"
-            ></img>
+            <img className="reviewed-image"></img>
           </span>
         </div>
         <div></div>

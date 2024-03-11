@@ -2,9 +2,20 @@ import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
 import OpenModalButton from "../Navigation/OpenModalButton/index";
 import ItemModel from "../ModelComponents/ItemModel";
+import getItemsThunk from "../../store/itemReducer";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
 function RightMenu() {
+  const dispatch = useDispatch();
   let menuItems = [{ name: "hello" }];
-  const data = ["Apple", "Banana", "Orange", "Mango", "Pineapple"];
+
+  useEffect(() => {
+    dispatch(getItemsThunk());
+  }, [dispatch]);
+
+  const temp = () => {};
+
   return (
     <>
       <h1 className="rightMenu-h1">Right Menu</h1>
@@ -49,6 +60,7 @@ function RightMenu() {
             })
           )}
         </menu>
+        <button onClick={(e) => temp()}>dsfsdfs</button>
       </div>
     </>
   );
