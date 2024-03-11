@@ -8,20 +8,37 @@ function RightMenu() {
       <h1 className="rightMenu-h1">Right Menu</h1>
       <div className="rightMenu-container">
         <menu className="menu-item-container">
-          <SearchComponent data={data} />
+          {/* <SearchComponent data={data} /> */}
+          <span className="menu-search-container">
+            <input className="menu-search-input"></input>
+          </span>
           {menuItems ? (
             <span className="menu-item-cluster">
-              <button>Item name</button>
-              <button>Item module button</button>
-              <button>Item add to cart</button>
+              <span className="menu-item-button-container">
+                <button className="menu-item-button-name">Item name</button>
+              </span>
+              <span className="menu-item-button-container">
+                <button className="menu-item-button-info">
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+              </span>
+              <span className="menu-item-button-container">
+                <button className="menu-item-button-cart">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+              </span>
             </span>
           ) : (
             menuItems.map((item) => {
               <span className="menu-item-cluster">
                 <button>{item.name}</button>
-                <button>img</button>
-                <button>img</button>
-                <button>img</button>
+                <button>
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+                <button>
+                  {" "}
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </button>
               </span>;
             })
           )}

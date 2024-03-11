@@ -1,13 +1,22 @@
 .landingPage-container{
     display: grid;
     border: 1px solid black;
+    height: 100%;
 }
 
 .landingPage-content-wrapper{
     display: grid;
-    grid-template-columns: 65% 35%;
-    grid-template-rows: 35rem;
+    grid-template-columns: 60% 40%;
     height: 100%;
-    border: 1px solid black;
 
+}
+.main-content{
+    border-right: 2px solid black;
+}
+
+@media only screen and (max-width: 1023px) {
+    /* Styles to apply when viewport width is 1024px or below */
+.landingPage-content-wrapper{
+    grid-template-columns: 100%;
+}
 }

@@ -11,10 +11,10 @@ function LandingPage({ isLoaded }) {
       <h1>LandingPage</h1>
       <div className="landingPage-container">
         <div className="landingPage-content-wrapper">
-          <span>
+          <span className="main-content">
             <MainContent />
           </span>
-          <span>
+          <span className="right menu">
             <RightMenu />
           </span>
         </div>

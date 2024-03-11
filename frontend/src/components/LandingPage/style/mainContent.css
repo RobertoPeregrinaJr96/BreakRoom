@@ -1,13 +1,14 @@
 .mainContent-container {
-  display: block;
+  display: grid;
   padding: 20px;
-  border: 1px solid black;
+  gap: 2rem;
+  /* border: 1px solid black; */
 }
 .mainContent-container-h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .about-container {
   display: block;
@@ -23,12 +24,14 @@
   display: grid;
   grid-template-columns: 60% 40%;
   height: 12rem;
+  padding: 30px;
   border: 1px solid black;
 }
 .reviewed-content-description {
   font-size: 2rem;
   display: flex;
   justify-content: center;
+  padding-left: 1rem;
   align-items: center;
   border: 1px solid black;
 }
@@ -36,7 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .reviewed-image {
   display: flex;
