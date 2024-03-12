@@ -1,10 +1,10 @@
-// frontend/src/store/itemReducer.js
+// frontend/src/store/orderReducer.js
 import { csrfFetch } from "./csrf";
 /* Action Type Constants: */
 const GET_ORDERS = "order/GET_ORDERS";
 /* Action Creators: */
 const getAllOrders = (orders) => ({
-  type: GET_ORDERS,
+  type: "GET_ORDERS",
   payload: orders,
 });
 /* Thunk Creators: */
@@ -22,7 +22,7 @@ const initialState = { allOrders: {}, currentOrder: {} };
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ORDERS:
+    case "GET_ORDERS":
       return { ...state, allOrders: action.payload };
     default:
       return state;

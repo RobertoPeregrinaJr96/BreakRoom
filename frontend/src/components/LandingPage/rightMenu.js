@@ -2,7 +2,7 @@ import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
 import OpenModalButton from "../Navigation/OpenModalButton/index";
 import ItemModel from "../ModelComponents/ItemModel";
-import getItemsThunk from "../../store/item";
+import {getItemsThunk} from "../../store/item";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getOrderThunk } from "../../store/order";
