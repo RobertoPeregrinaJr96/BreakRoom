@@ -15,13 +15,13 @@ router.use(restoreUser);
 
 router.use("/session", sessionRouter);
 
-router.use("/users", usersRouter);
+router.use("/user", usersRouter);
 
-router.use("/items", itemRouter);
+router.use("/item", itemRouter);
 
-router.use("/orders", orderRouter);
+router.use("/order", orderRouter);
 
-router.use("/orderItems", orderItemsRouter);
+router.use("/orderItem", orderItemsRouter);
 
 router.use("/review", reviewRouter);
 

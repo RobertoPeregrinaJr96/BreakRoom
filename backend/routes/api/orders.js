@@ -2,20 +2,13 @@ const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const {
-  User,
-  Item,
-  Order,
-  OrderItem,
-  InstructionModifier,
-  Modifier,
-  Review,
-} = require("../../db/models");
+const { readAllEntry } = require("../../utils/crud");
+ 
 
 const router = express.Router();
 
 // GET all Order
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     let result = await readAllEntry("Order");
     res.status(200).json({ "Orders:": result });

@@ -28,8 +28,10 @@ const createEntry = async (Table, body) => {
 
 */
 const readAllEntry = async (Table) => {
+  console.log("Table: ",Table)
+  console.log(await tableExist(Table).unscoped())
   try {
-    const entries = await tableExist(Table).findAll();
+    const entries = await tableExist(Table).unscoped().findAll();
     return entries;
   } catch (error) {
     console.error(`Error reading entries : ${error}`);
