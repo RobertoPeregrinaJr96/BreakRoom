@@ -2,12 +2,28 @@ import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
 import OpenModalButton from "../Navigation/OpenModalButton/index";
 import ItemModel from "../ModelComponents/ItemModel";
+import { useState } from "react";
 
 function RightMenu({ items }) {
-  console.log("Item in Right Menu: ", items);
   items = Object.values(items)[0];
-  console.log("Item in Right Menueeee: ", items);
 
+  const itemsPerPage = 5;
+
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
+  };
+
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, items.length);
+  const displayedItems = items.slice(startIndex, endIndex);
   return (
     <>
       <h1 className="rightMenu-h1">Right Menu</h1>
@@ -18,9 +34,8 @@ function RightMenu({ items }) {
           <span className="menu-search-container">
             <input className="menu-search-input"></input>
           </span>
-          {items.length}
           {items ? (
-            items.map((item) => {
+            displayedItems.map((item) => {
               return (
                 <span className="menu-item-cluster">
                   <button>{item.name}</button>
@@ -55,6 +70,17 @@ function RightMenu({ items }) {
             </span>
           )}
         </menu>
+        <div>
+          <button onClick={handlePrevPage} disabled={currentPage === 0}>
+            Previous
+          </button>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages - 1}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </>
   );
