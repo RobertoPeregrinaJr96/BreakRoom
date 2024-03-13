@@ -12,14 +12,13 @@
   align-items: center;
   padding: 10px;
   column-gap: 10px;
-
 }
 .menu-search-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
-  height: 3rem;
+  height: 100%;
 }
 .menu-search-input {
   display: flex;
@@ -28,7 +27,7 @@
   justify-content: center;
   align-items: center;
 }
-.menu-item-button-container{
+.menu-item-button-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,21 +40,21 @@
   align-items: center;
   gap: 20px;
 }
-.menu-item-button-name{
+.menu-item-button-name {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80%;
   width: 80%;
 }
-.menu-item-button-info{
+.menu-item-button-info {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80%;
   width: 80%;
 }
-.menu-item-button-cart{
+.menu-item-button-cart {
   display: flex;
   justify-content: center;
   align-items: center;
