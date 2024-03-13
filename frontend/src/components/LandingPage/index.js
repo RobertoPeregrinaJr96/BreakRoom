@@ -1,11 +1,24 @@
 // frontend/src/components/Navigation/index.js
-import React, { useEffect } from "react";
+import React from "react";
 import MainContent from "./mainContent";
 import RightMenu from "./rightMenu";
 import "./style/landingPage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getOrderThunk } from "../../store/order";
+import { getItemsThunk } from "../../store/item";
 
-function LandingPage({ isLoaded }) {
-  useEffect(() => {}, []);
+function LandingPage() {
+  const dispatch = useDispatch();
+  const itemStoreData = useSelector((state) => state.item.allItems);
+  const items = Object.values(itemStoreData)[0];
+  console.log("Items in Index: ", items);
+
+  useEffect(() => {
+    dispatch(getOrderThunk());
+    dispatch(getItemsThunk());
+  }, [dispatch]);
+
   return (
     <>
       <h1>LandingPage</h1>
@@ -15,7 +28,7 @@ function LandingPage({ isLoaded }) {
             <MainContent />
           </span>
           <span className="right menu">
-            <RightMenu />
+            <RightMenu items={itemStoreData} />
           </span>
         </div>
       </div>

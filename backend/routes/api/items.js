@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.get("/all", async (req, res) => {
   let result = await readAllEntry("Item");
-  console.log(result)
   res.status(200).json({ "Items:": result });
   try {
   } catch (error) {

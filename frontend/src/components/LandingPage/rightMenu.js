@@ -2,21 +2,11 @@ import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
 import OpenModalButton from "../Navigation/OpenModalButton/index";
 import ItemModel from "../ModelComponents/ItemModel";
-import {getItemsThunk} from "../../store/item";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { getOrderThunk } from "../../store/order";
 
-function RightMenu() {
-  const dispatch = useDispatch();
-  let menuItems = [{ name: "hello" }];
-
-  useEffect(() => {
-    dispatch(getOrderThunk());
-    dispatch(getItemsThunk());
-  }, [dispatch]);
-
-  const temp = () => {};
+function RightMenu({ items }) {
+  console.log("Item in Right Menu: ", items);
+  items = Object.values(items)[0];
+  console.log("Item in Right Menueeee: ", items);
 
   return (
     <>
@@ -24,10 +14,26 @@ function RightMenu() {
       <div className="rightMenu-container">
         <menu className="menu-item-container">
           {/* <SearchComponent data={data} /> */}
+
           <span className="menu-search-container">
             <input className="menu-search-input"></input>
           </span>
-          {menuItems ? (
+          {items.length}
+          {items ? (
+            items.map((item) => {
+              return (
+                <span className="menu-item-cluster">
+                  <button>{item.name}</button>
+                  <button>
+                    <i class="fa-solid fa-circle-info"></i>
+                  </button>
+                  <button>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                  </button>
+                </span>
+              );
+            })
+          ) : (
             <span className="menu-item-cluster">
               <span className="menu-item-button-container">
                 <button className="menu-item-button-name">Item name</button>
@@ -47,22 +53,8 @@ function RightMenu() {
                 </button>
               </span>
             </span>
-          ) : (
-            menuItems.map((item) => {
-              <span className="menu-item-cluster">
-                <button>{item.name}</button>
-                <button>
-                  <i class="fa-solid fa-circle-info"></i>
-                </button>
-                <button>
-                  {" "}
-                  <i class="fa-solid fa-cart-shopping"></i>
-                </button>
-              </span>;
-            })
           )}
         </menu>
-        <button onClick={(e) => temp()}>dsfsdfs</button>
       </div>
     </>
   );

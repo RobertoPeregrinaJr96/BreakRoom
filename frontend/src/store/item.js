@@ -11,10 +11,8 @@ const getAllItems = (items) => ({
 /* Thunk Creators: */
 export const getItemsThunk = () => async (dispatch) => {
   const response = await csrfFetch("/api/item/all ");
-  console.log("response.ok: ", response.ok);
   if (response.ok) {
     const data = await response.json();
-    console.log("data:", data);
     dispatch(getAllItems(data));
     return data;
   }
@@ -24,7 +22,6 @@ export const getItemsThunk = () => async (dispatch) => {
 const initialState = { allItems: {}, oneItem: {} };
 
 const itemReducer = (state = initialState, action) => {
-  console.log("Action in Reducer", action);
   switch (action.type) {
     case GET_ITEMS: // Use the constant here
       return { ...state, allItems: action.payload };
