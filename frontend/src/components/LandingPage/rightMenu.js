@@ -37,13 +37,13 @@ function RightMenu({ items }) {
           {items ? (
             displayedItems.map((item) => {
               return (
-                <span className="menu-item-cluster">
+                <span className="menu-item-cluster" key={item.id}>
                   <button>{item.name}</button>
                   <button>
-                    <i class="fa-solid fa-circle-info"></i>
+                    <i className="fa-solid fa-circle-info"></i>
                   </button>
                   <button>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </span>
               );
@@ -56,27 +56,32 @@ function RightMenu({ items }) {
               <span className="menu-item-button-container">
                 <OpenModalButton
                   className="menu-item-button-info"
-                  buttonText={<i class="fa-solid fa-circle-info"></i>}
+                  buttonText={<i className="fa-solid fa-circle-info"></i>}
                   modalComponent={<ItemModel />}
                 >
-                  <i class="fa-solid fa-circle-info"></i>
+                  <i className="fa-solid fa-circle-info"></i>
                 </OpenModalButton>
               </span>
               <span className="menu-item-button-container">
                 <button className="menu-item-button-cart">
-                  <i class="fa-solid fa-cart-shopping"></i>
+                  <i className="fa-solid fa-cart-shopping"></i>
                 </button>
               </span>
             </span>
           )}
         </menu>
-        <div>
-          <button onClick={handlePrevPage} disabled={currentPage === 0}>
+        <div className="menu-pag-container">
+          <button
+            onClick={handlePrevPage}
+            disabled={currentPage === 0}
+            className="menu-pag-button"
+          >
             Previous
           </button>
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages - 1}
+            className="menu-pag-button"
           >
             Next
           </button>

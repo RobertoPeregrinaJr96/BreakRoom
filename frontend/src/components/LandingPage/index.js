@@ -19,7 +19,23 @@ function LandingPage() {
     dispatch(getItemsThunk());
   }, [dispatch]);
 
-  return (
+  if (items) {
+    return (
+      <>
+        <h1>LandingPage</h1>
+        <div className="landingPage-container">
+          <div className="landingPage-content-wrapper">
+            <span className="main-content">
+              <MainContent />
+            </span>
+            <span className="right menu">
+              <RightMenu items={itemStoreData} />;
+            </span>
+          </div>
+        </div>
+      </>
+    );
+  } else {
     <>
       <h1>LandingPage</h1>
       <div className="landingPage-container">
@@ -27,13 +43,11 @@ function LandingPage() {
           <span className="main-content">
             <MainContent />
           </span>
-          <span className="right menu">
-            <RightMenu items={itemStoreData} />
-          </span>
+          <span className="right menu"></span>
         </div>
       </div>
-    </>
-  );
+    </>;
+  }
 }
 
 export default LandingPage;

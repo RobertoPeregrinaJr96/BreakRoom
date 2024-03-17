@@ -1,11 +1,8 @@
 # Use a base image with Node.js
-FROM node:18-alpine
+FROM node:12-alpine
 
 # Set working directory inside the container
 WORKDIR /app
-
-# Copy the rest of the application code
-COPY . .
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
@@ -13,12 +10,14 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Build React app
+# Copy the rest of the application code
+COPY . .
+
+# Command to build your React application
 RUN npm run build
 
-# Command to run your Express application
-CMD ["npm", "start"]
+# Command to serve the built React application
+CMD ["npm", "start" ]
 
-# Expose port 3000
+# Expose port (the port your React app will be served on)
 EXPOSE 3000
-

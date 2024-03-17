@@ -5,9 +5,10 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      - backend 
   backend:
     build: ./backend
     ports:
       - "8000:8000"
-  
+    networks:
+      - my_network 
