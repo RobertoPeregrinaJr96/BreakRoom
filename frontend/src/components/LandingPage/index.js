@@ -7,16 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getOrderThunk } from "../../store/order";
 import { getItemsThunk } from "../../store/item";
+import { getHighestAvgThunk } from "../../store/item";
 
 function LandingPage() {
   const dispatch = useDispatch();
   const itemStoreData = useSelector((state) => state.item.allItems);
   const items = Object.values(itemStoreData)[0];
-  console.log("Items in Index: ", items);
+
+  const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
+  console.log(highestAvgItemsData);
 
   useEffect(() => {
     dispatch(getOrderThunk());
     dispatch(getItemsThunk());
+    dispatch(getHighestAvgThunk("placeholder"));
   }, [dispatch]);
 
   if (items) {
@@ -26,7 +30,7 @@ function LandingPage() {
         <div className="landingPage-container">
           <div className="landingPage-content-wrapper">
             <span className="main-content">
-              <MainContent />
+              <MainContent item={highestAvgItemsData} />
             </span>
             <span className="right menu">
               <RightMenu items={itemStoreData} />;

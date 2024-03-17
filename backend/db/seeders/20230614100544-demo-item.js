@@ -15,6 +15,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_espresso.jpg",
     waitTime: 3,
     type: "placeholder",
+    totalReviewScore: 4,
   },
   {
     name: "Cappuccino",
@@ -81,6 +82,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4K_flatwhite1.jpg",
     waitTime: 3,
     type: "placeholder",
+    totalReviewScore:4
   },
   {
     name: "Affogato",
@@ -92,6 +94,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Affogato.jpg",
     waitTime: 3,
     type: "placeholder",
+    totalReviewScore:5
   },
   {
     name: "Turkish Coffee",
@@ -103,6 +106,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Turkish+Coffee.jpg",
     waitTime: 3,
     type: "placeholder",
+    totalReviewScore:2
   },
   {
     name: "Irish Coffee",

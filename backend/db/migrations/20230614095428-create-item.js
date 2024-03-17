@@ -44,6 +44,10 @@ module.exports = {
           type: Sequelize.STRING(200),
           allowNull: false,
         },
+        totalReviewScore: {
+          type: Sequelize.FLOAT(2, 2), // Assuming the review scores are integers
+          defaultValue: 0, // Default value to start with
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,

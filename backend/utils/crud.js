@@ -28,8 +28,8 @@ const createEntry = async (Table, body) => {
 
 */
 const readAllEntry = async (Table) => {
-  console.log("Table: ",Table)
-  console.log(await tableExist(Table).unscoped())
+  console.log("Table: ", Table);
+  console.log(await tableExist(Table).unscoped());
   try {
     const entries = await tableExist(Table).unscoped().findAll();
     return entries;
@@ -63,9 +63,7 @@ CONTEXT: get one specific entry in a table
 */
 const readOneEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table)
-      .unscoped()
-      .findOne({ where: filter });
+    const entries = await tableExist(Table).findOne(filter);
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
@@ -80,7 +78,6 @@ CONTEXT: get a group of specific entries in a table with contraints
 const readEntryByAggerate = async (Table, filter) => {
   try {
     const entries = await tableExist(Table).findAll(filter);
-    console.log(entries);
     return entries;
   } catch (error) {
     console.error(`Error reading entries by filter: ${error}`);
@@ -94,9 +91,7 @@ CONTEXT: get a group of specific entries in a table
 */
 const readAllEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table)
-      .unscoped()
-      .findAll({ where: filter });
+    const entries = await tableExist(Table).unscoped().findAll(filter);
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
@@ -140,25 +135,7 @@ const deleteEntryById = async (Table, id) => {
   }
 };
 //=============================================================
-/*
-CONTEXT: get a group of entries a set at a time from a table
 
-*/
-const paginateEntries = async (Table, options) => {
-  try {
-    const { page = 1, pageSize = 10 } = options;
-    const offset = (page - 1) * pageSize;
-    const entries = await tableExist(Table).findAll({
-      offset,
-      limit: pageSize,
-    });
-    return entries;
-  } catch (error) {
-    console.error(`Error paginating entries: ${error}`);
-    throw error;
-  }
-};
-//=============================================================
 /*
 CONTEXT: check a string prompt agaisnt a set of values to grab The correct Value
 
@@ -193,5 +170,4 @@ module.exports = {
   readAllEntriesByFilter,
   updateEntryById,
   deleteEntryById,
-  paginateEntries,
 };

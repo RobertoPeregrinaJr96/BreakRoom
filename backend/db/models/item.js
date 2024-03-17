@@ -49,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       type: {
         type: DataTypes.STRING(10),
       },
+      totalReviewScore: {
+        type: DataTypes.FLOAT(2, 2), // Assuming the review scores are integers
+        defaultValue: 0, // Default value to start with
+      },
     },
     {
       sequelize,
