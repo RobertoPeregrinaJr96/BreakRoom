@@ -4,10 +4,10 @@ function MainContent({ item }) {
   if (item) {
     return (
       <>
-        <h1 className="mainContent-container-h1">Main Content</h1>
+        <h1 className="mainContent-container-h1">About Us</h1>
         <div className="mainContent-container">
           <div className="about-container">
-            <h1>
+            <h1 className="about-container-h1">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
               eget odio in velit feugiat faucibus. Sed ac nisi vel nunc laoreet
               suscipit.

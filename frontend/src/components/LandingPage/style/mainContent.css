@@ -15,10 +15,12 @@
   height: 15rem;
   border: 1px solid black;
 }
-.about-container h1 {
+.about-container-h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  font-size: 1.5rem;
 }
 .reviewed-container {
   display: grid;
