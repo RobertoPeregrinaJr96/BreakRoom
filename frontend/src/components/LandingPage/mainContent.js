@@ -25,7 +25,7 @@ function MainContent({ item }) {
           <div></div>
         </div>
       </>
-    );
+    )
   }
 }
 

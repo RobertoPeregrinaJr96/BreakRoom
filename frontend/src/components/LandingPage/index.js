@@ -15,7 +15,7 @@ function LandingPage() {
   const items = Object.values(itemStoreData)[0];
 
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
-  console.log(highestAvgItemsData);
+  // console.log(highestAvgItemsData);
 
   useEffect(() => {
     dispatch(getOrderThunk());
@@ -38,7 +38,7 @@ function LandingPage() {
           </div>
         </div>
       </>
-    );
+    )
   } else {
     <>
       <h1>LandingPage</h1>
@@ -50,7 +50,7 @@ function LandingPage() {
           <span className="right menu"></span>
         </div>
       </div>
-    </>;
+    </>
   }
 }
 

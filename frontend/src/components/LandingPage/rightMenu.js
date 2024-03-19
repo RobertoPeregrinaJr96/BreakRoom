@@ -20,7 +20,6 @@ function RightMenu({ items }) {
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
   };
-
   const startIndex = currentPage * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, items.length);
   const displayedItems = items.slice(startIndex, endIndex);
@@ -29,10 +28,12 @@ function RightMenu({ items }) {
       <h1 className="rightMenu-h1">Right Menu</h1>
       <div className="rightMenu-container">
         <menu className="menu-item-container">
-          {/* <SearchComponent data={data} /> */}
-
           <span className="menu-search-container">
-            <input className="menu-search-input"></input>
+            {items ? (
+              <SearchComponent items={items} />
+            ) : (
+              <input className="menu-search-input"></input>
+            )}
           </span>
           {items ? (
             displayedItems.map((item) => {
