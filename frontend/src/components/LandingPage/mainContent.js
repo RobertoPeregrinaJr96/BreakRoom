@@ -10,8 +10,10 @@ function MainContent({ item }) {
             <h1>about content</h1>
           </div>
           <div className="reviewed-container">
-            <h2 className="reviewed-content-description">{item.name}</h2>
-            <p>{item.description}</p>
+            <div>
+              <h2 className="reviewed-content-name">{item.name}</h2>
+              <p className="reviewed-content-description">{item.description}</p>
+            </div>
             <span className="reviewed-image-container">
               <img className="reviewed-image" src={`${item.itemImage}`}></img>
             </span>

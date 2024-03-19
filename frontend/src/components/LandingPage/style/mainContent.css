@@ -23,12 +23,20 @@
 .reviewed-container {
   display: grid;
   grid-template-columns: 60% 40%;
-  height: 12rem;
+  /* height: 12rem; */
   padding: 30px;
   border: 1px solid black;
 }
-.reviewed-content-description {
+.reviewed-content-name {
   font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding-left: 1rem;
+  align-items: center;
+  border: 1px solid black;
+}
+.reviewed-content-description {
+  font-size: 1rem;
   display: flex;
   justify-content: center;
   padding-left: 1rem;
