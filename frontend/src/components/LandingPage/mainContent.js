@@ -7,7 +7,11 @@ function MainContent({ item }) {
         <h1 className="mainContent-container-h1">Main Content</h1>
         <div className="mainContent-container">
           <div className="about-container">
-            <h1>about content</h1>
+            <h1>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              eget odio in velit feugiat faucibus. Sed ac nisi vel nunc laoreet
+              suscipit.
+            </h1>
           </div>
           <div className="reviewed-container">
             <div>
