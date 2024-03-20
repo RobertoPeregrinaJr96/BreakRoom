@@ -5,6 +5,7 @@ function SearchComponent({ items }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [boolean, setBoolean] = useState(false);
+
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
@@ -15,19 +16,13 @@ function SearchComponent({ items }) {
       return name.toLowerCase().includes(lowerCaseItem);
     });
 
-    // need to work on this logic
-    if(filteredResults.length != null) setBoolean(false)
-    if (searchTerm.length >= 1) setBoolean(true);
-    else setBoolean(false);
     setSearchResults(filteredResults);
+    setBoolean(searchTerm.length > 0 && filteredResults.length > 0);
   };
   const SubmitItem = (e, item) => {
     e.preventDefault();
     console.log(item.name);
   };
-  console.log(searchTerm.length);
-  console.log(searchResults);
-  console.log(boolean);
   return (
     <>
       <div className="search-container">
@@ -38,7 +33,7 @@ function SearchComponent({ items }) {
           onChange={handleSearch}
         />
         <div class="search-results" id="searchResults">
-          {boolean ? (
+          {boolean === true ? (
             <ul>
               {searchResults.map((item, index) => (
                 <li key={index} onClick={(e) => SubmitItem(e, item)}>
