@@ -25,7 +25,7 @@ function SearchComponent({ items }) {
   };
   return (
     <>
-      <div className="search-container">
+      <div className={`search-container-${boolean}`}>
         <input
           type="text"
           placeholder="Search..."
