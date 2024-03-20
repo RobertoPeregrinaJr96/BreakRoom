@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Util/style/search.css";
 
 function SearchComponent({ items }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [boolean, setBoolean] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
@@ -17,15 +17,27 @@ function SearchComponent({ items }) {
     });
 
     setSearchResults(filteredResults);
-    setBoolean(searchTerm.length > 0 && filteredResults.length > 0);
+    setShowResults(searchTerm.length > 0 && filteredResults.length > 0);
   };
   const SubmitItem = (e, item) => {
     e.preventDefault();
     console.log(item.name);
   };
+  const handleClickOutside = (event) => {
+    // Check if the clicked target is outside the search container
+    if (!event.target.closest('.search-container')) {
+      setShowResults(false);
+    }
+  };
+  useEffect(() => {
+    document.body.addEventListener("click", handleClickOutside);
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <>
-      <div className={`search-container-${boolean}`}>
+      <div className={`search-container-${showResults}`}>
         <input
           type="text"
           placeholder="Search..."
@@ -33,7 +45,7 @@ function SearchComponent({ items }) {
           onChange={handleSearch}
         />
         <div class="search-results" id="searchResults">
-          {boolean === true ? (
+          {showResults === true ? (
             <ul>
               {searchResults.map((item, index) => (
                 <li key={index} onClick={(e) => SubmitItem(e, item)}>

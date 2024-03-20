@@ -1,4 +1,9 @@
 /* border: 1px solid black; */
+.rightMenu-container{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 .rightMenu-h1 {
   display: flex;
   justify-content: center;
@@ -30,35 +35,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
-  height: 2rem;
+  width: 100%; /* Adjusted to occupy full width */
+  height: 3rem; /* Increased height for better spacing */
 }
 .menu-item-cluster {
-  display: flex;
-  justify-content: space-around;
+  display: flex; /* Changed to flex from grid */
+  justify-content: center;
   align-items: center;
   gap: 20px;
+  padding: 10px;
+  width: 100%; /* Occupy full width */
 }
 .menu-item-button-name {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 80%;
+  flex-grow: 1; /* Allow the name button to grow to occupy remaining space */
+  height: 100%;
+  background-color: white;
 }
-.menu-item-button-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 80%;
-}
+.menu-item-button-info,
 .menu-item-button-cart {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 80%;
+  flex-grow: 0; /* Do not allow the buttons to grow */
+  width: 3rem; /* Set fixed width for buttons */
+  height: 100%;
+  background-color: white;
+  cursor: pointer;
 }
 .menu-pag-container {
   display: flex;

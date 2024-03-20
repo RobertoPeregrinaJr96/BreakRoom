@@ -1,22 +1,25 @@
-.landingPage-container{
-    display: grid;
-    border: 1px solid black;
-    height: 100%;
+.landingPage-container {
+  display: grid;
+  border: 1px solid black;
+  height: 100%;
 }
 
-.landingPage-content-wrapper{
-    display: grid;
-    grid-template-columns: 60% 40%;
-    height: 100%;
-
+.landingPage-content-wrapper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100%;
 }
-.main-content{
-    border-right: 2px solid black;
+.main-content {
+  border-right: 2px solid black;
 }
-
+.right-menu-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
 @media only screen and (max-width: 1023px) {
-    /* Styles to apply when viewport width is 1024px or below */
-.landingPage-content-wrapper{
+  /* Styles to apply when viewport width is 1024px or below */
+  .landingPage-content-wrapper {
     grid-template-columns: 100%;
-}
+  }
 }

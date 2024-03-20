@@ -32,22 +32,22 @@ function RightMenu({ items }) {
             {items ? (
               <SearchComponent items={items} />
             ) : (
-              <input className="menu-search-input"></input>
+              <input type="text" className="menu-search-input"></input>
             )}
           </span>
           {items ? (
             displayedItems.map((item) => {
               return (
                 <span className="menu-item-cluster" key={item.id}>
-                  <button>{item.name}</button>
-                  <button>
+                  <button className="menu-item-button-name">{item.name}</button>
+                  <button className="menu-item-button-info">
                     <i className="fa-solid fa-circle-info"></i>
                   </button>
-                  <button>
+                  <button className="menu-item-button-cart">
                     <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </span>
-              );
+              ) 
             })
           ) : (
             <span className="menu-item-cluster">
@@ -89,7 +89,7 @@ function RightMenu({ items }) {
         </div>
       </div>
     </>
-  );
+  ) 
 }
 
 export default RightMenu;
