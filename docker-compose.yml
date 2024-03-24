@@ -10,15 +10,15 @@ services:
     environment:
       - REACT_APP_BACKEND_URL=http://backend:8000
     networks:
-      - Breakroom_Connection
+      - breakroom_connection
 
   backend:
     build: ./backend
     ports:
       - "8000:8000"
     networks:
-      - Breakroom_Connection
+      - breakroom_connection
 
 networks:
-  Breakroom_Connection:
+  breakroom_connection:
     driver: bridge

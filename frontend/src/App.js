@@ -10,11 +10,12 @@ import ProfilePage from "./components/Profile";
 import OrderPage from "./components/Order";
 import AdminPage from "./components/AdminView";
 import CheckoutPage from "./components/Checkout";
-import Menu from "./components/Menu";
+import Menu from "./components/Menu"; 
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));

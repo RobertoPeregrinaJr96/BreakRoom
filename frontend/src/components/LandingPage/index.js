@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import { getOrderThunk } from "../../store/order";
 import { getItemsThunk } from "../../store/item";
 import { getHighestAvgThunk } from "../../store/item";
-
 function LandingPage() {
   const dispatch = useDispatch();
   const itemStoreData = useSelector((state) => state.item.allItems);

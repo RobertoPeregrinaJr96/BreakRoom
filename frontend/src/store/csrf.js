@@ -1,6 +1,6 @@
 // frontend/src/store/csrf.js
 import Cookies from 'js-cookie';
-
+// const apiUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
 export async function csrfFetch(url, options = {}) {
   // set options.method to 'GET' if there is no method
   options.method = options.method || 'GET';
