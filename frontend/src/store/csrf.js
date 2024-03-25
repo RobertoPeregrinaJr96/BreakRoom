@@ -2,7 +2,7 @@
 import Cookies from "js-cookie";
 const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
 
-// fetch(`${process.env.REACT_APP_BACKEND_URL}api/item/all`)
+// fetch(`${process.env.REACT_APP_BACKEND_URL}/api/item/all`)
 //   .then((response) => response.json())
 //   .then((data) => console.log(data))
 //   .catch((error) => console.error("Error fetching data:", error));
@@ -39,5 +39,5 @@ export async function csrfFetch(url, options = {}) {
 
 // call this to get the "XSRF-TOKEN" cookie, should only be used in development
 export function restoreCSRF() {
-  return csrfFetch("api/csrf/restore");
+  return csrfFetch("/api/csrf/restore");
 }

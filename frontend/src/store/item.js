@@ -15,7 +15,7 @@ const getHighestAvgItems = (items) => ({
 });
 /* Thunk Creators: */
 export const getItemsThunk = () => async (dispatch) => {
-  const response = await csrfFetch("api/item/all ");
+  const response = await csrfFetch("/api/item/all ");
   if (response.ok) {
     const data = await response.json();
     dispatch(getAllItems(data));
@@ -23,7 +23,7 @@ export const getItemsThunk = () => async (dispatch) => {
   }
 };
 export const getHighestAvgThunk = (type) => async (dispatch) => {
-  const response = await csrfFetch(`api/item/${type}/review `);
+  const response = await csrfFetch(`/api/item/${type}/review `);
   if (response.ok) {
     const data = await response.json();
     dispatch(getHighestAvgItems(data));

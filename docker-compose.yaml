@@ -8,8 +8,8 @@ services:
     depends_on:
       - backend
     environment:
-      - REACT_APP_BACKEND_URL=http://localhost:8000/
-      - PROXY_API=http://localhoast:8000/
+      - REACT_APP_BACKEND_URL=http://localhost:8000
+      - PROXY_API=http://localhoast:8000
     networks:
       - breakroom_connection
 
