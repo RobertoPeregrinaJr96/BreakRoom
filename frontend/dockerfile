@@ -9,6 +9,8 @@ RUN npm install
 
 COPY . .
 
+ENV PROXY_API=$PROXY_API
+
 RUN npm run build
 
 CMD ["npm", "start" ]

@@ -12,9 +12,9 @@ const isProduction = environment === "production";
 const app = express();
 
 
-app.listen(8000, "0.0.0.0", () => {
-    console.log("Backend server is running on port 8000");
-  });
+// app.listen(8000, "0.0.0.0", () => {
+//     console.log(`Backend server is running on port ${process.env.PORT}`);
+//   });
   
 app.use(morgan("dev"));
 

@@ -9,7 +9,7 @@ const getAllOrders = (orders) => ({
 });
 /* Thunk Creators: */
 export const getOrderThunk = () => async (dispatch) => {
-  const response = await csrfFetch("/api/order/all");
+  const response = await csrfFetch("api/order/all");
   if (response.ok) {
     const data = await response.json();
     dispatch(getAllOrders(data));
