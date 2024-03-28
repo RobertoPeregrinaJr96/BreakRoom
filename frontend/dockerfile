@@ -8,8 +8,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
-ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
-ENV PROXY_API=$PROXY_API
 
 RUN npm run build
 
