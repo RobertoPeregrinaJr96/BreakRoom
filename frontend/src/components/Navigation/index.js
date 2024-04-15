@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
           <span className="navigation-image-container">
             <img
               className="navigation-list-image"
-              src="https://cdn.discordapp.com/attachments/1088906268485357618/1118284501710295100/PngItem_30012.png"
+              src=""
               alt=""
             ></img>
           </span>

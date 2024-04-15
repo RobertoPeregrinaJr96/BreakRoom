@@ -32,7 +32,6 @@ router.post("/test", function (req, res) {
 
 // GET /api/test
 router.get("/test", async (req, res) => {
-  let message = req.body;
   res.json({ message: "this is a gnarly message" });
 });
 

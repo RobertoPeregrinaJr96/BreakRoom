@@ -3,10 +3,15 @@ import { csrfFetch } from "./csrf";
 /* Action Type Constants: */
 const GET_ITEMS = "item/GET_ITEMS"; // Check the constant name
 const GET_HIGEST_AVG_ITEMS = "item/GET_HIGEST_AVG_ITEMS"; // Check the constant name
+const GET_MENU_ITEMS = "item/GET_MENU_ITEMS";
 
 /* Action Creators: */
 const getAllItems = (items) => ({
   type: GET_ITEMS, // Use the constant here
+  payload: items,
+});
+const getAllMenuItems = (items) => ({
+  type: GET_MENU_ITEMS, // Use the constant here
   payload: items,
 });
 const getHighestAvgItems = (items) => ({
@@ -22,6 +27,14 @@ export const getItemsThunk = () => async (dispatch) => {
     return data;
   }
 };
+export const getMenuItemsThunk = () => async (dispatch) => {
+  const response = await csrfFetch("/api/item/all ");
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getAllMenuItems(data));
+    return data;
+  }
+};
 export const getHighestAvgThunk = (type) => async (dispatch) => {
   const response = await csrfFetch(`/api/item/${type}/review `);
   if (response.ok) {
@@ -31,13 +44,21 @@ export const getHighestAvgThunk = (type) => async (dispatch) => {
   }
 };
 /* Reducers */
-const initialState = { allItems: {}, oneItem: {}, highestAvgItem: {} };
+const initialState = {
+  allItems: {},
+  menuItems: {},
+  oneItem: {},
+  highestAvgItem: {},
+};
 
 const itemReducer = (state = initialState, action) => {
   let itemState = { ...state };
   switch (action.type) {
     case GET_ITEMS: // Use the constant here
       itemState = { ...itemState, allItems: action.payload };
+      return itemState;
+    case GET_MENU_ITEMS: // Use the constant here
+      itemState = { ...itemState, menuItems: action.payload };
       return itemState;
     case GET_HIGEST_AVG_ITEMS:
       itemState = { ...itemState, highestAvgItem: action.payload };

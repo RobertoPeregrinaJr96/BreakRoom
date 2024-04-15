@@ -22,7 +22,9 @@ const validateLogin = [
 router.get("/", async (req, res, next) => {
   try {
     const { user } = req;
-    if (!user) res.status(200).json({ user: null });
+    if (!user){ 
+      res.status(200).json({ user: null })
+    };
     if (user) {
       const safeUser = {
         id: user.id,
@@ -77,7 +79,7 @@ router.post("/", validateLogin, async (req, res, next) => {
     };
 
     // Set token cookie for authentication
-    await setTokenCookie(res, responseUser);
+    setTokenCookie(res, responseUser);
 
     // Send success response with safe user object
     return res.status(200).json({

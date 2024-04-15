@@ -35,11 +35,11 @@ function ProfileButton({ user }) {
     <div className="profileButton-container">
       {user ? (
         <>
-          {navigationLinks.map((link) => pageLinks(link))}
           <button onClick={(e) => logout(e)}>Log out</button>
         </>
       ) : (
         <>
+          <ul> {navigationLinks.map((link) => <li>{pageLinks(link)}</li>)}</ul>
           <div className="profileButton-logIn">
             <OpenModalButton
               buttonText="Log In"
