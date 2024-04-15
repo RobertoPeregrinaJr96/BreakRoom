@@ -5,7 +5,7 @@ const {
   readOneEntriesByFilter,
   readAllEntriesByFilter,
 } = require("../../utils/crud");
-const item = require("../../db/models/item");
+const {Item} = require("../../db/models/item");
 
 const router = express.Router();
 
@@ -48,12 +48,14 @@ router.get("/:type/all", async (req, res) => {
 });
 // GET All Items that will display on the Menu by Type
 router.get("/menu", async (req, res) => {
-  const items = await readAllEntriesByFilter("Item", {
-    order: [
-      [Sequelize.literal("type"), "ASC"], // Sort by type in ascending order
-      [Sequelize.literal("name"), "ASC"], // Then, sort by name in ascending order
-    ],
-  });
+  console.log("Menu")
+  // const items = await readAllEntriesByFilter("Item", {
+  //   order: [
+  //     [Sequelize.literal("type"), "ASC"], // Sort by type in ascending order
+  //     [Sequelize.literal("name"), "ASC"], // Then, sort by name in ascending order
+  //   ],
+  // });
+  const items = await Item.findAll()
   console.log(items);
   res.status(200).json({ items: items });
 });

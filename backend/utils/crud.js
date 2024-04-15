@@ -91,7 +91,11 @@ CONTEXT: get a group of specific entries in a table
 */
 const readAllEntriesByFilter = async (Table, filter) => {
   try {
+    console.log(Table)
+    console.log(filter)
+
     const entries = await tableExist(Table).unscoped().findAll(filter);
+    console.log("RES", entries)
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);
