@@ -1,12 +1,5 @@
 // frontend/src/store/csrf.js
 import Cookies from "js-cookie";
-const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
-
-// fetch(`${process.env.REACT_APP_BACKEND_URL}/api/item/all`)
-//   .then((response) => response.json())
-//   .then((data) => console.log(data))
-//   .catch((error) => console.error("Error fetching data:", error));
-
 export async function csrfFetch(url, options = {}) {
   // set options.method to 'GET' if there is no method
   options.method = options.method || "GET";
@@ -27,6 +20,7 @@ export async function csrfFetch(url, options = {}) {
   }
   // call the default window's fetch with the url and the options passed in
   let res;
+  const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
   if (apiUrl) {
     console.log("ApiUrl + Url", apiUrl + url);
     res = await window.fetch(apiUrl + url, options);

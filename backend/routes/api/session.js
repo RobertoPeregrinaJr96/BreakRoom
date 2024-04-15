@@ -47,6 +47,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", validateLogin, async (req, res, next) => {
   try {
     const { credential, password } = req.body;
+    console.log(credential, password);
     // Fetch user with provided credential
     const user = await readOneEntriesByFilter("User", {
       [Op.or]: {
