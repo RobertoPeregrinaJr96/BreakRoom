@@ -18,7 +18,7 @@ export async function csrfFetch(url, options = {}) {
     }
     options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
   }
-  console.log("CSRF====",Cookies.get("XSRF-TOKEN"))
+  console.log("XSRF-TOKEN",Cookies.get("XSRF-TOKEN"))
   // call the default window's fetch with the url and the options passed in
   let res;
   const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";

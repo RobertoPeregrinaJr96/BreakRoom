@@ -22,9 +22,9 @@ const validateLogin = [
 router.get("/", async (req, res, next) => {
   try {
     const { user } = req;
-    if (!user){ 
-      res.status(200).json({ user: null })
-    };
+    if (!user) {
+      res.status(200).json({ user: null });
+    }
     if (user) {
       const safeUser = {
         id: user.id,
@@ -40,13 +40,20 @@ router.get("/", async (req, res, next) => {
       });
     } else return res.json({ user: null });
   } catch (error) {
-    console.error("Error restoring session user:", error);
+    console.error({
+      error: "Error restoring session user:",
+      Route: "api/session",
+    });
     return next(error);
   }
 });
 
 // Log in /api/session/
 router.post("/", validateLogin, async (req, res, next) => {
+  console.log("---------------")
+  console.log("Route: api/session")
+  console.log("---------------")
+
   try {
     const { credential, password } = req.body;
     console.log(credential, password);
