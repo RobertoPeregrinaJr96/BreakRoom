@@ -18,10 +18,10 @@ export async function csrfFetch(url, options = {}) {
     }
     options.headers["XSRF-Token"] = Cookies.get("XSRF-TOKEN");
   }
-  console.log("XSRF-TOKEN", Cookies.get("XSRF-TOKEN"));
   // call the default window's fetch with the url and the options passed in
   let res;
-  res = await window.fetch(url, options);
+  const apiUrl = process.env.REACT_APP_BACKEND_URL || url;
+  res = await window.fetch(apiUrl, options);
   // if the response status code is 400 or above, then throw an error with the
   // error being the response
   if (res.status >= 400) throw res;
@@ -35,11 +35,3 @@ export async function csrfFetch(url, options = {}) {
 export function restoreCSRF() {
   return csrfFetch("/api/csrf/restore");
 }
-// const apiUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
-// if (apiUrl) {
-//   console.log("ApiUrl + Url", apiUrl + url);
-//   res = await window.fetch(apiUrl + url, options);
-// } else {
-//   console.log("Url", url);
-//   res = await window.fetch(url, options);
-// }

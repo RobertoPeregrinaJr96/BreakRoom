@@ -63,7 +63,7 @@ CONTEXT: get one specific entry in a table
 */
 const readOneEntriesByFilter = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table).findOne(filter);
+    const entries = await tableExist(Table).unscoped().findOne(filter);
     return entries;
   } catch (error) {
     console.error(`Error filtering entries: ${error}`);

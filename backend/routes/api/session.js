@@ -50,28 +50,23 @@ router.get("/", async (req, res, next) => {
 
 // Log in /api/session/
 router.post("/", validateLogin, async (req, res, next) => {
-  console.log("---------------")
-  console.log("Route: api/session")
-  console.log("---------------")
-
   try {
     const { credential, password } = req.body;
-    console.log(credential, password);
     // Fetch user with provided credential
-    // const user = await readOneEntriesByFilter("User", {
-    //   [Op.or]: {
-    //     username: credential,
-    //     email: credential,
-    //   },
-    // });
-    const user = await User.unscoped().findOne({
-      where: {
-          [Op.or]: {
-              username: credential,
-              email: credential
-          }
-      }
-  });
+    const user = await readOneEntriesByFilter("User", {
+      [Op.or]: {
+        username: credential,
+        email: credential,
+      },
+    });
+  //   const user = await User.unscoped().findOne({
+  //     where: {
+  //         [Op.or]: {
+  //             username: credential,
+  //             email: credential
+  //         }
+  //     }
+  // });
     // If user is not found or password is incorrect
     if (
       !user ||
