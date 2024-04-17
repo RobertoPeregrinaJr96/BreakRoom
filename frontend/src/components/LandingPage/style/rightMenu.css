@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
 }
-.menu-item-container {
+.right-menu-item-container {
   display: grid;
   height: 25rem;
   grid-template-columns: 100%;
@@ -18,27 +18,27 @@
   padding: 10px;
   column-gap: 10px;
 }
-.menu-search-container {
+.right-menu-search-container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 15px;
 }
-.menu-search-input {
+.right-menu-search-input {
   display: flex;
   width: 80%;
   height: 1.4rem;
   justify-content: center;
   align-items: center;
 }
-.menu-item-button-container {
+.right-menu-item-button-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%; /* Adjusted to occupy full width */
   height: 3rem; /* Increased height for better spacing */
 }
-.menu-item-cluster {
+.right-menu-item-cluster {
   display: flex; /* Changed to flex from grid */
   justify-content: center;
   align-items: center;
@@ -46,25 +46,25 @@
   padding: 10px;
   width: 100%; /* Occupy full width */
 }
-.menu-item-button-name {
+.right-menu-item-button-name {
   flex-grow: 1; /* Allow the name button to grow to occupy remaining space */
   height: 100%;
   background-color: white;
 }
-.menu-item-button-info,
-.menu-item-button-cart {
+.right-menu-item-button-info,
+.right-menu-item-button-cart {
   flex-grow: 0; /* Do not allow the buttons to grow */
   width: 3rem; /* Set fixed width for buttons */
   height: 100%;
   background-color: white;
   cursor: pointer;
 }
-.menu-pag-container {
+.right-menu-pag-container {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-.menu-pag-button {
+.right-menu-pag-button {
   display: flex;
   width: 5rem;
 }

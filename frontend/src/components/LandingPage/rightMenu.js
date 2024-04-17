@@ -27,62 +27,62 @@ function RightMenu({ items }) {
     <>
       <h1 className="rightMenu-h1">Right Menu</h1>
       <div className="rightMenu-container">
-        <menu className="menu-item-container">
-          <span className="menu-search-container">
+        <menu className="right-menu-item-container">
+          <span className="right-menu-search-container">
             {items ? (
               <SearchComponent items={items} />
             ) : (
-              <input type="text" className="menu-search-input"></input>
+              <input type="text" className="right-menu-search-input"></input>
             )}
           </span>
           {items ? (
             displayedItems.map((item) => {
               return (
-                <span className="menu-item-cluster" key={item.id}>
-                  <button className="menu-item-button-name">{item.name}</button>
-                  <button className="menu-item-button-info">
+                <span className="right-menu-item-cluster" key={item.id}>
+                  <button className="right-menu-item-button-name">{item.name}</button>
+                  <button className="right-menu-item-button-info">
                     <i className="fa-solid fa-circle-info"></i>
                   </button>
-                  <button className="menu-item-button-cart">
+                  <button className="right-menu-item-button-cart">
                     <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </span>
               ) 
             })
           ) : (
-            <span className="menu-item-cluster">
-              <span className="menu-item-button-container">
-                <button className="menu-item-button-name">Item name</button>
+            <span className="right-menu-item-cluster">
+              <span className="right-menu-item-button-container">
+                <button className="right-menu-item-button-name">Item name</button>
               </span>
-              <span className="menu-item-button-container">
+              <span className="right-menu-item-button-container">
                 <OpenModalButton
-                  className="menu-item-button-info"
+                  className="right-menu-item-button-info"
                   buttonText={<i className="fa-solid fa-circle-info"></i>}
                   modalComponent={<ItemModel />}
                 >
                   <i className="fa-solid fa-circle-info"></i>
                 </OpenModalButton>
               </span>
-              <span className="menu-item-button-container">
-                <button className="menu-item-button-cart">
+              <span className="right-menu-item-button-container">
+                <button className="right-menu-item-button-cart">
                   <i className="fa-solid fa-cart-shopping"></i>
                 </button>
               </span>
             </span>
           )}
         </menu>
-        <div className="menu-pag-container">
+        <div className="right-menu-pag-container">
           <button
             onClick={handlePrevPage}
             disabled={currentPage === 0}
-            className="menu-pag-button"
+            className="right-menu-pag-button"
           >
             Previous
           </button>
           <button
             onClick={handleNextPage}
             disabled={currentPage === totalPages - 1}
-            className="menu-pag-button"
+            className="right-menu-pag-button"
           >
             Next
           </button>

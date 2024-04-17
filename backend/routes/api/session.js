@@ -5,7 +5,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { readOneEntriesByFilter } = require("../../utils/crud");
-const {User} = require("../../db/models")
+const { User } = require("../../db/models");
 const router = express.Router();
 
 const validateLogin = [
@@ -58,15 +58,7 @@ router.post("/", validateLogin, async (req, res, next) => {
         username: credential,
         email: credential,
       },
-    });
-  //   const user = await User.unscoped().findOne({
-  //     where: {
-  //         [Op.or]: {
-  //             username: credential,
-  //             email: credential
-  //         }
-  //     }
-  // });
+    }); 
     // If user is not found or password is incorrect
     if (
       !user ||

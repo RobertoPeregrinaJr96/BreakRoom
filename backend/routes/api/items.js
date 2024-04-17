@@ -14,7 +14,9 @@ router.get("/all", async (req, res) => {
     let result = await readAllEntry("Item");
     res.status(200).json({ "Items:": result });
   } catch (error) {
-    res.status(500).json({ error: "Internal server error", Route: "api/item/all" });
+    res
+      .status(500)
+      .json({ error: "Internal server error", Route: "api/item/all" });
   }
 });
 
@@ -27,7 +29,9 @@ router.get("/:itemId", async (req, res) => {
     }
     return res.status(200).json(order);
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error", Route: "api/item/:itemId" });
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", Route: "api/item/:itemId" });
   }
 });
 
@@ -44,25 +48,9 @@ router.get("/:type/all", async (req, res) => {
     }
     return res.status(200).json(items);
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error", Route: "api/item/:type/all" });
-  }
-});
-
-// GET All Items that will display on the Menu by Type
-router.get("/menu", async (req, res) => {
-  console.log("Menu");
-  // const items = await readAllEntriesByFilter("Item", {
-  //   order: [
-  //     [Sequelize.literal("type"), "ASC"], 
-  //     [Sequelize.literal("name"), "ASC"], 
-  //   ],
-  // });
-  try {
-    const items = await Item.findAll();
-    console.log(items);
-    res.status(200).json({ items: items });
-  } catch (error) {
-    res.status(500).json({ error: "Internal server error", Route: "api/item/menu" });
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", Route: "api/item/:type/all" });
   }
 });
 
@@ -78,7 +66,12 @@ router.get("/:type/review", async (req, res) => {
       return res.status(200).json(item);
     }
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error", Route: "api/item/:type/review" });
+    return res
+      .status(500)
+      .json({
+        message: "Internal Server Error",
+        Route: "api/item/:type/review",
+      });
   }
 });
 module.exports = router;

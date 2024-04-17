@@ -10,6 +10,7 @@ const itemRouter = require("./items.js");
 const orderRouter = require("./orders.js");
 const orderItemsRouter = require("./orderItems.js");
 const reviewRouter = require("./reviews.js");
+const menuReducer = require("./menu.js");
 // my active routes
 router.use(restoreUser);
 
@@ -24,6 +25,8 @@ router.use("/order", orderRouter);
 router.use("/orderItem", orderItemsRouter);
 
 router.use("/review", reviewRouter);
+
+router.use("/menu", menuReducer);
 
 // POST /api/test
 router.post("/test", function (req, res) {
