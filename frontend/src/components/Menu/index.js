@@ -15,7 +15,7 @@ function Menu() {
     <>
       <h1>Menu</h1>
       <ul className="menu-item-container">
-        {menu.map((item) => {
+        {menu?.map((item) => {
           return (
             <li className="menu-item-block" key={item.id}>
               <div className="menu-item-container">{item.name}</div>
