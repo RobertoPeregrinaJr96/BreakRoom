@@ -6,20 +6,33 @@
   height: 80%;
   background-color: aqua;
 }
+.modal-item-info-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+}
+.modal-item-description {
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  margin: 0px;
+}
 .modal-item-button-container {
   display: grid;
-  padding: 10px;
-  border: 1px solid black;
+  padding: 20px;
+  /* border: 1px solid black; */
 }
 .modal-item-buttons {
   display: flex;
+  justify-content: right;
   gap: 10px;
   padding: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .modal-item-button-cancel {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .modal-item-button-submit {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }

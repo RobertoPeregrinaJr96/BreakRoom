@@ -13,7 +13,7 @@
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: rgba(234, 181, 206, 0.683);
+  background-color: rgba(0, 0, 0, 0.683);
 }
 
 #modal-content {
@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  height: 80%;
+  height: 50%;
   width: 90%;
-  background-color: rgba(113, 33, 33, 0.372);
+  background-color: rgba(0, 0, 0, 0.372);
 }
