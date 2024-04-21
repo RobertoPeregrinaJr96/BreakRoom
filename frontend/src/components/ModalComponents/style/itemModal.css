@@ -1,12 +1,25 @@
-.modal-item-div-wrapper{
-
+.modal-item-div-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 80%; */
+  height: 80%;
+  background-color: aqua;
 }
-.modal-item-button-div{
-
+.modal-item-button-container {
+  display: grid;
+  padding: 10px;
+  border: 1px solid black;
 }
-.modal-item-buttons{
-
+.modal-item-buttons {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid black;
 }
-.modal-item-button-cancel{
-    
+.modal-item-button-cancel {
+  border: 1px solid black;
+}
+.modal-item-button-submit {
+  border: 1px solid black;
 }

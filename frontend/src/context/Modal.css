@@ -10,16 +10,19 @@
 }
 
 #modal-background {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.683);
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(234, 181, 206, 0.683);
 }
 
 #modal-content {
+  display: flex;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.372);
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  height: 80%;
+  width: 90%;
+  background-color: rgba(113, 33, 33, 0.372);
 }
- 

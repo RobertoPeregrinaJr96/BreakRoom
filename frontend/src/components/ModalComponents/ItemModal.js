@@ -13,13 +13,22 @@ const ItemModel = ({ item }) => {
   return (
     <>
       <div className="modal-item-div-wrapper">
-        <div className="modal-item-button-div">
+        <div className="modal-item-button-container">
+          <p>{item.name}</p>
+          <p>{item.description}</p>
+
           <div className="modal-item-buttons">
             <button
               className="modal-item-button-cancel"
               onClick={() => closeModal()}
             >
               Cancel
+            </button>
+            <button
+              className="modal-item-button-submit"
+              onClick={() => closeModal()}
+            >
+              Submit
             </button>
           </div>
         </div>
