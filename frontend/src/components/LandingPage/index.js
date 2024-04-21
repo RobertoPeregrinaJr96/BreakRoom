@@ -31,12 +31,12 @@ function LandingPage() {
               <MainContent item={highestAvgItemsData} />
             </span>
             <span className="right-menu-container">
-              <RightMenu items={itemStoreData} />;
+              <RightMenu items={itemStoreData} />
             </span>
           </div>
         </div>
       </>
-    )
+    );
   } else {
     <>
       <h1>LandingPage</h1>
@@ -48,7 +48,7 @@ function LandingPage() {
           <span className="right-menu-container"></span>
         </div>
       </div>
-    </>
+    </>;
   }
 }
 

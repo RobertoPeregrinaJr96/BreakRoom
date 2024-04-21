@@ -25,8 +25,8 @@ function RightMenu({ items }) {
   const displayedItems = items.slice(startIndex, endIndex);
   return (
     <>
-      <h1 className="rightMenu-h1">Right Menu</h1>
       <div className="rightMenu-container">
+      <h1 className="rightMenu-h1">Right Menu</h1>
         <menu className="right-menu-item-container">
           <span className="right-menu-search-container">
             {items ? (
@@ -92,4 +92,4 @@ function RightMenu({ items }) {
   ) 
 }
 
-export default RightMenu;
+export default RightMenu

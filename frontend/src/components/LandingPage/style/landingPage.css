@@ -16,6 +16,7 @@
   display: grid;
   justify-content: center;
   align-items: center;
+  height: 50%;
 }
 @media only screen and (max-width: 1023px) {
   /* Styles to apply when viewport width is 1024px or below */

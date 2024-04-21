@@ -23,15 +23,13 @@
   font-size: 1.5rem;
 }
 .reviewed-container {
-  display: grid;
-  grid-template-columns: 60% 40%;
-  /* height: 12rem; */
+  display: flex;
   padding: 30px;
   border: 1px solid black;
 }
 .reviewed-content-name {
-  font-size: 2rem;
   display: flex;
+  font-size: 2rem;
   justify-content: center;
   padding-left: 1rem;
   align-items: center;
@@ -40,9 +38,6 @@
 .reviewed-content-description {
   font-size: 1rem;
   display: flex;
-  justify-content: center;
-  padding-left: 1rem;
-  align-items: center;
   border: 1px solid black;
 }
 .reviewed-image-container {
@@ -54,8 +49,8 @@
 .reviewed-image {
   display: flex;
   justify-content: center;
-  height: 60%;
-  width: 60%;
-  border-radius: 50%;
+  height: 30%;
+  width: 100%;
+  /* border-radius: 50%; */
   border: 1px solid black;
 }

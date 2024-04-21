@@ -1,3 +1,5 @@
+import ItemModel from "../ModalComponents/ItemModal";
+import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 import "./style/mainContent.css";
 
 function MainContent({ item }) {
@@ -14,18 +16,19 @@ function MainContent({ item }) {
             </h1>
           </div>
           <div className="reviewed-container">
-            <div>
+            <OpenModalDiv modalComponent={<ItemModel item={item} />}>
               <h2 className="reviewed-content-name">{item.name}</h2>
-              <p className="reviewed-content-description">{item.description}</p>
-            </div>
-            <span className="reviewed-image-container">
               <img className="reviewed-image" src={`${item.itemImage}`}></img>
-            </span>
+              <span className="reviewed-image-container">
+                <p className="reviewed-content-description">
+                  {item.description}
+                </p>
+              </span>
+            </OpenModalDiv>
           </div>
-          <div></div>
         </div>
       </>
-    )
+    );
   }
 }
 
