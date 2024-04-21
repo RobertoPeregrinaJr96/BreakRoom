@@ -1,9 +1,7 @@
-import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const ItemModel = () => {
-  const dispatch = useDispatch();
+const ItemModel = ({ item }) => {
   const { closeModal } = useModal();
 
   const handleSubmit = async () => {

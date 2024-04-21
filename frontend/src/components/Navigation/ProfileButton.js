@@ -39,7 +39,12 @@ function ProfileButton({ user }) {
         </>
       ) : (
         <>
-          <ul> {navigationLinks.map((link) => <li>{pageLinks(link)}</li>)}</ul>
+          <ul>
+            {" "}
+            {navigationLinks.map((link) => (
+              <li>{pageLinks(link)}</li>
+            ))}
+          </ul>
           <div className="profileButton-logIn">
             <OpenModalButton
               buttonText="Log In"

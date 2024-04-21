@@ -1,12 +1,34 @@
- 
-.menu-item-block {
+.menu-item-container {
   display: grid;
-  grid-template-columns: 1fr;
+  border: 1px solid black;
+  padding: 20px;
+}
+.menu-item-block {
+  border: 1px solid black;
+}
+.menu-item-element {
+  display: grid;
   justify-content: center;
   align-items: center;
+  border: 1px solid green;
+  width: 100%;
 }
-.menu-item-container {
+.menu-item-img {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  width: 10%;
+  height: 10%;
+}
+.menu-item-name {
+  display: flex;
+  justify-content: center;
+}
+.menu-item-context {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
+}
+.menu-item-description {
 }

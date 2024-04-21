@@ -14,7 +14,6 @@ function LandingPage() {
   const items = Object.values(itemStoreData)[0];
 
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
-  // console.log(highestAvgItemsData);
 
   useEffect(() => {
     dispatch(getOrderThunk());

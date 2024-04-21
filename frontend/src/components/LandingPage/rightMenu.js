@@ -1,7 +1,7 @@
 import "./style/rightMenu.css";
 import SearchComponent from "../Util/search";
 import OpenModalButton from "../Navigation/OpenModalButton/index";
-import ItemModel from "../ModelComponents/ItemModel";
+import ItemModel from "../ModalComponents/ItemModal";
 import { useState } from "react";
 
 function RightMenu({ items }) {
