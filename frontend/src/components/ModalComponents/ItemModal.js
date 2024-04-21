@@ -1,6 +1,8 @@
 import { useModal } from "../../context/Modal";
 import { useState } from "react";
 
+import "./style/itemModal.css";
+
 const ItemModel = ({ item }) => {
   const { closeModal } = useModal();
 

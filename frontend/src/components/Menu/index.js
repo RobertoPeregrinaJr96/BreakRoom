@@ -4,7 +4,7 @@ import "./style/Menu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMenuThunk } from "../../store/menu";
 import ItemModal from "../ModalComponents/ItemModal";
-import OpenModalDiv from "../Navigation/OpenModalButton";
+import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 
 function Menu() {
   const dispatch = useDispatch();
@@ -29,17 +29,19 @@ function Menu() {
               key={item.id}
               onClick={(e) => eventClickModal(e)}
             >
-              <OpenModalDiv
-                modalComponent={<ItemModal item={item} />}
-              ></OpenModalDiv>
+                  <OpenModalDiv
+                    modalComponent={<ItemModal item={item} />}
+                  >
 
               <div className="menu-item-element">
                 <h3 className="menu-item-name">{item.name}</h3>
                 <span className="menu-item-context">
-                  <p className="menu-item-description">{item.description}</p>
                   <img src={item.itemImage} className="menu-item-img"></img>
+                  <p className="menu-item-description">{item.description}</p>
                 </span>
               </div>
+
+                  </OpenModalDiv>
             </li>
           );
         })}
