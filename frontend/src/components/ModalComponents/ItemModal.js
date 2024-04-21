@@ -12,11 +12,11 @@ const ItemModel = ({ item }) => {
 
   return (
     <>
-      <div className="checkout-div-wrapper">
-        <div className="checkout-button-div">
-          <div className="checkout-buttons">
+      <div className="modal-item-div-wrapper">
+        <div className="modal-item-button-div">
+          <div className="modal-item-buttons">
             <button
-              className="checkout-button-cancel"
+              className="modal-item-button-cancel"
               onClick={() => closeModal()}
             >
               Cancel
