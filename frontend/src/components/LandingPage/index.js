@@ -5,7 +5,7 @@ import RightMenu from "./rightMenu";
 import "./style/landingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getOrderThunk } from "../../store/order";
+import { getOrderByIdThunk, getOrderThunk } from "../../store/order";
 import { getItemsThunk } from "../../store/item";
 import { getHighestAvgThunk } from "../../store/item";
 function LandingPage() {
@@ -16,7 +16,6 @@ function LandingPage() {
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
 
   useEffect(() => {
-    dispatch(getOrderThunk());
     dispatch(getItemsThunk());
     dispatch(getHighestAvgThunk("placeholder"));
   }, [dispatch]);

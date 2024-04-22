@@ -28,8 +28,6 @@ const createEntry = async (Table, body) => {
 
 */
 const readAllEntry = async (Table) => {
-  console.log("Table: ", Table);
-  console.log(await tableExist(Table).unscoped());
   try {
     const entries = await tableExist(Table).unscoped().findAll();
     return entries;
@@ -77,7 +75,7 @@ CONTEXT: get a group of specific entries in a table with contraints
 */
 const readEntryByAggerate = async (Table, filter) => {
   try {
-    const entries = await tableExist(Table).findAll(filter);
+    const entries = await tableExist(Table).unscoped().findAll(filter);
     return entries;
   } catch (error) {
     console.error(`Error reading entries by filter: ${error}`);

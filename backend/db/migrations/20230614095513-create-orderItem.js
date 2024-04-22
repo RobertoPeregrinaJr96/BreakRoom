@@ -32,7 +32,7 @@ module.exports = {
           },
           allowNull: false,
         },
-        customInstructions: {
+        customInstruction: {
           type: Sequelize.STRING(224),
         },
         quantity: {

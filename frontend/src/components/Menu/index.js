@@ -10,11 +10,7 @@ function Menu() {
   const dispatch = useDispatch();
   const menuStoreData = useSelector((state) => state.menu.menuItems);
   const menu = Object.values(menuStoreData)[0];
-
-  const eventClickModal = (e) => {
-    // window.alert("Message");
-  };
-
+ 
   useEffect(() => {
     dispatch(getMenuThunk());
   }, [dispatch]);
@@ -27,7 +23,6 @@ function Menu() {
             <li
               className="menu-item-block"
               key={item.id}
-              onClick={(e) => eventClickModal(e)}
             >
                   <OpenModalDiv
                     modalComponent={<ItemModal item={item} />}

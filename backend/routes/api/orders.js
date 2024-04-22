@@ -2,9 +2,11 @@ const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { readAllEntry } = require("../../utils/crud");
- 
-
+const {
+  readAllEntry,
+  readEntryByAggerate,
+  readAllEntriesByFilter,
+} = require("../../utils/crud");
 const router = express.Router();
 
 // GET all Order
@@ -13,19 +15,37 @@ router.get("/all", async (req, res) => {
     let result = await readAllEntry("Order");
     res.status(200).json({ "Orders:": result });
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res
+      .status(500)
+      .json({ error: "Internal server error", Route: "api/order/all" });
   }
 });
 // GET Order by ID
-router.get("/:orderId", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
-    const order = await readEntryById("Order", req.params.orderId);
+    const order = await readEntryByAggerate("Order", {
+      where: { userId: req.params.userId, status: "pending" },
+    });
+    const orderItems = await readAllEntriesByFilter("OrderItem", {
+      where: { orderId: order[0].id ,},
+    });
+    console.log("====orderItems====",orderItems)
+
     if (!order) {
-      return res.status(404).json({ message: "Order not found" });
+      return res
+        .status(404)
+        .json({ message: "Order not found", Route: "api/order/:id" });
     }
-    return res.status(200).json(order);
+    if (!orderItems) {
+      return res
+        .status(404)
+        .json({ message: " Items in order not found", Route: "api/order/:id" });
+    }
+    return res.status(200).json(orderItems);
   } catch (error) {
-    return res.status(500).json({ message: "Internal Server Error" });
+    return res
+      .status(500)
+      .json({ message: "Internal Server Error", Route: "api/order/:id" });
   }
 });
 

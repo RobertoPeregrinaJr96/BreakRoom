@@ -5,7 +5,6 @@ const {
   readOneEntriesByFilter,
   readAllEntriesByFilter,
 } = require("../../utils/crud");
-const { Item } = require("../../db/models/item");
 
 const router = express.Router();
 
