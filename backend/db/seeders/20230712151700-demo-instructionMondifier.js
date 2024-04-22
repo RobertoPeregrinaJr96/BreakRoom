@@ -5,7 +5,7 @@ if (process.env.NODE_ENV === "production") {
 }
 /** @type {import('sequelize-cli').Migration} */
 
-const instructionMondifiers = [
+const InstructionModifier = [
   {
     orderItemId: 1,
     modifierId: 2,
@@ -147,8 +147,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    options.tableName = "InstructionMondifiers";
-    return queryInterface.bulkInsert(options, instructionMondifiers, {});
+    options.tableName = "InstructionModifier";
+    return queryInterface.bulkInsert(options, InstructionModifier, {});
   },
 
   async down(queryInterface, Sequelize) {
@@ -158,7 +158,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    options.tableName = "InstructionMondifiers";
-    return queryInterface.bulkDelete(options, instructionMondifiers, {});
+    options.tableName = "InstructionModifier";
+    return queryInterface.bulkDelete(options, InstructionModifier, {});
   },
 };

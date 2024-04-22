@@ -1,5 +1,6 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     /**
@@ -8,19 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // Define associations with other models
+
+      // Has Many OrderItems (Each Order has many OrderItems)
       Order.hasMany(models.OrderItem, {
-        foreignKey: "orderId",
-        hooks: true,
-        otherKey: "id",
+        foreignKey: "orderId", // Foreign key in OrderItem table
+        // hooks: true, // This option is not necessary unless you use hooks
       });
+
+      // Belongs To User (Each Order belongs to a User)
       Order.belongsTo(models.User, {
-        foreignKey: "userId",
-        hooks: true,
-        otherKey: "id",
+        foreignKey: "userId", // Foreign key in Order table
+        // hooks: true, // This option is not necessary unless you use hooks
       });
     }
   }
+
   Order.init(
     {
       id: {
@@ -32,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        // The foreign key references the User model's id
       },
       totalCost: {
         type: DataTypes.INTEGER,
@@ -48,5 +53,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Order",
     }
   );
+
   return Order;
 };

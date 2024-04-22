@@ -1,31 +1,22 @@
 "use strict";
 const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   class InstructionModifier extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
-
-      // Many To Many
-
-      // Instructions
+      // Belongs To OrderItem (Each InstructionModifier belongs to an OrderItem)
       InstructionModifier.belongsTo(models.OrderItem, {
-        foreignKey: "orderItemId",
-        hooks: true,
-        otherKey: "id",
+        foreignKey: "orderItemId", // Foreign key in InstructionModifier table
       });
-      // Additions
+
+      // Has Many Modifiers (Each InstructionModifier has many Modifiers)
       InstructionModifier.hasMany(models.Modifier, {
-        foreignKey: "modifierId",
-        hooks: true,
-        otherKey: "id",
+        foreignKey: "instructionModifierId", // Foreign key in Modifier table
       });
     }
   }
+
+
   InstructionModifier.init(
     {
       id: {
@@ -36,15 +27,17 @@ module.exports = (sequelize, DataTypes) => {
       },
       orderItemId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
-          model: "OrderItem",
+          model: "OrderItem", // Referencing the OrderItem model
           key: "id",
         },
       },
       modifierId: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         references: {
-          model: "Modifier",
+          model: "Modifier", // Referencing the Modifier model
           key: "id",
         },
       },
@@ -54,5 +47,6 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "InstructionModifier",
     }
   );
+
   return InstructionModifier;
 };
