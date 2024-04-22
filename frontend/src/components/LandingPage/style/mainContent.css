@@ -23,9 +23,9 @@
   font-size: 1.5rem;
 }
 .reviewed-container {
-  display: flex;
+  /* display: flex; */
   padding: 30px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .reviewed-content-name {
   display: flex;
@@ -33,12 +33,12 @@
   justify-content: center;
   padding-left: 1rem;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .reviewed-content-description {
   font-size: 1rem;
   display: flex;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 .reviewed-image-container {
   display: flex;
@@ -52,5 +52,5 @@
   height: 30%;
   width: 100%;
   /* border-radius: 50%; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
