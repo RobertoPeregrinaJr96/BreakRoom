@@ -1,6 +1,14 @@
 const express = require("express");
 const { Sequelize } = require("../../db/models");
-const { readAllEntriesByFilter } = require("../../utils/crud");
+const {
+  User,
+  Item,
+  Order,
+  OrderItem,
+  InstructionModifier,
+  Modifier,
+  Review,
+} = require("../../db/models");
 
 const router = express.Router();
 
@@ -12,7 +20,7 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   try {
-    const items = await readAllEntriesByFilter("Item", {
+    const items = await Item.unscoped().findAll({
       order: [
         [Sequelize.literal("type"), "ASC"],
         [Sequelize.literal("name"), "ASC"],

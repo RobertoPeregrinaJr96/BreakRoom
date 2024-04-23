@@ -9,13 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "orderItemId", // Foreign key in InstructionModifier table
       });
 
-      // Has Many Modifiers (Each InstructionModifier has many Modifiers)
-      InstructionModifier.hasMany(models.Modifier, {
-        foreignKey: "id", // Foreign key in Modifier table
+      // Belongs To Modifier (Each InstructionModifier belongs to a Modifier)
+      InstructionModifier.belongsTo(models.Modifier, {
+        foreignKey: "modifierId", // Foreign key in InstructionModifier table
       });
     }
   }
-
 
   InstructionModifier.init(
     {

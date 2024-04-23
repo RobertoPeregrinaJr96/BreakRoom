@@ -14,7 +14,7 @@ const router = express.Router();
 // GET all OrderItems
 router.get("/", async (req, res) => {
   try {
-    let result = await readAllEntry("OrderItem");
+    let result = await OrderItem.unscoped().findAll();
     res.status(200).json({ "OrderItems:": result });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 // GET OrderItem by ID
 router.get("/:orderItemId", async (req, res) => {
   try {
-    const review = await readEntryById("OrderItem", req.params.reviewId);
+    const review = await OrderItem.findByPk(req.params.reviewId);
     if (!review) {
       return res.status(404).json({ message: "OrderItem not found" });
     }
@@ -35,7 +35,7 @@ router.get("/:orderItemId", async (req, res) => {
 // GET OrderItem by Order
 router.get("/:orderId", async (req, res) => {
   try {
-    const review = await readEntryByAggerate("OrderItem", {
+    const review = await OrderItem.unscoped().findAll({
       where: { orderId: req.params.orderId },
     });
     if (!review) {

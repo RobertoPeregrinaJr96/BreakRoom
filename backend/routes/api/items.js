@@ -1,16 +1,21 @@
 const express = require("express");
 const { Sequelize } = require("../../db/models");
+ 
 const {
-  readAllEntry,
-  readOneEntriesByFilter,
-  readAllEntriesByFilter,
-} = require("../../utils/crud");
+  User,
+  Item,
+  Order,
+  OrderItem,
+  InstructionModifier,
+  Modifier,
+  Review,
+} = require("../../db/models");
 
 const router = express.Router();
 
 router.get("/all", async (req, res) => {
   try {
-    let result = await readAllEntry("Item");
+    let result = await Item.unscoped().findAll();
     res.status(200).json({ "Items:": result });
   } catch (error) {
     res
@@ -22,7 +27,7 @@ router.get("/all", async (req, res) => {
 // GET Item by ID
 router.get("/:itemId", async (req, res) => {
   try {
-    const order = await readEntryById("Item", req.params.itemId);
+    const order = await Item.findByPk(req.params.itemId);
     if (!order) {
       return res.status(404).json({ message: "Item not found" });
     }
@@ -38,7 +43,7 @@ router.get("/:itemId", async (req, res) => {
 router.get("/:type/all", async (req, res) => {
   try {
     const type = req.params.type;
-    const items = await readAllEntriesByFilter("Item", {
+    const items = await Item.unscoped().findAll({
       where: { type: type },
       order: [[Sequelize.literal("totalReviewScore"), "DESC"]],
     });
@@ -55,7 +60,7 @@ router.get("/:type/all", async (req, res) => {
 
 router.get("/:type/review", async (req, res) => {
   const type = req.params.type;
-  const item = await readOneEntriesByFilter("Item", {
+  const item = await Item.unscoped().findAll({
     where: { type: type },
     order: [[Sequelize.literal("totalReviewScore"), "DESC"]],
     limit: 1,
@@ -65,12 +70,10 @@ router.get("/:type/review", async (req, res) => {
       return res.status(200).json(item);
     }
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: "Internal Server Error",
-        Route: "api/item/:type/review",
-      });
+    return res.status(500).json({
+      message: "Internal Server Error",
+      Route: "api/item/:type/review",
+    });
   }
 });
 module.exports = router;

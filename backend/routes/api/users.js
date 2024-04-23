@@ -4,13 +4,17 @@ const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { singleFileUpload, singleMulterUpload } = require("../../awsS3");
+ 
 const {
-  createEntry,
-  readEntryById,
-  readEntriesByFilter,
-  updateEntryById,
-  deleteEntryById,
-} = require("../../utils/crud");
+  User,
+  Item,
+  Order,
+  OrderItem,
+  InstructionModifier,
+  Modifier,
+  Review,
+} = require("../../db/models");
+
 const router = express.Router();
 
 const validateSignup = [
@@ -48,7 +52,7 @@ router.get("/", requireAuth, async (req, res) => {
 // GET user by ID
 router.get("/:userId", async (req, res) => {
   try {
-    const user = await readEntryById("User", req.params.userId);
+    const user = await User.findByPk(req.params.userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -73,12 +77,12 @@ router.post(
         : null;
       if (phone === "null") phone = null;
 
-      const existingUser = await readEntriesByFilter("User", { email });
+      const existingUser = await User.unscoped().findAll({ email });
       if (existingUser) {
         return res.status(400).json({ message: "User already exists" });
       }
 
-      const newUser = await createEntry("User", {
+      const newUser = await User.create({
         email,
         username,
         hashedPassword,
@@ -111,20 +115,20 @@ router.post(
 router.put("/:userId", async (req, res) => {
   try {
     const { firstName, lastName, phoneNumber, username, email } = req.body;
-    const user = await readEntryById("User", req.params.userId);
+    const user = await User.findByPk(req.params.userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const updatedUser = await updateEntryById("User", req.params.userId, {
-      id: user.id,
-      firstName,
-      lastName,
-      phoneNumber,
-      profileImageUrl: user.profileImageUrl,
-      username,
-      email,
+    await user.update({
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      username: username,
+      email: email,
     });
+
+    const updatedUser = await User.findByPk(req.params.userId);
 
     res.status(200).json(updatedUser);
   } catch (error) {
@@ -135,10 +139,11 @@ router.put("/:userId", async (req, res) => {
 // Delete User
 router.delete("/:userId", async (req, res) => {
   try {
-    const user = await deleteEntryById("User", req.params.userId);
+    const user = await User.findByPk(req.params.userId);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    await user.destroy();
     return res.status(200).json({ message: "Delete Successful" });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });

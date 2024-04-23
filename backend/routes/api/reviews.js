@@ -8,12 +8,14 @@ const {
   Modifier,
   Review,
 } = require("../../db/models");
+
 const router = express.Router();
 
 // GET all Review
 router.get("/", async (req, res) => {
   try {
-    let result = await readAllEntry("Review");
+    let result = await Review.unscoped().findAll();
+    console.log(result)
     res.status(200).json({ "Reviews:": result });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -22,7 +24,7 @@ router.get("/", async (req, res) => {
 // GET Review by ID
 router.get("/:reviewId", async (req, res) => {
   try {
-    const review = await readEntryById("Review", req.params.reviewId);
+    const review = await Review.unscoped().findByPk(req.params.reviewId);
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
@@ -34,11 +36,13 @@ router.get("/:reviewId", async (req, res) => {
 // GET Review by UserId
 router.get("/:userId", async (req, res) => {
   try {
-    const userReviews = await readEntryByAggerate("Review", {
+    const userReviews = await Review.unscoped().findAll({
       where: {
         userid: req.params.userId,
       },
     });
+    console.log(userReviews)
+
     if (!userReviews) {
       return res.status(404).json({ message: "User has no reviews" });
     }

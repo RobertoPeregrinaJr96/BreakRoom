@@ -1,65 +1,93 @@
 const express = require("express");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const {
-  readAllEntry,
-  readEntryByAggerate,
-  readAllEntriesByFilter,
-} = require("../../utils/crud");
 
-const { OrderItem, InstructionModifier, Modifier } = require("../../db/models");
+const {
+  User,
+  Item,
+  Order,
+  OrderItem,
+  InstructionModifier,
+  Modifier,
+  Review,
+} = require("../../db/models");
 
 const router = express.Router();
 
-// GET all Order
-router.get("/all", async (req, res) => {
-  try {
-    let result = await readAllEntry("Order");
-    res.status(200).json({ "Orders:": result });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Internal server error", Route: "api/order/all" });
-  }
-});
 // GET Order by ID
 router.get("/:userId", async (req, res) => {
   try {
-    // const order = await readAllEntriesByFilter("Order", {
-    //   where: { userId: req.params.userId },
-    //   include: [
-    //     {
-    //       model: OrderItem,
-    //       include: {
-    //         model: InstructionModifier,
-    //         include: {
-    //           model: Modifier,
-    //           where: { id: Sequelize.col("InstructionModifiers.modifierId") },
-    //         },
-    //       },
-    //     },
-    //   ],
-    // });
-    const OrderItem = await readAllEntriesByFilter("OrderItem", {
-      where: { orderId: 1 },
+    const order = await Order.unscoped().findAll({
+      where: { userId: req.params.userId },
       include: [
         {
-          model: InstructionModifier,
-          include: {
-            model: Modifier,
-            // where: { id: Sequelize.col("InstructionModifiers.modifierId") },
-          },
+          model: OrderItem,
+          include: [
+            {
+              model: Item,
+            },
+            {
+              model: InstructionModifier,
+              include: [
+                {
+                  model: Modifier,
+                },
+              ],
+            },
+          ],
         },
       ],
     });
-    // if (!order) {
-    //   return res
-    //     .status(404)
-    //     .json({ message: "Order not found", Route: "api/order/:id" });
-    // }
+    if (!order) {
+      return res
+        .status(404)
+        .json({ message: "Order not found", Route: "api/order/:id" });
+    }
+    const normalizedOrder = {};
 
-    return res.status(200).json(OrderItem);
+    order.forEach((orderItem) => {
+      const orderId = orderItem.id;
+      const userId = orderItem.userId;
+      const orderDate = orderItem.createdAt;
+      const orderUpdated = orderItem.updatedAt;
+
+      normalizedOrder[orderId] = {
+        id: orderId,
+        userId: userId,
+        orderDate: orderDate,
+        orderUpdated: orderUpdated,
+        orderItems: [],
+      };
+
+      orderItem.OrderItems.forEach((orderItem) => {
+        const orderItemId = orderItem.id;
+        const itemId = orderItem.Item.id;
+        const itemName = orderItem.Item.name;
+        const itemPrice = orderItem.Item.price;
+
+        const modifiers = orderItem.InstructionModifiers.map(
+          (instructionModifier) => {
+            return {
+              id: instructionModifier.id,
+              modifierId: instructionModifier.modifierId,
+              modifierName: instructionModifier.Modifier.name,
+              modifierPrice: instructionModifier.Modifier.price,
+            };
+          }
+        );
+
+        normalizedOrder[orderId].orderItems.push({
+          id: orderItemId,
+          itemId: itemId,
+          itemName: itemName,
+          itemPrice: itemPrice,
+          modifiers: modifiers,
+        });
+      });
+    });
+
+    console.log(normalizedOrder);
+
+    return res.status(200).json(normalizedOrder);
   } catch (error) {
     return res
       .status(500)
