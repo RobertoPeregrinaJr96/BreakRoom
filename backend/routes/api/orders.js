@@ -8,7 +8,7 @@ const {
   readAllEntriesByFilter,
 } = require("../../utils/crud");
 
-const { OrderItem, InstructionModifier } = require("../../db/models");
+const { OrderItem, InstructionModifier, Modifier } = require("../../db/models");
 
 const router = express.Router();
 
@@ -26,41 +26,40 @@ router.get("/all", async (req, res) => {
 // GET Order by ID
 router.get("/:userId", async (req, res) => {
   try {
-    const order = await readEntryByAggerate("Order", {
-      where: { userId: req.params.userId, status: "pending" },
-    });
-    // console.log("====order====", order);
-
-    const orderItems = await readAllEntriesByFilter("OrderItem", {
-      where: { orderId: order[0].id },
-    });
-    // console.log("====orderItems====", orderItems);
-
-    const xx = await readAllEntriesByFilter('Order', {
+    // const order = await readAllEntriesByFilter("Order", {
+    //   where: { userId: req.params.userId },
+    //   include: [
+    //     {
+    //       model: OrderItem,
+    //       include: {
+    //         model: InstructionModifier,
+    //         include: {
+    //           model: Modifier,
+    //           where: { id: Sequelize.col("InstructionModifiers.modifierId") },
+    //         },
+    //       },
+    //     },
+    //   ],
+    // });
+    const OrderItem = await readAllEntriesByFilter("OrderItem", {
+      where: { orderId: 1 },
       include: [
         {
-          model: OrderItem,
-          include: InstructionModifier,
+          model: InstructionModifier,
+          include: {
+            model: Modifier,
+            // where: { id: Sequelize.col("InstructionModifiers.modifierId") },
+          },
         },
       ],
     });
-    console.log("====xx====", xx);
+    // if (!order) {
+    //   return res
+    //     .status(404)
+    //     .json({ message: "Order not found", Route: "api/order/:id" });
+    // }
 
-    if (!order) {
-      return res
-        .status(404)
-        .json({ message: "Order not found", Route: "api/order/:id" });
-    }
-    if (!orderItems) {
-      return res
-        .status(404)
-        .json({ message: " Items in order not found", Route: "api/order/:id" });
-    }
-
-    const safeResponse = { order: [...order], orderItems: [...orderItems] };
-    console.log("====safeResponse====", safeResponse);
-
-    return res.status(200).json(safeResponse);
+    return res.status(200).json(OrderItem);
   } catch (error) {
     return res
       .status(500)

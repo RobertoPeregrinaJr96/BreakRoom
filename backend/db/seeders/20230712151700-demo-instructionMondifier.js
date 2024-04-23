@@ -147,7 +147,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    options.tableName = "InstructionModifier";
+    options.tableName = "InstructionModifiers";
     return queryInterface.bulkInsert(options, InstructionModifier, {});
   },
 
@@ -158,7 +158,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    options.tableName = "InstructionModifier";
+    options.tableName = "InstructionModifiers";
     return queryInterface.bulkDelete(options, InstructionModifier, {});
   },
 };

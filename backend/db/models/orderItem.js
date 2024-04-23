@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "itemId", // Foreign key in OrderItem table
         // hooks: true, // This option is not necessary unless you use hooks
       });
+      OrderItem.hasMany(models.InstructionModifier,{
+        foreignKey:"orderItemId"
+      })
     }
   }
 

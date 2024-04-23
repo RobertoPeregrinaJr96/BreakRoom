@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(
-      "InstructionModifier",
+      "InstructionModifiers",
       {
         id: {
           allowNull: false,
@@ -36,7 +36,7 @@ module.exports = {
     );
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "InstructionModifier";
+    options.tableName = "InstructionModifiers";
     await queryInterface.dropTable(options);
   },
 };

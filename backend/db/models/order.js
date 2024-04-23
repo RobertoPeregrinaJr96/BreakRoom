@@ -11,16 +11,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // Define associations with other models
 
-      // Has Many OrderItems (Each Order has many OrderItems)
       Order.hasMany(models.OrderItem, {
         foreignKey: "orderId", // Foreign key in OrderItem table
-        // hooks: true, // This option is not necessary unless you use hooks
       });
-
-      // Belongs To User (Each Order belongs to a User)
       Order.belongsTo(models.User, {
         foreignKey: "userId", // Foreign key in Order table
-        // hooks: true, // This option is not necessary unless you use hooks
       });
     }
   }

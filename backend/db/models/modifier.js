@@ -11,9 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // Instructions
       Modifier.belongsTo(models.InstructionModifier, {
-        foreignKey: "modifierId",
-        hooks: true,
-        otherKey: "id",
+        foreignKey: "id",
+        otherKey: "modifierId",
       });
     }
   }
