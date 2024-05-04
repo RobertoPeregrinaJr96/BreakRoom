@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  console.log(sessionUser);
 
+  useEffect(() => {}, [dispatch]);
   return (
     <div className="navigation-container">
       <div className="navigation-div-topLeft">

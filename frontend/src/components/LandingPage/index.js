@@ -11,6 +11,9 @@ function LandingPage() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.item.allItems);
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
+  // const user = useSelector((state) => {
+  //   state.user;
+  // });
 
   useEffect(() => {
     dispatch(getItemsThunk());
