@@ -1,6 +1,6 @@
 const express = require("express");
 const { Sequelize } = require("../../db/models");
- 
+
 const {
   User,
   Item,
