@@ -57,22 +57,23 @@ router.get("/", async (req, res, next) => {
 router.post("/", validateLogin, async (req, res, next) => {
   try {
     const { credential, password } = req.body;
-  
+
     // Fetch user with provided credential
-    const user = await User.findOne({
+    const user = await User.unscoped().findOne({
       where: {
-        [Op.or]: [
-          { username: credential },
-          { email: credential }
-        ]
-      }
+        [Op.or]: [{ username: credential }, { email: credential }],
+      },
     });
-  
+
     // If user is not found or password is incorrect
     if (!user || !(await bcrypt.compare(password, user.hashedPassword))) {
-      throw createError(401, "Unauthorized", "The provided credentials were invalid.");
+      throw createError(
+        401,
+        "Unauthorized",
+        "The provided credentials were invalid."
+      );
     }
-  
+
     // Construct safe user object to send in response
     const responseUser = {
       id: user.id,
@@ -82,10 +83,10 @@ router.post("/", validateLogin, async (req, res, next) => {
       username: user.username,
       profileImageUrl: user.profileImageUrl,
     };
-  
+
     // Set token cookie for authentication
     setTokenCookie(res, responseUser);
-  
+
     // Send success response with safe user object
     return res.status(200).json({ user: responseUser });
   } catch (error) {
@@ -93,7 +94,21 @@ router.post("/", validateLogin, async (req, res, next) => {
     return next(error);
   }
 });
+// router.post("/user/order", async (req, res) => {
+//   const { user } = req;
 
+//   const newUserCart = await ShoppingCart.create({
+//     userId: user.id,
+//   });
+//   await newUserCart.save();
+
+//   res.status(200).json(newUserCart);
+// });
+
+router.delete("/", (_req, res) => {
+  res.clearCookie("token");
+  return res.json({ message: "success" });
+});
 // Log out
 router.delete("/", (_req, res) => {
   res.clearCookie("token");
