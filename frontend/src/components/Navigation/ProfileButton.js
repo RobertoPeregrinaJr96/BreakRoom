@@ -42,7 +42,7 @@ function ProfileButton({ user }) {
           <ul>
             {" "}
             {navigationLinks.map((link) => (
-              <li>{pageLinks(link)}</li>
+              <li key={navigationLinks.indexOf(link)}>{pageLinks(link)}</li>
             ))}
           </ul>
           <div className="profileButton-logIn">

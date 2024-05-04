@@ -5,15 +5,12 @@ import RightMenu from "./rightMenu";
 import "./style/landingPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getOrderByIdThunk, getOrderThunk } from "../../store/order";
 import { getItemsThunk } from "../../store/item";
 import { getHighestAvgThunk } from "../../store/item";
 function LandingPage() {
   const dispatch = useDispatch();
-  const itemStoreData = useSelector((state) => state.item.allItems);
-  const items = Object.values(itemStoreData)[0];
-  const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem[0]);
-  console.log(highestAvgItemsData)
+  const items = useSelector((state) => state.item.allItems);
+  const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
 
   useEffect(() => {
     dispatch(getItemsThunk());
@@ -29,9 +26,13 @@ function LandingPage() {
             <span className="main-content">
               <MainContent item={highestAvgItemsData} />
             </span>
-            <span className="right-menu-container">
-              <RightMenu items={itemStoreData} />
-            </span>
+            {items ? (
+              <span className="right-menu-container">
+                <RightMenu items={items} />
+              </span>
+            ) : (
+              <span></span>
+            )}
           </div>
         </div>
       </>

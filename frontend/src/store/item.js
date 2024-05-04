@@ -18,7 +18,8 @@ export const getItemsThunk = () => async (dispatch) => {
   const response = await csrfFetch("/api/item/all ");
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllItems(data));
+    const normalizedData = Object.values(data)[0]
+    dispatch(getAllItems(normalizedData));
     return data;
   }
 }; 
@@ -26,7 +27,8 @@ export const getHighestAvgThunk = (type) => async (dispatch) => {
   const response = await csrfFetch(`/api/item/${type}/review `);
   if (response.ok) {
     const data = await response.json();
-    dispatch(getHighestAvgItems(data));
+    const normalizedData = data[0]
+    dispatch(getHighestAvgItems(normalizedData));
     return data;
   }
 };

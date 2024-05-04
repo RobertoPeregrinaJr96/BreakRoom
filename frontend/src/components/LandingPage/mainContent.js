@@ -3,7 +3,6 @@ import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 import "./style/mainContent.css";
 
 function MainContent({ item }) {
-  console.log(item);
   if (item) {
     return (
       <>

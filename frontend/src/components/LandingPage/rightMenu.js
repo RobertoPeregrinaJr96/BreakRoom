@@ -5,13 +5,12 @@ import ItemModel from "../ModalComponents/ItemModal";
 import { useState } from "react";
 
 function RightMenu({ items }) {
-  items = Object.values(items)[0];
-
+  items = Object.values(items);
   const itemsPerPage = 7;
 
   const [currentPage, setCurrentPage] = useState(0);
 
-  const totalPages = Math.ceil(items.length / itemsPerPage);
+  const totalPages = ((items.length + itemsPerPage - 1) / itemsPerPage) | 0;
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
@@ -26,7 +25,7 @@ function RightMenu({ items }) {
   return (
     <>
       <div className="rightMenu-container">
-      <h1 className="rightMenu-h1">Right Menu</h1>
+        <h1 className="rightMenu-h1">Right Menu</h1>
         <menu className="right-menu-item-container">
           <span className="right-menu-search-container">
             {items ? (
@@ -39,7 +38,9 @@ function RightMenu({ items }) {
             displayedItems.map((item) => {
               return (
                 <span className="right-menu-item-cluster" key={item.id}>
-                  <button className="right-menu-item-button-name">{item.name}</button>
+                  <button className="right-menu-item-button-name">
+                    {item.name}
+                  </button>
                   <button className="right-menu-item-button-info">
                     <i className="fa-solid fa-circle-info"></i>
                   </button>
@@ -47,12 +48,14 @@ function RightMenu({ items }) {
                     <i className="fa-solid fa-cart-shopping"></i>
                   </button>
                 </span>
-              ) 
+              );
             })
           ) : (
             <span className="right-menu-item-cluster">
               <span className="right-menu-item-button-container">
-                <button className="right-menu-item-button-name">Item name</button>
+                <button className="right-menu-item-button-name">
+                  Item name
+                </button>
               </span>
               <span className="right-menu-item-button-container">
                 <OpenModalButton
@@ -89,7 +92,7 @@ function RightMenu({ items }) {
         </div>
       </div>
     </>
-  ) 
+  );
 }
 
-export default RightMenu
+export default RightMenu;
