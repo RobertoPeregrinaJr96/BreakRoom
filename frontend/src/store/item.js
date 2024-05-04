@@ -20,7 +20,7 @@ export const getItemsThunk = () => async (dispatch) => {
     const data = await response.json();
     const normalizedData = Object.values(data)[0]
     dispatch(getAllItems(normalizedData));
-    return data;
+    return normalizedData;
   }
 }; 
 export const getHighestAvgThunk = (type) => async (dispatch) => {
@@ -29,7 +29,7 @@ export const getHighestAvgThunk = (type) => async (dispatch) => {
     const data = await response.json();
     const normalizedData = data[0]
     dispatch(getHighestAvgItems(normalizedData));
-    return data;
+    return normalizedData;
   }
 };
 /* Reducers */

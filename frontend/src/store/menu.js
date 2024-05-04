@@ -13,8 +13,9 @@ export const getMenuThunk = () => async (dispatch) => {
   const response = await csrfFetch("/api/menu ");
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAllMenu(data));
-    return data;
+    const normalizedData = Object.values(data)[0]
+    dispatch(getAllMenu(normalizedData));
+    return normalizedData;
   }
 };
 
