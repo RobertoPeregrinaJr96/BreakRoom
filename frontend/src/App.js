@@ -11,23 +11,16 @@ import OrderPage from "./components/Order";
 import AdminPage from "./components/AdminView";
 import CheckoutPage from "./components/Checkout";
 import Menu from "./components/Menu";
-import { getOrderByIdThunk } from "./store/order";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (user && user.id) {
-      dispatch(getOrderByIdThunk(user.id));
-    }
-  }, [user, dispatch]);
-
+ 
   return (
     <>
       <Navigation isLoaded={isLoaded} />

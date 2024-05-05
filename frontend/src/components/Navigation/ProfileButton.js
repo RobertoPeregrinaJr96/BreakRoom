@@ -35,12 +35,16 @@ function ProfileButton({ user }) {
     <div className="profileButton-container">
       {user ? (
         <>
+          <ul>
+            {navigationLinks.map((link) => (
+              <li key={navigationLinks.indexOf(link)}>{pageLinks(link)}</li>
+            ))}
+          </ul>
           <button onClick={(e) => logout(e)}>Log out</button>
         </>
       ) : (
         <>
           <ul>
-            {" "}
             {navigationLinks.map((link) => (
               <li key={navigationLinks.indexOf(link)}>{pageLinks(link)}</li>
             ))}

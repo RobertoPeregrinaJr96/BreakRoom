@@ -7,7 +7,6 @@ import "./Navigation.css";
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser);
 
   useEffect(() => {}, [dispatch]);
   return (

@@ -7,17 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getItemsThunk } from "../../store/item";
 import { getHighestAvgThunk } from "../../store/item";
+import { getCurrentOrderByIdThunk } from "../../store/order";
 function LandingPage() {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.item.allItems);
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
-  // const user = useSelector((state) => {
-  //   state.user;
-  // });
+  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getItemsThunk());
     dispatch(getHighestAvgThunk("placeholder"));
+    if (user !== undefined && user !== null) {
+      if (user !== undefined && user !== null)
+        dispatch(getCurrentOrderByIdThunk(user.id));
+    }
   }, [dispatch]);
 
   if (items) {

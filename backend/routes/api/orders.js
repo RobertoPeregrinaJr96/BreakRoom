@@ -14,10 +14,10 @@ const {
 const router = express.Router();
 
 // GET Order by ID
-router.get("/:userId", async (req, res) => {
+router.get("/:userId/current", async (req, res) => {
   try {
     const order = await Order.unscoped().findAll({
-      where: { userId: req.params.userId },
+      where: { userId: req.params.userId,status:"pending" },
       include: [
         {
           model: OrderItem,
@@ -84,9 +84,6 @@ router.get("/:userId", async (req, res) => {
         });
       });
     });
-
-    console.log(normalizedOrder);
-
     return res.status(200).json(normalizedOrder);
   } catch (error) {
     return res
