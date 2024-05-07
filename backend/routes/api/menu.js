@@ -26,7 +26,6 @@ router.get("/", async (req, res) => {
         [Sequelize.literal("name"), "ASC"],
       ],
     });
-    console.log(items);
     res.status(200).json({ items: items });
   } catch (error) {
     res.status(500).json({ error: "Internal server error", Route: "api/menu" });

@@ -7,6 +7,7 @@ import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import "./ProfileButton.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { getCurrentOrderByIdThunk } from "../../store/order";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -21,7 +22,9 @@ function ProfileButton({ user }) {
     "/checkout",
   ];
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(getCurrentOrderByIdThunk());
+  }, [dispatch]);
 
   const logout = (e) => {
     e.preventDefault();

@@ -15,7 +15,6 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     let result = await Review.unscoped().findAll();
-    console.log(result)
     res.status(200).json({ "Reviews:": result });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
@@ -41,7 +40,6 @@ router.get("/:userId", async (req, res) => {
         userid: req.params.userId,
       },
     });
-    console.log(userReviews)
 
     if (!userReviews) {
       return res.status(404).json({ message: "User has no reviews" });
