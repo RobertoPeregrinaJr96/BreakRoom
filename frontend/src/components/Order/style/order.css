@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 30% 30% 30%;
   border: 1px solid black;
   padding: 10px;
 }

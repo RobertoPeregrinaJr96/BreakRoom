@@ -1,6 +1,6 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalButton from "./OpenModalButton";
 import LoginFormModal from "./LoginFormModal";
@@ -12,19 +12,8 @@ import { getCurrentOrderByIdThunk } from "../../store/order";
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const navigationLinks = [
-    "/",
-    "/profile",
-    "/admin",
-    "/menu",
-    "/order",
-    "/checkout",
-  ];
-
-  useEffect(() => {
-    dispatch(getCurrentOrderByIdThunk());
-  }, [dispatch]);
+  const navigationLinks = ["/", "/menu"];
+  const placeholderlinks = ["/profile", "/order", "/admin", "/checkout"];
 
   const logout = (e) => {
     e.preventDefault();
@@ -34,6 +23,12 @@ function ProfileButton({ user }) {
   const pageLinks = (a) => {
     return <button onClick={(e) => history.push(a)}>{a}</button>;
   };
+
+  useEffect(() => {
+    if (user) {
+      dispatch(getCurrentOrderByIdThunk());
+    }
+  }, [dispatch]);
   return (
     <div className="profileButton-container">
       {user ? (
@@ -44,6 +39,11 @@ function ProfileButton({ user }) {
             ))}
           </ul>
           <button onClick={(e) => logout(e)}>Log out</button>
+          <ul>
+            {placeholderlinks.map((link) => (
+              <li key={placeholderlinks.indexOf(link)}>{pageLinks(link)}</li>
+            ))}
+          </ul>
         </>
       ) : (
         <>

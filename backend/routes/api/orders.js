@@ -19,9 +19,25 @@ router.get("/current", async (req, res) => {
   try {
     const order = await Order.unscoped().findAll({
       where: { userId: user.id, status: "pending" },
+      attributes: [
+        "id",
+        "userId",
+        "totalCost",
+        "status",
+        "pointsEarned",
+        "createdAt",
+        "updatedAt",
+      ],
       include: [
         {
           model: OrderItem,
+          attributes: [
+            "id",
+            "orderId",
+            "itemId",
+            "customInstruction",
+            "quantity",
+          ],
           include: [
             {
               model: Item,
@@ -39,6 +55,7 @@ router.get("/current", async (req, res) => {
             },
             {
               model: InstructionModifier,
+              attributes: ["id", "orderItemId", "modifierId"],
               include: [
                 {
                   model: Modifier,
@@ -47,13 +64,6 @@ router.get("/current", async (req, res) => {
               ],
             },
           ],
-          attributes: [
-            "id",
-            "orderId",
-            "itemId",
-            "customInstruction",
-            "quantity",
-          ], // Include the OrderItem attributes here
         },
       ],
     });
@@ -64,36 +74,37 @@ router.get("/current", async (req, res) => {
     }
 
     // Normalize the data
-    const normalizedOrder = order.map((order) => ({
-      id: order.id,
-      userId: order.userId,
-      orderDate: order.createdAt,
-      orderUpdated: order.updatedAt,
-      orderItems: order.OrderItems.map((orderItem) => ({
-        id: orderItem.id,
-        orderId: orderItem.orderId,
-        itemId: orderItem.itemId,
-        quantity: orderItem.quantity,
-        customInstruction: orderItem.customInstruction,
+    const normalizedOrder = order.map((orderItem) => ({
+      id: orderItem.id,
+      userId: orderItem.userId,
+      totalCost: orderItem.totalCost,
+      status: orderItem.status,
+      pointsEarned: orderItem.pointsEarned,
+      orderDate: orderItem.createdAt,
+      orderUpdated: orderItem.updatedAt,
+      orderItems: orderItem.OrderItems.map((item) => ({
+        id: item.id,
+        orderId: item.orderId,
+        itemId: item.itemId,
+        quantity: item.quantity,
+        customInstruction: item.customInstruction,
         item: {
-          id: orderItem.Item.id,
-          name: orderItem.Item.name,
-          price: orderItem.Item.price,
-          description: orderItem.Item.description,
-          defaultModifiers: orderItem.Item.defaultModifiers,
-          itemImage: orderItem.Item.itemImage,
-          waitTime: orderItem.Item.waitTime,
-          type: orderItem.Item.type,
-          totalReviewScore: orderItem.Item.totalReviewScore,
+          id: item.Item.id,
+          name: item.Item.name,
+          price: item.Item.price,
+          description: item.Item.description,
+          defaultModifiers: item.Item.defaultModifiers,
+          itemImage: item.Item.itemImage,
+          waitTime: item.Item.waitTime,
+          type: item.Item.type,
+          totalReviewScore: item.Item.totalReviewScore,
         },
-        modifiers: orderItem.InstructionModifiers.map(
-          (instructionModifier) => ({
-            id: instructionModifier.id,
-            modifierId: instructionModifier.modifierId,
-            modifierName: instructionModifier.Modifier.name,
-            modifierPrice: instructionModifier.Modifier.price,
-          })
-        ),
+        modifiers: item.InstructionModifiers.map((instructionModifier) => ({
+          id: instructionModifier.id,
+          modifierId: instructionModifier.modifierId,
+          modifierName: instructionModifier.Modifier.name,
+          modifierPrice: instructionModifier.Modifier.price,
+        })),
       })),
     }));
     return res.status(200).json(normalizedOrder);
