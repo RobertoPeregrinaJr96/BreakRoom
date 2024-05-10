@@ -1,3 +1,7 @@
+.orderPage {
+  /* height: 100vh; */
+}
+
 .order-item-layout {
   display: flex;
   justify-content: center;
@@ -6,14 +10,19 @@
   width: 1rem;
   border: 1px solid black;
 }
-
-.order-item-li {
+/* GRID layout */
+/* Item name + image */
+.order-item-li-grid {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 16rem;
+  width: 16rem;
   border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px black;
+  color: white;
 }
-/* GRID layout */
 .order-item-container-grid {
   display: grid;
   align-items: center;
@@ -40,6 +49,18 @@
 }
 
 /* BLOCK layout  */
+/* Item name + image */
+.order-item-li-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
+  width: 16rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 1px 1px black;
+  color: white;
+}
 .order-item-container-block {
   display: block;
   justify-content: center;
@@ -60,3 +81,6 @@
 }
 .order-item-update-block {
 }
+
+/* adjust for the extra white space around 1060px height */
+/* maybe also adjust the list items to be a static height */

@@ -57,38 +57,51 @@ function OrderPage() {
 
   return order ? (
     <>
-      <h1>OrderPage</h1>
-      <h2>${total}</h2>
-      <button
-        className="order-item-layout"
-        onClick={(e) => selectPreference(e)}
-      ></button>
-      <ul className={`order-item-container-${displayPreference}`}>
-        {orderItems.map((item) => {
-          const food = item.item;
-          const modifiers = item.modifiers;
-          return (
-            <li key={item.id} className="order-item-li">
-              <OpenModalDiv modalComponent={<OrderUpdateModal item={item} />}>
-                <img
-                  src={food.itemImage}
-                  className={`order-item-info-image-${displayPreference}`}
-                ></img>
-                <span className={`order-item-info-${displayPreference}`}>
-                  <span>
-                    <h3>
-                      {food.name} ${itemTotalPrice(item, food)}
-                    </h3>
-                    <p>{modifiers.map((a) => ` ${a.modifierName}  `)}</p>
+      <div className="orderPage">
+        <h1>OrderPage</h1>
+        <h2>${total}</h2>
+        <button
+          className="order-item-layout"
+          onClick={(e) => selectPreference(e)}
+        ></button>
+        <ul className={`order-item-container-${displayPreference}`}>
+          {orderItems.map((item) => {
+            const food = item.item;
+            const modifiers = item.modifiers;
+            return (
+              <li
+                key={item.id}
+                className={`order-item-li-${displayPreference}`}
+                style={{
+                  backgroundImage: ` linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${food.itemImage})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                }}
+              >
+                <OpenModalDiv modalComponent={<OrderUpdateModal item={item} />}>
+                  {/* <img
+                    src={food.itemImage}
+                    className={`order-item-info-image-${displayPreference}`}
+                  ></img> */}
+                  <span className={`order-item-info-${displayPreference}`}>
+                    <span>
+                      <h3>
+                        {food.name} ${itemTotalPrice(item, food)}
+                      </h3>
+                      <p>{modifiers.map((a) => ` ${a.modifierName}  `)}</p>
+                    </span>
+                    <p>{item.customInstruction.slice(0, 20)}...</p>
                   </span>
-                  <p>{item.customInstruction.slice(0, 20)}</p>
-                </span>
-                <div className={`order-item-update-${displayPreference}`}></div>
-              </OpenModalDiv>
-            </li>
-          );
-        })}
-      </ul>
+                  <div
+                    className={`order-item-update-${displayPreference}`}
+                  ></div>
+                </OpenModalDiv>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   ) : (
     <>
