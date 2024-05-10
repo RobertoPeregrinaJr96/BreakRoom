@@ -49,10 +49,10 @@ function OrderPage() {
     e.preventDefault();
     setDisplayPreference((prev) => (prev === "grid" ? "block" : "grid"));
   };
- 
+
   // useEffect
   useEffect(() => {
-      dispatch(getCurrentOrderByIdThunk());
+    dispatch(getCurrentOrderByIdThunk());
   }, [dispatch]);
 
   return order ? (
@@ -70,10 +70,13 @@ function OrderPage() {
           return (
             <li key={item.id} className="order-item-li">
               <OpenModalDiv modalComponent={<OrderUpdateModal item={item} />}>
+                <img
+                  src={food.itemImage}
+                  className={`order-item-info-image-${displayPreference}`}
+                ></img>
                 <span className={`order-item-info-${displayPreference}`}>
                   <span>
                     <h3>
-                      {" "}
                       {food.name} ${itemTotalPrice(item, food)}
                     </h3>
                     <p>{modifiers.map((a) => ` ${a.modifierName}  `)}</p>
