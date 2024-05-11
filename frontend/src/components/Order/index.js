@@ -38,18 +38,46 @@ function OrderPage() {
     return sum;
   };
 
-  // useEffect to update total when orderItems change
-  useEffect(() => {
-    const newTotal = setNewTotal();
-    setTotal(newTotal);
-  }, [orderItems]);
-
   // Css Logic
   const selectPreference = (e) => {
     e.preventDefault();
     setDisplayPreference((prev) => (prev === "grid" ? "block" : "grid"));
   };
 
+  const imageLayout = (food) => {
+    if (displayPreference === "grid") {
+      return {
+        backgroundImage: ` linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${food.itemImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      };
+    }
+  };
+  const imageLayoutBlock = (food) => {
+    if (displayPreference === "block") {
+      return (
+        <div className="order-item-info-image-container">
+          <img
+            src={food.itemImage}
+            className={`order-item-info-image-${displayPreference}`}
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              overflow: "hidden",
+            }}
+          ></img>
+        </div>
+      );
+    }
+  };
+
+  // useEffect to update total when orderItems change
+  useEffect(() => {
+    const newTotal = setNewTotal();
+    setTotal(newTotal);
+  }, [orderItems]);
   // useEffect
   useEffect(() => {
     dispatch(getCurrentOrderByIdThunk());
@@ -72,30 +100,32 @@ function OrderPage() {
               <li
                 key={item.id}
                 className={`order-item-li-${displayPreference}`}
-                style={{
-                  backgroundImage: ` linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${food.itemImage})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                }}
+                style={imageLayout(food)}
               >
                 <OpenModalDiv modalComponent={<OrderUpdateModal item={item} />}>
-                  {/* <img
-                    src={food.itemImage}
-                    className={`order-item-info-image-${displayPreference}`}
-                  ></img> */}
-                  <span className={`order-item-info-${displayPreference}`}>
-                    <span>
-                      <h3>
-                        {food.name} ${itemTotalPrice(item, food)}
-                      </h3>
-                      <p>{modifiers.map((a) => ` ${a.modifierName}  `)}</p>
+                  <div className="order-item-li-block-div">
+                    {imageLayoutBlock(food)}
+                    <span className={`order-item-info-${displayPreference}`}>
+                      <span>
+                        <h3>
+                          {food.name} ${itemTotalPrice(item, food)}
+                        </h3>
+                        <p>{modifiers.map((a) => ` ${a.modifierName},  `)}</p>
+                        <p>{item.customInstruction.slice(0, 20)}...</p>
+                      </span>
                     </span>
-                    <p>{item.customInstruction.slice(0, 20)}...</p>
-                  </span>
-                  <div
-                    className={`order-item-update-${displayPreference}`}
-                  ></div>
+                    {displayPreference === "grid" ? (
+                      <></>
+                    ) : (
+                      <div>
+                        <div
+                          className={`order-item-update-${displayPreference}`}
+                        >
+                          UPDATE FOR ITEM CART GOES HERE
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </OpenModalDiv>
               </li>
             );

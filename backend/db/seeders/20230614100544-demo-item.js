@@ -68,7 +68,8 @@ const items = [
       "Enjoy the perfect balance of bold espresso and velvety steamed milk with our Classic Macchiato. Our expertly pulled shots of espresso are delicately `marked` with a dollop of foamed milk, creating a harmonious blend of robust flavors and a creamy texture. This traditional Italian favorite is the ideal choice for those seeking a simple yet satisfying coffee experience. ",
     defaultModifiers: "Small-Whole Mlik-Hot-Signature Espresso Roast",
     itemImage:
-      "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Macchiato.jpg",
+      "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/maccihiato-stock.jpg",
+    // "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Macchiato.jpg",
     waitTime: 3,
     type: "placeholder",
   },
@@ -82,7 +83,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4K_flatwhite1.jpg",
     waitTime: 3,
     type: "placeholder",
-    totalReviewScore:4
+    totalReviewScore: 4,
   },
   {
     name: "Affogato",
@@ -94,7 +95,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Affogato.jpg",
     waitTime: 3,
     type: "placeholder",
-    totalReviewScore:5
+    totalReviewScore: 5,
   },
   {
     name: "Turkish Coffee",
@@ -106,7 +107,7 @@ const items = [
       "https://freeawsbucket.s3.us-west-1.amazonaws.com/coffee_seeders/4k_Turkish+Coffee.jpg",
     waitTime: 3,
     type: "placeholder",
-    totalReviewScore:2
+    totalReviewScore: 2,
   },
   {
     name: "Irish Coffee",

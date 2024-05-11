@@ -10,6 +10,13 @@
   width: 1rem;
   border: 1px solid black;
 }
+
+.order-item-info-image-container {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 30%;
+}
 /* GRID layout */
 /* Item name + image */
 .order-item-li-grid {
@@ -51,15 +58,12 @@
 /* BLOCK layout  */
 /* Item name + image */
 .order-item-li-block {
-  display: flex;
+  display: grid;
+  grid-auto-rows: 1fr;
   justify-content: center;
+  padding: 10px;
   align-items: center;
-  height: 16rem;
-  width: 16rem;
   border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 1px 1px black;
-  color: white;
 }
 .order-item-container-block {
   display: block;
@@ -71,15 +75,22 @@
 }
 .order-item-info-image-block {
   border-radius: 10%;
-  width: 10%;
-  height: 10%;
+  width: 80%;
+  height: 90%;
+  padding: 10px;
+}
+.order-item-li-block-div {
+  display: flex;
+  align-items: center;
 }
 .order-item-info-block {
   display: grid;
   justify-content: center;
   align-items: center;
+  width: 40%;
 }
 .order-item-update-block {
+  width: 40%;
 }
 
 /* adjust for the extra white space around 1060px height */
