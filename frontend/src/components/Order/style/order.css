@@ -2,7 +2,7 @@
   /* height: 100vh; */
 }
 
-.order-item-layout {
+.display-mode-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +16,12 @@
   /* justify-content: center; */
   /* align-items: center; */
   width: 30%;
+}
+.order-item-info-placecard {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 /* GRID layout */
 /* Item name + image */

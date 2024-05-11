@@ -89,7 +89,7 @@ function OrderPage() {
         <h1>OrderPage</h1>
         <h2>${total}</h2>
         <button
-          className="order-item-layout"
+          className="display-mode-toggle"
           onClick={(e) => selectPreference(e)}
         ></button>
         <ul className={`order-item-container-${displayPreference}`}>
@@ -106,7 +106,7 @@ function OrderPage() {
                   <div className="order-item-li-block-div">
                     {imageLayoutBlock(food)}
                     <span className={`order-item-info-${displayPreference}`}>
-                      <span>
+                      <span className="order-item-info-placecard">
                         <h3>
                           {food.name} ${itemTotalPrice(item, food)}
                         </h3>
