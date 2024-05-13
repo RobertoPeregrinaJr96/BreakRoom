@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-transform-class-properties": "^7.24.1",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.24.1",
+    "@babel/plugin-transform-numeric-separator": "^7.24.1",
+    "@babel/plugin-transform-private-methods": "^7.24.1",
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@rollup/plugin-terser": "^0.4.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,7 +20,8 @@
     "react-router-dom": "^5.3.4",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "svgo": "^2.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -38,6 +45,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-optional-chaining": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
     "redux-logger": "^3.0.6"
   },
   "proxy": "http://localhost:8000"
