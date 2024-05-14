@@ -66,6 +66,7 @@
 .order-item-li-block {
   display: grid;
   grid-auto-rows: 1fr;
+  grid-template-columns: 90% 10%;
   justify-content: center;
   padding: 10px;
   align-items: center;

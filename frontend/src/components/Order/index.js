@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style/order.css";
-import { getCurrentOrderByIdThunk } from "../../store/order";
+import { getCurrentOrderThunk } from "../../store/order";
 import OrderUpdateModal from "../ModalComponents/orderUpdateModal";
 import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 
@@ -16,6 +16,7 @@ function OrderPage() {
 
   // UseState
   const [displayPreference, setDisplayPreference] = useState("grid");
+  const [boolean, setBoolean] = useState(true);
   const [total, setTotal] = useState(order?.currentOrder?.totalCost || 0);
 
   // Logic
@@ -28,6 +29,26 @@ function OrderPage() {
     return (sum += item.quantity * food.price).toFixed(2);
   };
 
+  // Onclick functions for Quantity update
+  // Function to delete item
+  const deleteItem = async (e, id) => {
+    setBoolean(!boolean);
+  };
+  // Update Minus One
+  const updateItemMinus = async (e, item) => {
+    const quantity = item.quantity;
+    if (quantity === 0) return;
+    if (quantity === 1) {
+      // If quantity is 1, delete the item
+      deleteItem();
+    } else {
+      // If quantity is greater than 1, decrease the quantity
+    }
+  };
+  // Update Plus One
+  const updateItemPlus = (e, item) => {
+    // Increase the quantity by 1
+  };
   const setNewTotal = () => {
     let sum = 0;
     orderItems.forEach((item) => {
@@ -80,7 +101,7 @@ function OrderPage() {
   }, [orderItems]);
   // useEffect
   useEffect(() => {
-    dispatch(getCurrentOrderByIdThunk());
+    dispatch(getCurrentOrderThunk());
   }, [dispatch]);
 
   return order ? (
@@ -114,19 +135,13 @@ function OrderPage() {
                         <p>{item.customInstruction.slice(0, 20)}...</p>
                       </span>
                     </span>
-                    {displayPreference === "grid" ? (
-                      <></>
-                    ) : (
-                      <div>
-                        <div
-                          className={`order-item-update-${displayPreference}`}
-                        >
-                          UPDATE FOR ITEM CART GOES HERE
-                        </div>
-                      </div>
-                    )}
+                    {displayPreference === "grid" ? <></> : <div></div>}
                   </div>
                 </OpenModalDiv>
+                <div className={`order-item-update-${displayPreference}`}>
+                  <button onClick={(e) => updateItemMinus(e, item)}>-</button>
+                  <button onClick={(e) => updateItemPlus(e, item)}>+</button>
+                </div>
               </li>
             );
           })}

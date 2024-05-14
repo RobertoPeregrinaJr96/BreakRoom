@@ -46,4 +46,17 @@ router.get("/:orderId", async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+// UPDATE ITEM
+router.put("/:orderItemId", async (req, res) => {
+  const idOfItem = req.params.itemId;
+  const item = await OrderItem.findByPk(idOfItem);
+
+  let { coffeeId, orderId, itemId, customInstruction, quantity } = req.body;
+
+  item.quantity = quantity;
+
+  await item.save();
+
+  res.json(item);
+});
 module.exports = router;

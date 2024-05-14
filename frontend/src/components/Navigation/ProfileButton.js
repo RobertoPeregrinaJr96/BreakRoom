@@ -7,14 +7,14 @@ import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import "./ProfileButton.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { getCurrentOrderByIdThunk } from "../../store/order";
+import { getCurrentOrderThunk } from "../../store/order";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const navigationLinks = ["/", "/menu"];
   const placeholderlinks = ["/profile", "/order", "/admin", "/checkout"];
-
+  
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -23,10 +23,9 @@ function ProfileButton({ user }) {
   const pageLinks = (a) => {
     return <button onClick={(e) => history.push(a)}>{a}</button>;
   };
-
   useEffect(() => {
     if (user) {
-      dispatch(getCurrentOrderByIdThunk());
+      dispatch(getCurrentOrderThunk());
     }
   }, [dispatch]);
   return (

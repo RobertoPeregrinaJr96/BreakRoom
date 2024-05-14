@@ -111,8 +111,75 @@ router.get("/current", async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ message: "Internal Server Error", Route: "api/order/:id" });
+      .json({ message: "Internal Server Error", Route: "api/order/current" });
   }
 });
+router.get("/current/all", async (req, res) => {
+  const { user } = req;
+  try {
+    const order = await Order.unscoped().findAll({
+      where: { userId: user.id, status: "complete" },
+      attributes: ["id", "userId", "totalCost", "pointsEarned", "createdAt"],
+      include: [
+        {
+          model: OrderItem,
+          attributes: [
+            "id",
+            "orderId",
+            "itemId",
+            "customInstruction",
+            "quantity",
+          ],
+          include: [
+            {
+              model: Item,
+              attributes: [
+                "id",
+                "name",
+                "price",
+                "description",
+                "itemImage",
+                "type",
+              ],
+            },
+          ],
+        },
+      ],
+    });
+    if (!order) {
+      return res
+        .status(404)
+        .json({ message: "Order not found", Route: "api/order/current" });
+    }
 
+    // Normalize the data
+    const normalizedOrder = order.map((orderItem) => ({
+      id: orderItem.id,
+      userId: orderItem.userId,
+      totalCost: orderItem.totalCost,
+      pointsEarned: orderItem.pointsEarned,
+      orderDate: orderItem.createdAt,
+      orderItems: orderItem.OrderItems.map((item) => ({
+        id: item.id,
+        orderId: item.orderId,
+        itemId: item.itemId,
+        quantity: item.quantity,
+        customInstruction: item.customInstruction,
+        item: {
+          id: item.Item.id,
+          name: item.Item.name,
+          price: item.Item.price,
+          description: item.Item.description,
+          type: item.Item.type,
+        },
+      })),
+    }));
+    return res.status(200).json(normalizedOrder);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal Server Error",
+      Route: "api/order/current/all",
+    });
+  }
+});
 module.exports = router;
