@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style/order.css";
-import { getCurrentOrderThunk, updateOrderItemThunk } from "../../store/order";
+import {
+  deleteOrderItemThunk,
+  getCurrentOrderThunk,
+  updateOrderItemThunk,
+} from "../../store/order";
 import OrderUpdateModal from "../ModalComponents/orderUpdateModal";
 import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 
@@ -32,6 +36,7 @@ function OrderPage() {
   // Onclick functions for Quantity update
   // Function to delete item
   const deleteItem = async (e, id) => {
+    dispatch(deleteOrderItemThunk(id));
     setBoolean(!boolean);
   };
   // Update Minus One
@@ -40,7 +45,7 @@ function OrderPage() {
     if (updateItem.quantity === 0) return;
     if (updateItem.quantity === 1) {
       // If quantity is 1, delete the item
-      deleteItem();
+      deleteItem(e,item.id);
     } else {
       // If quantity is greater than 1, decrease the quantity
       updateItem.quantity--;

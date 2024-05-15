@@ -56,4 +56,12 @@ router.put("/:orderItemId", async (req, res) => {
 
   res.json(orderItem);
 });
+router.delete("/:orderItemId", async (req, res) => {
+  const id = req.params.orderItemId;
+  const orderItem = await OrderItem.findByPk(id);
+  await orderItem.destroy();
+  res.json({
+    Message: "Successfully delete",
+  });
+});
 module.exports = router;
