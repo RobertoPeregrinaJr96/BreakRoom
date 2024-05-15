@@ -48,15 +48,12 @@ router.get("/:orderId", async (req, res) => {
 });
 // UPDATE ITEM
 router.put("/:orderItemId", async (req, res) => {
-  const idOfItem = req.params.itemId;
-  const item = await OrderItem.findByPk(idOfItem);
+  const orderItemId = req.params.orderItemId;
+  const orderItem = await OrderItem.findByPk(orderItemId);
+  let { quantity } = req.body["data"];
+  orderItem.quantity = quantity;
+  await orderItem.save();
 
-  let { coffeeId, orderId, itemId, customInstruction, quantity } = req.body;
-
-  item.quantity = quantity;
-
-  await item.save();
-
-  res.json(item);
+  res.json(orderItem);
 });
 module.exports = router;

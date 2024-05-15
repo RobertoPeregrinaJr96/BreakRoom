@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style/order.css";
-import { getCurrentOrderThunk } from "../../store/order";
+import { getCurrentOrderThunk, updateOrderItemThunk } from "../../store/order";
 import OrderUpdateModal from "../ModalComponents/orderUpdateModal";
 import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
 
@@ -36,18 +36,30 @@ function OrderPage() {
   };
   // Update Minus One
   const updateItemMinus = async (e, item) => {
-    const quantity = item.quantity;
-    if (quantity === 0) return;
-    if (quantity === 1) {
+    const updateItem = item;
+    if (updateItem.quantity === 0) return;
+    if (updateItem.quantity === 1) {
       // If quantity is 1, delete the item
       deleteItem();
     } else {
       // If quantity is greater than 1, decrease the quantity
+      updateItem.quantity--;
+      dispatch(updateOrderItemThunk(item.id, updateItem));
     }
   };
   // Update Plus One
   const updateItemPlus = (e, item) => {
     // Increase the quantity by 1
+    let updateItem = item;
+
+    if (updateItem.quantity >= 10) {
+      window.alert("STOP BEING A DORK");
+      updateItem.quantity--;
+      dispatch(updateOrderItemThunk(item.id, updateItem));
+    } else {
+      updateItem.quantity++;
+      dispatch(updateOrderItemThunk(item.id, updateItem));
+    }
   };
   const setNewTotal = () => {
     let sum = 0;
@@ -56,7 +68,7 @@ function OrderPage() {
       let num = itemTotalPrice(item, food);
       sum += Number(num);
     });
-    return sum;
+    return sum.toFixed(2);
   };
 
   // Css Logic

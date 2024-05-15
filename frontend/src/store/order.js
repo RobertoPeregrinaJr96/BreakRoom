@@ -22,20 +22,28 @@ export const getCurrentOrderThunk = () => async (dispatch) => {
     return normalizedData;
   }
 };
-export const updateOrderItemThunk = (orderItemId, item) => async (dispatch) => {
-  const response = await csrfFetch(`/api/order/${orderItemId} `, {
-    method: "PUT",
-    body: JSON.stringify({ item: item }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    const data = await response.json();
-    const normalizedData = Object.values(data)[0];
-    dispatch(getCurrentOrder(normalizedData));
-  }
-};
+export const updateOrderItemThunk =
+  (orderItemId, orderItem) => async (dispatch) => {
+    console.log("orderItemId: ", orderItemId);
+    console.log("orderItem: ", orderItem);
+
+    const response = await csrfFetch(`/api/orderItem/${orderItemId} `, {
+      method: "PUT",
+      body: JSON.stringify({ data: orderItem }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      const response = await csrfFetch(`/api/order/current`);
+      if (response.ok) {
+        const data = await response.json();
+        const normalizedData = Object.values(data)[0];
+        dispatch(getCurrentOrder(normalizedData));
+        return normalizedData;
+      }
+    }
+  };
 export const getAllOrderByIdThunk = (id) => async (dispatch) => {
   const response = await csrfFetch(`/api/order/${id}`);
   if (response.ok) {
