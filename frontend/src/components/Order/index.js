@@ -10,16 +10,17 @@ import {
 } from "../../store/order";
 import OrderUpdateModal from "../ModalComponents/orderUpdateModal";
 import OpenModalDiv from "../Navigation/OpenModalButton/modalDiv";
+import { sessionSetting } from "../../store/session";
 
 function OrderPage() {
   // useSelector
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
   const order = useSelector((state) => state.order);
   const orderItems = order?.currentOrder?.orderItems || [];
+  const displaySettings = useSelector((state) => state.session.setting);
+  let display = displaySettings.display;
+  let mode = displaySettings.mode;
 
-  // UseState
-  const [displayPreference, setDisplayPreference] = useState("grid");
   const [boolean, setBoolean] = useState(true);
   const [total, setTotal] = useState(order?.currentOrder?.totalCost || 0);
 
@@ -45,7 +46,7 @@ function OrderPage() {
     if (updateItem.quantity === 0) return;
     if (updateItem.quantity === 1) {
       // If quantity is 1, delete the item
-      deleteItem(e,item.id);
+      deleteItem(e, item.id);
     } else {
       // If quantity is greater than 1, decrease the quantity
       updateItem.quantity--;
@@ -79,11 +80,15 @@ function OrderPage() {
   // Css Logic
   const selectPreference = (e) => {
     e.preventDefault();
-    setDisplayPreference((prev) => (prev === "grid" ? "block" : "grid"));
+    console.log("display  1: ", display);
+    console.log("mode   1: ", mode);
+
+    display === "grid" ? (display = "block") : (display = "grid");
+    dispatch(sessionSetting({ display: display, mode: mode }));
   };
 
   const imageLayout = (food) => {
-    if (displayPreference === "grid") {
+    if (display === "grid") {
       return {
         backgroundImage: ` linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${food.itemImage})`,
         backgroundSize: "cover",
@@ -93,12 +98,12 @@ function OrderPage() {
     }
   };
   const imageLayoutBlock = (food) => {
-    if (displayPreference === "block") {
+    if (display === "block") {
       return (
         <div className="order-item-info-image-container">
           <img
             src={food.itemImage}
-            className={`order-item-info-image-${displayPreference}`}
+            className={`order-item-info-image-${display}`}
             style={{
               height: "100%",
               width: "100%",
@@ -130,20 +135,20 @@ function OrderPage() {
           className="display-mode-toggle"
           onClick={(e) => selectPreference(e)}
         ></button>
-        <ul className={`order-item-container-${displayPreference}`}>
+        <ul className={`order-item-container-${display}`}>
           {orderItems.map((item) => {
             const food = item.item;
             const modifiers = item.modifiers;
             return (
               <li
                 key={item.id}
-                className={`order-item-li-${displayPreference}`}
+                className={`order-item-li-${display}`}
                 style={imageLayout(food)}
               >
                 <OpenModalDiv modalComponent={<OrderUpdateModal item={item} />}>
                   <div className="order-item-li-block-div">
                     {imageLayoutBlock(food)}
-                    <span className={`order-item-info-${displayPreference}`}>
+                    <span className={`order-item-info-${display}`}>
                       <span className="order-item-info-placecard">
                         <h3>
                           {food.name} ${itemTotalPrice(item, food)}
@@ -152,10 +157,10 @@ function OrderPage() {
                         <p>{item.customInstruction.slice(0, 20)}...</p>
                       </span>
                     </span>
-                    {displayPreference === "grid" ? <></> : <div></div>}
+                    {display === "grid" ? <></> : <div></div>}
                   </div>
                 </OpenModalDiv>
-                <div className={`order-item-update-${displayPreference}`}>
+                <div className={`order-item-update-${display}`}>
                   <button onClick={(e) => updateItemMinus(e, item)}>-</button>
                   <button onClick={(e) => updateItemPlus(e, item)}>+</button>
                 </div>

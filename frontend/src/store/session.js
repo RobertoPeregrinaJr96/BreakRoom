@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
+const SET_SETTING = "seesion/SET_SETTING";
 const setUser = (user) => {
   return {
     type: SET_USER,
@@ -15,7 +16,10 @@ const removeUser = () => {
     type: REMOVE_USER,
   };
 };
-
+const setSetting = (setting) => ({
+  type: SET_SETTING,
+  payload: setting,
+});
 // log in User
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -67,20 +71,28 @@ export const logout = () => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
+// Settings
+
+export const sessionSetting = (setting) => (dispatch) => {
+  dispatch(setSetting(setting));
+};
+const initialState = { 
+  user: null,
+  setting: { display: "block", mode: "dark" },
+};
 
 const sessionReducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case SET_USER:
-      newState = { ...state, user: action.payload };
-      return newState;
+      return { ...state, user: action.payload };
     case REMOVE_USER:
-      newState = { ...state, user: null };
-      return newState;
+      return { ...state, user: null };
+    case SET_SETTING:
+      return { ...state, setting: action.payload };
     default:
       return state;
   }
 };
 
 export default sessionReducer;
+     
