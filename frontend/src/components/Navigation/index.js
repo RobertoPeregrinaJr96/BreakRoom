@@ -3,11 +3,23 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import { sessionSetting } from "../../store/session";
 
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const session = useSelector((state) => state.session);
 
+  let display = session.setting.display;
+  let mode = session.setting.mode;
+  // Css Logic
+  const selectPreference = (e) => {
+    e.preventDefault();
+    console.log("display  1: ", display);
+    console.log("mode   1: ", mode);
+
+    display === "grid" ? (display = "block") : (display = "grid");
+    dispatch(sessionSetting({ display: display, mode: mode }));
+  };
   useEffect(() => {}, [dispatch]);
   return (
     <div className="navigation-container">
@@ -28,7 +40,14 @@ function Navigation({ isLoaded }) {
         </NavLink>
       </div>
       <div className="navigation-div-topRight">
-        {isLoaded && <ProfileButton user={sessionUser} />}
+        {isLoaded && <ProfileButton user={session.user} />}
+      </div>
+      <div className="navigation-dive`">
+        Settings
+        <button
+          className="display-mode-toggle"
+          onClick={(e) => selectPreference(e)}
+        ></button>
       </div>
     </div>
   );

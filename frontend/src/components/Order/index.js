@@ -23,7 +23,6 @@ function OrderPage() {
 
   const [boolean, setBoolean] = useState(true);
   const [total, setTotal] = useState(order?.currentOrder?.totalCost || 0);
-
   // Logic
   const itemTotalPrice = (item, food) => {
     let sum = 0;
@@ -35,6 +34,17 @@ function OrderPage() {
   };
 
   // Onclick functions for Quantity update
+  const manualInput = async (e, item, num) => {
+    let updateItem = item;
+    if (updateItem.quantity >= 10) {
+      window.alert("STOP BEING A DORK");
+      updateItem.quantity = num;
+      dispatch(updateOrderItemThunk(item.id, updateItem));
+    } else {
+      updateItem.quantity = num;
+      dispatch(updateOrderItemThunk(item.id, updateItem));
+    }
+  };
   // Function to delete item
   const deleteItem = async (e, id) => {
     dispatch(deleteOrderItemThunk(id));
@@ -75,16 +85,6 @@ function OrderPage() {
       sum += Number(num);
     });
     return sum.toFixed(2);
-  };
-
-  // Css Logic
-  const selectPreference = (e) => {
-    e.preventDefault();
-    console.log("display  1: ", display);
-    console.log("mode   1: ", mode);
-
-    display === "grid" ? (display = "block") : (display = "grid");
-    dispatch(sessionSetting({ display: display, mode: mode }));
   };
 
   const imageLayout = (food) => {
@@ -131,10 +131,7 @@ function OrderPage() {
       <div className="orderPage">
         <h1>OrderPage</h1>
         <h2>${total}</h2>
-        <button
-          className="display-mode-toggle"
-          onClick={(e) => selectPreference(e)}
-        ></button>
+
         <ul className={`order-item-container-${display}`}>
           {orderItems.map((item) => {
             const food = item.item;
@@ -162,6 +159,17 @@ function OrderPage() {
                 </OpenModalDiv>
                 <div className={`order-item-update-${display}`}>
                   <button onClick={(e) => updateItemMinus(e, item)}>-</button>
+                  {/* <input
+                    type="number"
+                    placeholder={`1 - 9`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && e.target.value < 10) {
+                        // Call your manualInput function here passing the event, item, and input value
+                        manualInput(e, item, e.target.value);
+                      }
+                    }}
+                    onClick={(e) => manualInput(e, item, e.target.value)}
+                  /> */}
                   <button onClick={(e) => updateItemPlus(e, item)}>+</button>
                 </div>
               </li>
