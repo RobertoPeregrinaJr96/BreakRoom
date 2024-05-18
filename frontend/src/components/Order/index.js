@@ -161,7 +161,7 @@ function OrderPage() {
                   <button onClick={(e) => updateItemMinus(e, item)}>-</button>
                   {/* <input
                     type="number"
-                    placeholder={`1 - 9`}
+                    placeholder={`Max 10`}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && e.target.value < 10) {
                         // Call your manualInput function here passing the event, item, and input value
