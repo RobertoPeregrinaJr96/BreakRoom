@@ -21,6 +21,7 @@ function Menu() {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
+        borderRadius: "10px",
       };
     }
   };
@@ -43,10 +44,12 @@ function Menu() {
                 <div className={`menu-item-element-${display}`}>
                   <h3 className={`menu-item-name-${display}`}>{item.name}</h3>
                   <span className={`menu-item-context-${display}`}>
-                    <img
-                      src={item.itemImage}
-                      className={`menu-item-img-${display}`}
-                    ></img>
+                    {/* <div className={`menu-item-img-container-${display}`}> */}
+                      <img
+                        src={item.itemImage}
+                        className={`menu-item-img-${display}`}
+                      ></img>
+                    {/* </div> */}
                     <p className={`menu-item-description-${display}`}>
                       {item.description}
                     </p>
