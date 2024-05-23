@@ -10,6 +10,20 @@ function Menu() {
   const dispatch = useDispatch();
   const menuStoreData = useSelector((state) => state.menu.menuItems);
   const menu = Object.values(menuStoreData);
+  const displaySettings = useSelector((state) => state.session.setting);
+  let display = displaySettings.display;
+  let mode = displaySettings.mode;
+
+  const imageLayout = (food) => {
+    if (display === "grid") {
+      return {
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${food.itemImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      };
+    }
+  };
 
   useEffect(() => {
     dispatch(getMenuThunk());
@@ -17,16 +31,25 @@ function Menu() {
   return (
     <>
       <h1>Menu</h1>
-      <ul className="menu-item-container">
+      <ul className={`menu-item-container-${display}`}>
         {menu?.map((item) => {
           return (
-            <li className="menu-item-block" key={item.id}>
+            <li
+              className={`menu-item-li-${display}`}
+              key={item.id}
+              style={imageLayout(item)}
+            >
               <OpenModalDiv modalComponent={<ItemModal item={item} />}>
-                <div className="menu-item-element">
-                  <h3 className="menu-item-name">{item.name}</h3>
-                  <span className="menu-item-context">
-                    <img src={item.itemImage} className="menu-item-img"></img>
-                    <p className="menu-item-description">{item.description}</p>
+                <div className={`menu-item-element-${display}`}>
+                  <h3 className={`menu-item-name-${display}`}>{item.name}</h3>
+                  <span className={`menu-item-context-${display}`}>
+                    <img
+                      src={item.itemImage}
+                      className={`menu-item-img-${display}`}
+                    ></img>
+                    <p className={`menu-item-description-${display}`}>
+                      {item.description}
+                    </p>
                   </span>
                 </div>
               </OpenModalDiv>
