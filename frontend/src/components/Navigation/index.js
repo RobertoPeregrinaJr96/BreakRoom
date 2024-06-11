@@ -12,12 +12,14 @@ function Navigation({ isLoaded }) {
   let display = session.setting.display;
   let mode = session.setting.mode;
   // Css Logic
-  const selectPreference = (e) => {
+  const selectLayout = (e) => {
     e.preventDefault();
-    console.log("display  1: ", display);
-    console.log("mode   1: ", mode);
-
     display === "grid" ? (display = "block") : (display = "grid");
+    dispatch(sessionSetting({ display: display, mode: mode }));
+  };
+  const selectMode = (e) => {
+    e.preventDefault();
+    mode === "light" ? (mode = "dark") : (mode = "light");
     dispatch(sessionSetting({ display: display, mode: mode }));
   };
   useEffect(() => {}, [dispatch]);
@@ -46,8 +48,16 @@ function Navigation({ isLoaded }) {
         Settings
         <button
           className="display-mode-toggle"
-          onClick={(e) => selectPreference(e)}
-        ></button>
+          onClick={(e) => selectLayout(e)}
+        >
+          layout
+        </button>
+        <button
+          className="display-mode-toggle"
+          onClick={(e) => selectMode(e)}
+        >
+          Mode
+        </button>
       </div>
     </div>
   );

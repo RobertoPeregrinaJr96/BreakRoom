@@ -9,6 +9,10 @@
   font-family: "Manrope", sans-serif;
   font-weight: bold;
 }
+.block.dark {
+  color: white;
+  background-color: black;
+}
 
 .errors {
   color: #ff385c;
