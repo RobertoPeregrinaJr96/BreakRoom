@@ -22,6 +22,7 @@ function Menu() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         borderRadius: "10px",
+        borderColor: "black",
       };
     } else {
       return {
@@ -30,6 +31,7 @@ function Menu() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         borderRadius: "10px",
+        borderColor: "white",
       };
     }
   };
@@ -40,27 +42,25 @@ function Menu() {
   return (
     <>
       <h1>Menu</h1>
-      <ul className={`menu-item-container-${display} ${mode}`}>
+      <ul className={`menu-item-container-${display}-${mode}`}>
         {menu?.map((item) => {
           return (
             <li
-              className={`menu-item-li-${display} ${mode}`}
+              className={`menu-item-li-${display} `}
               key={item.id}
               style={imageLayout(item)}
             >
               <OpenModalDiv modalComponent={<ItemModal item={item} />}>
-                <div className={`menu-item-element-${display} ${mode}`}>
-                  <h3 className={`menu-item-name-${display} ${mode}`}>
-                    {item.name}
-                  </h3>
-                  <span className={`menu-item-context-${display} ${mode}`}>
+                <div className={`menu-item-element-${display} `}>
+                  <h3 className={`menu-item-name-${display}  `}>{item.name}</h3>
+                  <span className={`menu-item-context-${display} `}>
                     {/* <div className={`menu-item-img-container-${display}`}> */}
                     <img
                       src={item.itemImage}
-                      className={`menu-item-img-${display} ${mode}`}
+                      className={`menu-item-img-${display} `}
                     ></img>
                     {/* </div> */}
-                    <p className={`menu-item-description-${display} ${mode}`}>
+                    <p className={`menu-item-description-${display} `}>
                       {item.description}
                     </p>
                   </span>
