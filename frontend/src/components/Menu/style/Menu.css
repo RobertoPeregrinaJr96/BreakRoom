@@ -47,6 +47,7 @@
 .menu-item-container-block-light {
   display: grid;
   background-color: white;
+  border: 1px solid black;
   gap: 10px;
   padding: 20px;
 }

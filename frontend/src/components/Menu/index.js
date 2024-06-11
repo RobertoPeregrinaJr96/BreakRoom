@@ -41,7 +41,6 @@ function Menu() {
   }, [dispatch]);
   return (
     <>
-      <h1>Menu</h1>
       <ul className={`menu-item-container-${display}-${mode}`}>
         {menu?.map((item) => {
           return (

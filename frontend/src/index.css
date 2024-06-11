@@ -9,6 +9,10 @@
   font-family: "Manrope", sans-serif;
   font-weight: bold;
 }
+* .dark {
+  color: white;
+  background-color: black;
+}
 .block.dark {
   color: white;
   background-color: black;
@@ -26,6 +30,7 @@
   --button: #7b46ac;
   --errors: red;
 }
+ 
 /* *{
   background-color: var(--bg-color);
 } */
