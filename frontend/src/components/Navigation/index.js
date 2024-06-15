@@ -24,8 +24,8 @@ function Navigation({ isLoaded }) {
   };
   useEffect(() => {}, [dispatch]);
   return (
-    <div className="navigation-container">
-      <div className="navigation-div-topLeft">
+    <div className={`navigation-container ${mode}`}>
+      <div className={`navigation-div-topLeft ${mode}`}>
         <NavLink exact to="/">
           <span className="navigation-image-container">
             <img
@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
         <NavLink exact to="/">
           <span className="navigation-text-container">
-            <h1 className="navigation-h1">The Break Room</h1>
+            <h1 className={`navigation-h1-${mode}`}>The Break Room</h1>
           </span>
         </NavLink>
       </div>
@@ -52,10 +52,7 @@ function Navigation({ isLoaded }) {
         >
           layout
         </button>
-        <button
-          className="display-mode-toggle"
-          onClick={(e) => selectMode(e)}
-        >
+        <button className="display-mode-toggle" onClick={(e) => selectMode(e)}>
           Mode
         </button>
       </div>
