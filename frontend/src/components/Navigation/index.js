@@ -44,7 +44,7 @@ function Navigation({ isLoaded }) {
       <div className="navigation-div-topRight">
         {isLoaded && <ProfileButton user={session.user} />}
       </div>
-      <div className="navigation-dive`">
+      <div className={`navigation-div-${mode}`}>
         Settings
         <button
           className="display-mode-toggle"

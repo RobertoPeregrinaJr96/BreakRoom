@@ -3,6 +3,11 @@
   grid-template-columns: 50% 50%;
   border: solid 2px black;
 }
+.navigation-container-dark {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: solid 2px white;
+}
 .navigation-image-container {
   display: flex;
   justify-content: center;
@@ -41,6 +46,9 @@
   color: black;
   font-weight: bold;
   padding: 15px;
+}
+.navigation-div-dark {
+  border-top: 1px solid white;
 }
 .navigation-div-topRight {
   display: grid;
