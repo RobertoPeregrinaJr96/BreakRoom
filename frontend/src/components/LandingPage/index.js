@@ -13,6 +13,9 @@ function LandingPage() {
   const items = useSelector((state) => state.item.allItems);
   const highestAvgItemsData = useSelector((state) => state.item.highestAvgItem);
   const user = useSelector((state) => state.session.user);
+  const displaySettings = useSelector((state) => state.session.setting);
+  let display = displaySettings.display;
+  let mode = displaySettings.mode;
 
   useEffect(() => {
     dispatch(getItemsThunk());
@@ -25,8 +28,7 @@ function LandingPage() {
   if (items) {
     return (
       <>
-        <h1>LandingPage</h1>
-        <div className="landingPage-container">
+        <div className={`landingPage-container ${mode}`}>
           <div className="landingPage-content-wrapper">
             <span className="main-content">
               <MainContent item={highestAvgItemsData} />
