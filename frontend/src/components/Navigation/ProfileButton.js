@@ -113,7 +113,11 @@ function ProfileButton({ session }) {
                 selectSetting(e);
               }}
             >
-              settings
+              {mode === "dark" ? (
+                <i class="fa-regular fa-gear"></i>
+              ) : (
+                <i class="fa-solid fa-gear"></i>
+              )}
             </button>
             <ul>
               <li className={`${hidden}`}>
@@ -121,7 +125,11 @@ function ProfileButton({ session }) {
                   className="display-mode-toggle"
                   onClick={(e) => selectLayout(e)}
                 >
-                  layout
+                  {mode === "dark" ? (
+                    <i class="fa-regular fa-grip-vertical"></i>
+                  ) : (
+                    <i class="fa-solid fa-grip-vertical"></i>
+                  )}
                 </button>
               </li>
               <li className={`${hidden}`}>
@@ -129,7 +137,11 @@ function ProfileButton({ session }) {
                   className="display-mode-toggle"
                   onClick={(e) => selectMode(e)}
                 >
-                  Mode
+                  {mode === "dark" ? (
+                    <i class="fa-solid fa-sun"></i>
+                  ) : (
+                    <i class="fa-regular fa-sun"></i>
+                  )}
                 </button>
               </li>
             </ul>
