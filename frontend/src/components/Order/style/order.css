@@ -2,14 +2,7 @@
   /* height: 100vh; */
 }
 
-.display-mode-toggle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 1rem;
-  width: 1rem;
-  border: 1px solid black;
-}
+
 
 .order-item-info-image-container {
   display: flex;
