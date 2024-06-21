@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
           </span>
         </NavLink>
       </div>
-      <div className="navigation-div-topRight">
+      <div className={`navigation-div-topRight-${mode}`}>
         {isLoaded && <ProfileButton session={session} />}
       </div>
     </div>

@@ -107,13 +107,15 @@ function ProfileButton({ session }) {
             />
           </div>
           <div className={`navigation-div-${mode}`}>
-            setting
-            <ul
+            <button
               className={`setting`}
               onClick={(e) => {
                 selectSetting(e);
               }}
             >
+              settings
+            </button>
+            <ul>
               <li className={`${hidden}`}>
                 <button
                   className="display-mode-toggle"

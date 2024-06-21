@@ -7,3 +7,15 @@
 .hidden {
   display: none;
 }
+.setting{
+  display: flex;
+  position: fixed;
+}
+.display-mode-toggle {
+  display: flex;
+  position: relative;
+  left: 2rem;
+  font-size: 1rem;
+  width: 4rem;
+  height: 2rem;
+}
