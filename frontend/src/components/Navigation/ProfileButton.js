@@ -11,7 +11,7 @@ import { getCurrentOrderThunk } from "../../store/order";
 import { sessionSetting } from "../../store/session";
 
 function ProfileButton({ session }) {
-  console.log(session);
+  const [hidden, setHidden] = useState("hidden");
   const dispatch = useDispatch();
   const history = useHistory();
   const navigationLinks = ["/", "/menu"];
@@ -27,6 +27,10 @@ function ProfileButton({ session }) {
     return <button onClick={(e) => history.push(a)}>{a}</button>;
   };
   // Css Logic
+  const selectSetting = (e) => {
+    e.preventDefault();
+    hidden === "hidden" ? setHidden("show") : setHidden("hidden");
+  };
   const selectLayout = (e) => {
     e.preventDefault();
     display === "grid" ? (display = "block") : (display = "grid");
@@ -37,6 +41,7 @@ function ProfileButton({ session }) {
     mode === "light" ? (mode = "dark") : (mode = "light");
     dispatch(sessionSetting({ display: display, mode: mode }));
   };
+  console.log(hidden);
   useEffect(() => {
     if (session.user) {
       dispatch(getCurrentOrderThunk());
@@ -57,6 +62,32 @@ function ProfileButton({ session }) {
               <li key={placeholderlinks.indexOf(link)}>{pageLinks(link)}</li>
             ))}
           </ul>
+          <div className={`navigation-div-${mode}`}>
+            <ul
+              className={`settting-${hidden}`}
+              onClick={(e) => {
+                selectSetting(e);
+              }}
+            >
+              setting
+              <li>
+                {" "}
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectLayout(e)}
+                >
+                  layout
+                </button>
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectMode(e)}
+                >
+                  Mode
+                </button>
+              </li>
+              <li></li>
+            </ul>
+          </div>
         </>
       ) : (
         <>
@@ -76,19 +107,30 @@ function ProfileButton({ session }) {
             />
           </div>
           <div className={`navigation-div-${mode}`}>
-            Settings
-            <button
-              className="display-mode-toggle"
-              onClick={(e) => selectLayout(e)}
+            setting
+            <ul
+              className={`setting`}
+              onClick={(e) => {
+                selectSetting(e);
+              }}
             >
-              layout
-            </button>
-            <button
-              className="display-mode-toggle"
-              onClick={(e) => selectMode(e)}
-            >
-              Mode
-            </button>
+              <li className={`${hidden}`}>
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectLayout(e)}
+                >
+                  layout
+                </button>
+              </li>
+              <li className={`${hidden}`}>
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectMode(e)}
+                >
+                  Mode
+                </button>
+              </li>
+            </ul>
           </div>
         </>
       )}

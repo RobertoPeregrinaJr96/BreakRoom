@@ -4,3 +4,6 @@
   align-items: center;
   row-gap: 10px;
 }
+.hidden {
+  display: none;
+}
