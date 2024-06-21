@@ -8,6 +8,7 @@
   text-decoration: none;
   font-family: "Manrope", sans-serif;
   font-weight: bold;
+  margin: 0px;
 }
 * .dark {
   color: white;
@@ -30,7 +31,7 @@
   --button: #7b46ac;
   --errors: red;
 }
- 
+
 /* *{
   background-color: var(--bg-color);
 } */

@@ -8,24 +8,12 @@ import { sessionSetting } from "../../store/session";
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const session = useSelector((state) => state.session);
-
   let display = session.setting.display;
   let mode = session.setting.mode;
-  // Css Logic
-  const selectLayout = (e) => {
-    e.preventDefault();
-    display === "grid" ? (display = "block") : (display = "grid");
-    dispatch(sessionSetting({ display: display, mode: mode }));
-  };
-  const selectMode = (e) => {
-    e.preventDefault();
-    mode === "light" ? (mode = "dark") : (mode = "light");
-    dispatch(sessionSetting({ display: display, mode: mode }));
-  };
   useEffect(() => {}, [dispatch]);
   return (
-    <div className={`navigation-container ${mode}`}>
-      <div className={`navigation-div-topLeft ${mode}`}>
+    <div className={`navigation-container-${mode}`}>
+      <div className={`navigation-div-topLeft-${mode}`}>
         <NavLink exact to="/">
           <span className="navigation-image-container">
             <img
@@ -42,19 +30,7 @@ function Navigation({ isLoaded }) {
         </NavLink>
       </div>
       <div className="navigation-div-topRight">
-        {isLoaded && <ProfileButton user={session.user} />}
-      </div>
-      <div className={`navigation-div-${mode}`}>
-        Settings
-        <button
-          className="display-mode-toggle"
-          onClick={(e) => selectLayout(e)}
-        >
-          layout
-        </button>
-        <button className="display-mode-toggle" onClick={(e) => selectMode(e)}>
-          Mode
-        </button>
+        {isLoaded && <ProfileButton session={session} />}
       </div>
     </div>
   );

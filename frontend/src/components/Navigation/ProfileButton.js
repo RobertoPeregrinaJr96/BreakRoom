@@ -8,13 +8,16 @@ import SignupFormModal from "./SignupFormModal";
 import "./ProfileButton.css";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getCurrentOrderThunk } from "../../store/order";
+import { sessionSetting } from "../../store/session";
 
-function ProfileButton({ user }) {
+function ProfileButton({ session }) {
+  console.log(session);
   const dispatch = useDispatch();
   const history = useHistory();
   const navigationLinks = ["/", "/menu"];
   const placeholderlinks = ["/profile", "/order", "/admin", "/checkout"];
-  
+  let display = session.setting.display;
+  let mode = session.setting.mode;
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -23,14 +26,25 @@ function ProfileButton({ user }) {
   const pageLinks = (a) => {
     return <button onClick={(e) => history.push(a)}>{a}</button>;
   };
+  // Css Logic
+  const selectLayout = (e) => {
+    e.preventDefault();
+    display === "grid" ? (display = "block") : (display = "grid");
+    dispatch(sessionSetting({ display: display, mode: mode }));
+  };
+  const selectMode = (e) => {
+    e.preventDefault();
+    mode === "light" ? (mode = "dark") : (mode = "light");
+    dispatch(sessionSetting({ display: display, mode: mode }));
+  };
   useEffect(() => {
-    if (user) {
+    if (session.user) {
       dispatch(getCurrentOrderThunk());
     }
   }, [dispatch]);
   return (
     <div className="profileButton-container">
-      {user ? (
+      {session.user ? (
         <>
           <ul>
             {navigationLinks.map((link) => (
@@ -60,6 +74,21 @@ function ProfileButton({ user }) {
               buttonText="Sign Up"
               modalComponent={<SignupFormModal />}
             />
+          </div>
+          <div className={`navigation-div-${mode}`}>
+            Settings
+            <button
+              className="display-mode-toggle"
+              onClick={(e) => selectLayout(e)}
+            >
+              layout
+            </button>
+            <button
+              className="display-mode-toggle"
+              onClick={(e) => selectMode(e)}
+            >
+              Mode
+            </button>
           </div>
         </>
       )}
