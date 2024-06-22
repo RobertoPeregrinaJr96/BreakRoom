@@ -115,7 +115,7 @@ function ProfileButton({ session }) {
             >
               <i class="fa-solid fa-gear"></i>
             </button>
-            <ul>
+            <ul className="setting-button-container">
               <li className={`${hidden}`}>
                 <button
                   className="display-mode-toggle"
