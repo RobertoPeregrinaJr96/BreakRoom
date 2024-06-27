@@ -1,5 +1,5 @@
 .Footer {
-  height: 10vh;
+  height: 7vh;
 }
 .footer-list {
   display: flex;
@@ -11,4 +11,14 @@
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+}
+@media (min-height:1000px )  {
+  .Footer {
+    height: 5vh;
+  }
+}
+@media (max-height:1250px )  {
+  .Footer {
+    height: 3vh;
+  }
 }
