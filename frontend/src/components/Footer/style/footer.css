@@ -1,5 +1,12 @@
-.Footer {
+.Footer-dark {
   height: 7vh;
+  background-color: black;
+  color: white;
+}
+.Footer-light {
+  height: 7vh;
+  background-color: white;
+  color: black;
 }
 .footer-list {
   display: flex;
@@ -12,13 +19,27 @@
   align-items: center;
   font-size: 1rem;
 }
-@media (min-height:1000px )  {
-  .Footer {
+@media (min-height: 1000px) {
+  .Footer-dark {
     height: 5vh;
+    background-color: black;
+    color: white;
+  }
+  .Footer-light {
+    height: 5vh;
+    background-color: white;
+    color: black;
   }
 }
-@media (max-height:1250px )  {
-  .Footer {
+@media (max-height: 1250px) {
+  .Footer-dark {
     height: 3vh;
+    background-color: black;
+    color: white;
+  }
+  .Footer-light {
+    height: 3vh;
+    background-color: white;
+    color: black;
   }
 }
