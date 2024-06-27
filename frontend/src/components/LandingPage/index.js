@@ -17,15 +17,8 @@ function LandingPage() {
   let display = displaySettings.display;
   let mode = displaySettings.mode;
 
-  useEffect(() => {
-    dispatch(getItemsThunk());
-    dispatch(getHighestAvgThunk("placeholder"));
-    if (user !== undefined && user !== null) {
-      if (user !== undefined && user !== null) dispatch(getCurrentOrderThunk());
-    }
-  }, [dispatch]);
-
-  if (items) {
+  // CSS
+  const gridLayout = (items) => {
     return (
       <>
         <div className={`landingPage-container ${mode}`}>
@@ -44,18 +37,59 @@ function LandingPage() {
         </div>
       </>
     );
-  } else {
-    <>
-      <h1>LandingPage</h1>
-      <div className="landingPage-container">
-        <div className="landingPage-content-wrapper">
-          <span className="main-content">
-            <MainContent />
-          </span>
-          <span className="right-menu-container"></span>
+  };
+  const blockLayout = (items) => {
+    return (
+      <>
+        <div className={`landingPage-container ${mode}`}>
+          <div
+            // className="landingPage-content-wrapper"
+            style={{ display: "grid", gridTempletColumns: "100%" }}
+          >
+            <span className="main-content">
+              <MainContent item={highestAvgItemsData} />
+            </span>
+            {items ? (
+              <span className="right-menu-container">
+                <RightMenu items={items} />
+              </span>
+            ) : (
+              <span></span>
+            )}
+          </div>
         </div>
-      </div>
-    </>;
+      </>
+    );
+  };
+  const apiBlackout = () => {
+    return (
+      <>
+        <h1>LandingPage</h1>
+        <div className="landingPage-container">
+          <div className="landingPage-content-wrapper">
+            <span className="main-content">
+              <MainContent />
+            </span>
+            <span className="right-menu-container"></span>
+          </div>
+        </div>
+      </>
+    );
+  };
+  useEffect(() => {
+    dispatch(getItemsThunk());
+    dispatch(getHighestAvgThunk("placeholder"));
+    if (user !== undefined && user !== null) {
+      if (user !== undefined && user !== null) dispatch(getCurrentOrderThunk());
+    }
+  }, [dispatch]);
+
+  if (items && display === "grid") {
+    return gridLayout(items);
+  } else if (items && display === "block") {
+    return blockLayout(items);
+  } else {
+    apiBlackout();
   }
 }
 
