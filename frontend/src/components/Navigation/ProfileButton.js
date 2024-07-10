@@ -1,5 +1,4 @@
-// frontend/src/components/Navigation/ProfileButton.js
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import OpenModalButton from "./OpenModalButton";
@@ -18,74 +17,75 @@ function ProfileButton({ session }) {
   const placeholderlinks = ["/profile", "/order", "/admin", "/checkout"];
   let display = session.setting.display;
   let mode = session.setting.mode;
+  
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     history.push("/");
   };
+
   const pageLinks = (a) => {
-    return <button onClick={(e) => history.push(a)}>{a}</button>;
+    return <button onClick={() => history.push(a)}>{a}</button>;
   };
-  // Css Logic
+
   const selectSetting = (e) => {
     e.preventDefault();
-    hidden === "hidden" ? setHidden("show") : setHidden("hidden");
+    setHidden(hidden === "hidden" ? "show" : "hidden");
   };
+
   const selectLayout = (e) => {
     e.preventDefault();
-    display === "grid" ? (display = "block") : (display = "grid");
-    dispatch(sessionSetting({ display: display, mode: mode }));
+    display = display === "grid" ? "block" : "grid";
+    dispatch(sessionSetting({ display, mode }));
   };
+
   const selectMode = (e) => {
     e.preventDefault();
-    mode === "light" ? (mode = "dark") : (mode = "light");
-    dispatch(sessionSetting({ display: display, mode: mode }));
+    mode = mode === "light" ? "dark" : "light";
+    dispatch(sessionSetting({ display, mode }));
   };
-  console.log(hidden);
+
   useEffect(() => {
     if (session.user) {
       dispatch(getCurrentOrderThunk());
     }
-  }, [dispatch]);
+  }, [dispatch, session.user]);
+
   return (
     <div className="profileButton-container">
       {session.user ? (
         <>
           <ul>
             {navigationLinks.map((link) => (
-              <li key={navigationLinks.indexOf(link)}>{pageLinks(link)}</li>
+              <li key={link}>{pageLinks(link)}</li>
             ))}
           </ul>
-          <button onClick={(e) => logout(e)}>Log out</button>
+          <button onClick={logout}>Log out</button>
           <ul>
             {placeholderlinks.map((link) => (
-              <li key={placeholderlinks.indexOf(link)}>{pageLinks(link)}</li>
+              <li key={link}>{pageLinks(link)}</li>
             ))}
           </ul>
           <div className={`navigation-div-${mode}`}>
             <ul
-              className={`settting-${hidden}`}
-              onClick={(e) => {
-                selectSetting(e);
-              }}
+              className={`setting-${hidden}`}
+              onClick={selectSetting}
             >
-              setting
+              Setting
               <li>
-                {" "}
                 <button
                   className="display-mode-toggle"
-                  onClick={(e) => selectLayout(e)}
+                  onClick={selectLayout}
                 >
-                  layout
+                  Layout
                 </button>
                 <button
                   className="display-mode-toggle"
-                  onClick={(e) => selectMode(e)}
+                  onClick={selectMode}
                 >
                   Mode
                 </button>
               </li>
-              <li></li>
             </ul>
           </div>
         </>
@@ -93,7 +93,7 @@ function ProfileButton({ session }) {
         <>
           <ul>
             {navigationLinks.map((link) => (
-              <li key={navigationLinks.indexOf(link)}>{pageLinks(link)}</li>
+              <li key={link}>{pageLinks(link)}</li>
             ))}
           </ul>
           <div className="profileButton-logIn">
@@ -108,35 +108,33 @@ function ProfileButton({ session }) {
           </div>
           <div className={`navigation-div-${mode}`}>
             <button
-              className={`setting`}
-              onClick={(e) => {
-                selectSetting(e);
-              }}
+              className="setting"
+              onClick={selectSetting}
             >
-              <i class="fa-solid fa-gear"></i>
+              <i className="fa-solid fa-gear"></i>
             </button>
             <ul className="setting-button-container">
-              <li className={`${hidden}`}>
+              <li className={hidden}>
                 <button
                   className="display-mode-toggle"
-                  onClick={(e) => selectLayout(e)}
+                  onClick={selectLayout}
                 >
                   {display === "block" ? (
-                    <i class="fa-solid fa-grip-lines"></i>
+                    <i className="fa-solid fa-grip-lines"></i>
                   ) : (
-                    <i class="fa-solid fa-grip-vertical"></i>
+                    <i className="fa-solid fa-grip-vertical"></i>
                   )}
                 </button>
               </li>
-              <li className={`${hidden}`}>
+              <li className={hidden}>
                 <button
                   className="display-mode-toggle"
-                  onClick={(e) => selectMode(e)}
+                  onClick={selectMode}
                 >
                   {mode === "dark" ? (
-                    <i class="fa-solid fa-sun"></i>
+                    <i className="fa-solid fa-sun"></i>
                   ) : (
-                    <i class="fa-regular fa-sun"></i>
+                    <i className="fa-regular fa-sun"></i>
                   )}
                 </button>
               </li>

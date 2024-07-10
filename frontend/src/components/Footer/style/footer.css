@@ -31,7 +31,19 @@
     color: black;
   }
 }
-@media (max-height: 1250px) {
+@media (min-height: 1125px) {
+  .Footer-dark {
+    height: 4vh;
+    background-color: black;
+    color: white;
+  }
+  .Footer-light {
+    height: 4vh;
+    background-color: white;
+    color: black;
+  }
+}
+@media (max-height: 1200px) {
   .Footer-dark {
     height: 3vh;
     background-color: black;
