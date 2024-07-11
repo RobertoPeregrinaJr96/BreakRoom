@@ -17,7 +17,7 @@ function ProfileButton({ session }) {
   const placeholderlinks = ["/profile", "/order", "/admin", "/checkout"];
   let display = session.setting.display;
   let mode = session.setting.mode;
-  
+
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
@@ -45,6 +45,20 @@ function ProfileButton({ session }) {
     dispatch(sessionSetting({ display, mode }));
   };
 
+  const iconVersion = (value) => {
+    switch (value) {
+      case "dark":
+        return <i className="fa-solid fa-sun"></i>;
+      case "light":
+        return <i className="fa-regular fa-sun"></i>;
+      case "grid":
+        return <i className="fa-solid fa-grip-vertical"></i>;
+      case "block":
+        return <i className="fa-solid fa-grip-lines"></i>;
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     if (session.user) {
       dispatch(getCurrentOrderThunk());
@@ -67,22 +81,13 @@ function ProfileButton({ session }) {
             ))}
           </ul>
           <div className={`navigation-div-${mode}`}>
-            <ul
-              className={`setting-${hidden}`}
-              onClick={selectSetting}
-            >
+            <ul className={`setting-${hidden}`} onClick={selectSetting}>
               Setting
               <li>
-                <button
-                  className="display-mode-toggle"
-                  onClick={selectLayout}
-                >
+                <button className="display-mode-toggle" onClick={selectLayout}>
                   Layout
                 </button>
-                <button
-                  className="display-mode-toggle"
-                  onClick={selectMode}
-                >
+                <button className="display-mode-toggle" onClick={selectMode}>
                   Mode
                 </button>
               </li>
@@ -107,35 +112,18 @@ function ProfileButton({ session }) {
             />
           </div>
           <div className={`navigation-div-${mode}`}>
-            <button
-              className="setting"
-              onClick={selectSetting}
-            >
+            <button className="setting" onClick={selectSetting}>
               <i className="fa-solid fa-gear"></i>
             </button>
             <ul className="setting-button-container">
               <li className={hidden}>
-                <button
-                  className="display-mode-toggle"
-                  onClick={selectLayout}
-                >
-                  {display === "block" ? (
-                    <i className="fa-solid fa-grip-lines"></i>
-                  ) : (
-                    <i className="fa-solid fa-grip-vertical"></i>
-                  )}
+                <button className="display-mode-toggle" onClick={selectLayout}>
+                  {iconVersion(display)}
                 </button>
               </li>
               <li className={hidden}>
-                <button
-                  className="display-mode-toggle"
-                  onClick={selectMode}
-                >
-                  {mode === "dark" ? (
-                    <i className="fa-solid fa-sun"></i>
-                  ) : (
-                    <i className="fa-regular fa-sun"></i>
-                  )}
+                <button className="display-mode-toggle" onClick={selectMode}>
+                  {iconVersion(mode)}
                 </button>
               </li>
             </ul>
