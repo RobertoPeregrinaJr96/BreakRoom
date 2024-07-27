@@ -9,13 +9,19 @@
   display: none;
 }
 
+.show{
+  display: flex;
+  padding: 2px;
+}
 
 .setting {
   display: flex;
   position: fixed;
-  bottom: 10px; /* Adjust as needed */
-  right: 10px;  /* Adjust as needed */
-  z-index: 1000; /* Ensure it's above other elements */
+  height: 20px;
+  width: 30px;
+  bottom: 10px;  
+  right: 10px;  
+  z-index: 1000; 
 }
 
 .display-mode-toggle {
@@ -23,13 +29,14 @@
   justify-content: center;
   position: relative;
   font-size: 1rem;
-  width: 2rem;
+  height: 20px;
+  width: 30px;
   align-items: center;
 }
 .setting-button-container {
   display: flex;
   position: fixed;
-  bottom: 35px; /* Adjust as needed */
-  right: 10px;  /* Adjust as needed */
-  z-index: 1000; /* Ensure it's above other elements */
+  bottom: 35px;  
+  right: 8px;  
+  z-index: 1000;  
 }
