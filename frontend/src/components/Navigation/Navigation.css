@@ -7,7 +7,7 @@
 .navigation-container-dark {
   display: grid;
   grid-template-columns: 50% 50%;
-  border: solid 2px white;
+  border-bottom: solid 2px white;
   color: white;
 }
 .navigation-image-container {

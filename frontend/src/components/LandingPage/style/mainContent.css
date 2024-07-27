@@ -2,13 +2,12 @@
   display: grid;
   padding: 20px;
   gap: 2rem;
-  /* border: 1px solid black; */
 }
 .mainContent-container-h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
+  padding-top: 30px;
 }
 .about-container {
   display: block;
@@ -23,9 +22,7 @@
   font-size: 1.5rem;
 }
 .reviewed-container {
-  /* display: flex; */
   padding: 30px;
-  /* border: 1px solid black; */
 }
 .reviewed-content-name {
   display: flex;
@@ -33,24 +30,19 @@
   justify-content: center;
   padding-left: 1rem;
   align-items: center;
-  /* border: 1px solid black; */
 }
 .reviewed-content-description {
   font-size: 1rem;
   display: flex;
-  /* border: 1px solid black; */
 }
 .reviewed-image-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid black; */
 }
 .reviewed-image {
   display: flex;
   justify-content: center;
   height: 30%;
   width: 100%;
-  /* border-radius: 50%; */
-  /* border: 1px solid black; */
 }

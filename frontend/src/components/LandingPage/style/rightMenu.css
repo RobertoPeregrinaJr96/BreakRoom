@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 30px;
 }
 .right-menu-item-container {
   display: grid;
@@ -35,26 +36,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Adjusted to occupy full width */
-  height: 3rem; /* Increased height for better spacing */
+  width: 100%; 
+  height: 3rem;  
 }
 .right-menu-item-cluster {
-  display: flex; /* Changed to flex from grid */
+  display: flex; 
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 10px;
-  width: 100%; /* Occupy full width */
+  width: 100%;  
 }
 .right-menu-item-button-name {
-  flex-grow: 1; /* Allow the name button to grow to occupy remaining space */
+  flex-grow: 1; 
   height: 100%;
   background-color: white;
 }
 .right-menu-item-button-info,
 .right-menu-item-button-cart {
-  flex-grow: 0; /* Do not allow the buttons to grow */
-  width: 3rem; /* Set fixed width for buttons */
+  flex-grow: 0;  
+  width: 3rem; 
   height: 100%;
   background-color: white;
   cursor: pointer;
