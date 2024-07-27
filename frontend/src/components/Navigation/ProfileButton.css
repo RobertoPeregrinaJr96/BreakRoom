@@ -17,21 +17,25 @@
 .setting {
   display: flex;
   position: fixed;
+  padding: 2px;
+  padding-left: 6px;
   height: 20px;
   width: 30px;
-  bottom: 10px;  
-  right: 10px;  
-  z-index: 10; 
+  bottom: 10px;
+  right: 10px;
+  z-index: 10;
+
 }
 
 .display-mode-toggle {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: relative;
+  padding: 2px;
   font-size: 1rem;
   height: 20px;
   width: 30px;
-  align-items: center;
 }
 .setting-button-container {
   display: flex;
