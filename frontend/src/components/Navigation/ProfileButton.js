@@ -112,17 +112,23 @@ function ProfileButton({ session }) {
             />
           </div>
           <div className={`navigation-div-${mode}`}>
-            <button className="setting" onClick={selectSetting}>
+            <button className="setting" onClick={(e) => selectSetting(e)}>
               <i className="fa-solid fa-gear"></i>
             </button>
             <ul className="setting-button-container">
               <li className={hidden}>
-                <button className="display-mode-toggle" onClick={selectLayout}>
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectLayout(e)}
+                >
                   {iconVersion(display)}
                 </button>
               </li>
               <li className={hidden}>
-                <button className="display-mode-toggle" onClick={selectMode}>
+                <button
+                  className="display-mode-toggle"
+                  onClick={(e) => selectMode(e)}
+                >
                   {iconVersion(mode)}
                 </button>
               </li>
