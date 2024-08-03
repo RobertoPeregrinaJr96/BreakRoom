@@ -22,6 +22,11 @@ function RightMenu({ items }) {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, items.length);
   const displayedItems = items.slice(startIndex, endIndex);
+
+  const randomImage = () => {
+    // Image a place card that will transition to different items currently on the menu 
+  };
+
   return (
     <>
       <div className="rightMenu-container">
@@ -75,7 +80,12 @@ function RightMenu({ items }) {
           )}
         </menu>
         <div className="right-menu-pag-container">
-          <button
+          <div>
+            <div>
+              <img src={`${randomImage()}`} />
+            </div>
+          </div>
+          {/* <button
             onClick={handlePrevPage}
             disabled={currentPage === 0}
             className="right-menu-pag-button"
@@ -88,7 +98,7 @@ function RightMenu({ items }) {
             className="right-menu-pag-button"
           >
             Next
-          </button>
+          </button> */}
         </div>
       </div>
     </>
