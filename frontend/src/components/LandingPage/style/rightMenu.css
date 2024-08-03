@@ -1,5 +1,5 @@
 /* border: 1px solid black; */
-.rightMenu-container{
+.rightMenu-container {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -36,26 +36,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; 
-  height: 3rem;  
+  width: 100%;
+  height: 3rem;
 }
 .right-menu-item-cluster {
-  display: flex; 
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 10px;
-  width: 100%;  
+  width: 100%;
 }
 .right-menu-item-button-name {
-  flex-grow: 1; 
+  flex-grow: 1;
   height: 100%;
   background-color: white;
 }
 .right-menu-item-button-info,
 .right-menu-item-button-cart {
-  flex-grow: 0;  
-  width: 3rem; 
+  flex-grow: 0;
+  width: 3rem;
   height: 100%;
   background-color: white;
   cursor: pointer;
@@ -68,4 +68,21 @@
 .right-menu-pag-button {
   display: flex;
   width: 5rem;
+}
+/* ======= work in progress */
+
+.menu-card {
+  display: flex;
+  border: 1px solid red;
+  height: 10rem;
+  width: 10rem;
+}
+.menu-card-image {
+  display: flex;
+  border: 1px solid blue;
+  position: relative;
+  left: 10px;
+  top: 10px;
+  width: 2rem;
+  height: 2rem;
 }

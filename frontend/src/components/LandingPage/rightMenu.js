@@ -80,9 +80,10 @@ function RightMenu({ items }) {
           )}
         </menu>
         <div className="right-menu-pag-container">
-          <div>
-            <div>
-              <img src={`${randomImage()}`} />
+          <div className={`menu-card`}>
+            <div className={`menu-card-image`}>
+              <h3></h3>
+              {/* <img src={`${randomImage()}`} /> */}
             </div>
           </div>
           {/* <button
