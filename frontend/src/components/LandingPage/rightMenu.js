@@ -4,7 +4,10 @@ import OpenModalButton from "../Navigation/OpenModalButton/index";
 import ItemModel from "../ModalComponents/ItemModal";
 import { useState } from "react";
 
-function RightMenu({ items }) {
+function RightMenu({ items, settings }) {
+  let display = settings.display;
+  let mode = settings.mode;
+
   items = Object.values(items);
   const itemsPerPage = 7;
 
@@ -24,7 +27,9 @@ function RightMenu({ items }) {
   const displayedItems = items.slice(startIndex, endIndex);
 
   const randomImage = () => {
-    // Image a place card that will transition to different items currently on the menu 
+    // Image a place card that will transition to different items currently on the menu
+    // the card is filtered through the array of item
+    // with each item ,  we populated the the item image, the description , price?
   };
 
   return (
@@ -80,8 +85,8 @@ function RightMenu({ items }) {
           )}
         </menu>
         <div className="right-menu-pag-container">
-          <div className={`menu-card`}>
-            <div className={`menu-card-image`}>
+          <div className={`menu-card-${display}`}>
+            <div className={`menu-card-image-${display}`}>
               <h3></h3>
               {/* <img src={`${randomImage()}`} /> */}
             </div>

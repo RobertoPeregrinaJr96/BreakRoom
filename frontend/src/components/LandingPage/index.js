@@ -28,7 +28,7 @@ function LandingPage() {
             </span>
             {items ? (
               <span className="right-menu-container">
-                <RightMenu items={items} />
+                <RightMenu items={items} settings={displaySettings}/>
               </span>
             ) : (
               <span></span>
@@ -51,7 +51,7 @@ function LandingPage() {
             </span>
             {items ? (
               <span className="right-menu-container">
-                <RightMenu items={items} />
+                <RightMenu items={items} settings={displaySettings}/>
               </span>
             ) : (
               <span></span>
