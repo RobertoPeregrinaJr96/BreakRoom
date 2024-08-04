@@ -85,13 +85,7 @@ function RightMenu({ items, settings }) {
           )}
         </menu>
         <div className="right-menu-pag-container">
-          <div className={`menu-card-${display}`}>
-            <div className={`menu-card-image-${display}`}>
-              <h3></h3>
-              {/* <img src={`${randomImage()}`} /> */}
-            </div>
-          </div>
-          {/* <button
+          <button
             onClick={handlePrevPage}
             disabled={currentPage === 0}
             className="right-menu-pag-button"
@@ -104,8 +98,14 @@ function RightMenu({ items, settings }) {
             className="right-menu-pag-button"
           >
             Next
-          </button> */}
+          </button>
         </div>
+        <div className={`menu-card-${display}`}>
+            <div className={`menu-card-image-${display}`}>
+              <h3></h3>
+              {/* <img src={`${randomImage()}`} /> */}
+            </div>
+          </div>
       </div>
     </>
   );
