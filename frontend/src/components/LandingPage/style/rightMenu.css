@@ -90,15 +90,33 @@
 /* =============== */
 
 
-.menu-card-block {
+.menu-card-block-light  {
   display: flex;
   border: 1px solid red;
   height: 20rem;
   width: 40rem;
 }
-.menu-card-image-block {
+.menu-card-image-block-light {
   display: flex;
   border: 1px solid blue;
+  position: relative;
+  left: 10px;
+  top: 10px;
+  width: 10rem;
+  height: 10rem;
+}
+
+/* =============== */
+
+.menu-card-block-dark {
+  display: flex;
+  border: 1px solid blue;
+  height: 20rem;
+  width: 40rem;
+}
+.menu-card-image-block-dark {
+  display: flex;
+  border: 1px solid red;
   position: relative;
   left: 10px;
   top: 10px;

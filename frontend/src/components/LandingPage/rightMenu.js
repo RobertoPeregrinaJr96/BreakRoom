@@ -102,7 +102,7 @@ function RightMenu({ items, settings }) {
         </div>
         <div className={`menu-card-${display}`}>
             <div className={`menu-card-image-${display}`}>
-              <h3></h3>
+              <h3> </h3>
               {/* <img src={`${randomImage()}`} /> */}
             </div>
           </div>
