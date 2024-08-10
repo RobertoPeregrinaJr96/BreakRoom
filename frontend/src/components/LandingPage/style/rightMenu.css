@@ -71,13 +71,30 @@
 }
 /* ======= work in progress */
 
-.menu-card-grid {
+.menu-card-grid-light {
   display: flex;
   border: 1px solid red;
   height: 15rem;
   width: 15rem;
 }
-.menu-card-image-grid {
+.menu-card-image-grid-light {
+  display: flex;
+  border: 1px solid blue;
+  position: relative;
+  left: 10px;
+  top: 10px;
+  width: 4rem;
+  height: 4rem;
+}
+/* =============== */
+
+.menu-card-grid-dark {
+  display: flex;
+  border: 1px solid red;
+  height: 15rem;
+  width: 15rem;
+}
+.menu-card-image-grid-dark {
   display: flex;
   border: 1px solid blue;
   position: relative;

@@ -8,8 +8,8 @@ const MenuCard = (settings) => {
   return (
     <>
       {" "}
-      <div className={`menu-card-${display}`}>
-        <div className={`menu-card-image-${display}`}>
+      <div className={`menu-card-${display}-${mode}`}>
+        <div className={`menu-card-image-${display}-${mode}`}>
           <h3> </h3>
           {/* <img src={`${randomImage()}`} /> */}
         </div>

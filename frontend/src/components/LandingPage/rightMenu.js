@@ -23,7 +23,7 @@ function RightMenu({ items, settings }) {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, items.length);
   const displayedItems = items.slice(startIndex, endIndex);
- 
+
   return (
     <>
       <div className="rightMenu-container">
@@ -49,6 +49,7 @@ function RightMenu({ items, settings }) {
                   <button className="right-menu-item-button-cart">
                     <i className="fa-solid fa-cart-shopping"></i>
                   </button>
+                  <MenuCard settings={settings} items={displayedItems} />
                 </span>
               );
             })
@@ -92,7 +93,7 @@ function RightMenu({ items, settings }) {
             Next
           </button>
         </div>
-        <MenuCard settings={settings} />
+        <MenuCard settings={settings} items={displayedItems} />
       </div>
     </>
   );
