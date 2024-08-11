@@ -29,18 +29,24 @@ const backendConfig = {
   },
   //   reporter: "html",
   use: {
-    baseURL: "http://localhost:8000",
+    baseURL: 'http://localhost:8000',
     headless: true,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
-    // proxy: {
-    //   server: "http://localhost:8000",
-    // },
+    env: {
+      NODE_ENV: `development`,
+    },
   },
   projects: [
     {
-      name: "backend-chromium",
-      use: { ...devices["Desktop Chrome"] },
+      name: "chromium",
+      use: {
+        headless: false,
+        bypassCSP: true, // add this to disable cors
+        launchOptions: {
+          args: ["--disable-web-security"], // add this to disable cors
+        },
+      },
     },
   ],
 };
