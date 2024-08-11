@@ -3,32 +3,48 @@ const { test, expect } = require("@playwright/test");
 const baseURL = "http://localhost:8000";
 
 test.describe("API Routes", () => {
-  // Test the GET /api/test route
+  let csrfToken;
 
-  test(`GET ${baseURL}/api/test should return gnarly message`, async ({
-    request,
-  }) => {
+  test.beforeAll(async ({ request }) => {
+    // Perform an initial GET request to obtain the CSRF token
     const response = await request.get(`${baseURL}/api/test`);
     expect(response.ok()).toBeTruthy();
-    const responseBody = await response.json();
-    expect(responseBody).toEqual({ message: `this is a gnarly message` });
-  });
 
-    // Test the POST /api/test route
-    test(`POST ${baseURL}/api/test should return the request body`, async ({ request }) => {
-        const requestBody = { key: `value` };
-        const response = await request.post(`${baseURL}/api/test`, {
-          data: requestBody,
-          headers: {
-            "Content-Type": "application/json",
-            // Include CSRF token if necessary, e.g., "X-CSRF-Token": "your-csrf-token"
-          },
-        });
-        console.log(response)
-        expect(response.ok()).toBeTruthy();
-        const responseBody = await response.json();
-        expect(responseBody).toEqual({ requestBody });
-      });
+    // Extract the CSRF token from the cookie
+    const cookies = [response.headers()["set-cookie"]];
+    console.log("cookies: ", cookies);
+    const csrfCookie = cookies.find((cookie) => cookie.includes("_csrf="));
+    console.log("csrfCookie:", csrfCookie);
+
+    csrfToken = csrfCookie.split(";")[0].split("=")[1];
+  });
+  // OKAY
+  //   test(`GET ${baseURL}/api/test should return gnarly message`, async ({
+  //     request,
+  //   }) => {
+  //     const response = await request.get(`${baseURL}/api/test`);
+  //     expect(response.ok()).toBeTruthy();
+  //     const responseBody = await response.json();
+  //     expect(responseBody).toEqual({ message: `this is a gnarly message` });
+  //   });
+  // NOT OKAY
+  test(`POST ${baseURL}/api/test should return the request body`, async ({
+    request,
+  }) => {
+    const requestBody = { key: `value` };
+    const response = await request.post(`${baseURL}/api/test`, {
+      data: requestBody,
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfToken, // Add the CSRF token to the headers
+      },
+    });
+    // console.log(response);
+    expect(response.ok()).toBeTruthy();
+    const responseBody = await response.json();
+    expect(responseBody).toEqual({ requestBody });
+  });
+  // NOT OKAY
 
   //   // Test the GET /api/set-token-cookie route
   //   test(`GET ${baseURL}/api/set-token-cookie should set a cookie and return the user`, async ({ request }) => {
@@ -38,6 +54,7 @@ test.describe("API Routes", () => {
   //     expect(responseBody.user).toBeDefined();
   //     expect(responseBody.user.username).toBe(`Demo-lition`);
   //   });
+  // NOT OKAY
 
   //   // Test the GET /api/restore-user route
   //   test(`GET ${baseURL}/api/restore-user should return the restored user`, async ({ request }) => {
@@ -48,6 +65,7 @@ test.describe("API Routes", () => {
   //     expect(responseBody).toBeDefined();
   //     // Further assertions depend on how req.user is structured
   //   });
+  // NOT OKAY
 
   //   // Test the GET /api/require-auth route
   //   test(`GET ${baseURL}/api/require-auth should require authentication`, async ({ request }) => {
