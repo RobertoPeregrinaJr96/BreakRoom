@@ -8,7 +8,7 @@ const frontendConfig = {
   },
   reporter: "html",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://localhost:3000",
     headless: true,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
@@ -29,7 +29,7 @@ const backendConfig = {
   },
   reporter: "html",
   use: {
-    baseURL: "http://127.0.0.1:8000",
+    baseURL: "http://localhost:8000",
     headless: true,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
