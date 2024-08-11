@@ -1,12 +1,12 @@
 const { devices } = require("@playwright/test");
 
 const frontendConfig = {
-  testDir: "./test/frontend",
+  testDir: "./tests/frontend",
   timeout: 30000,
   expect: {
     timeout: 5000,
   },
-  reporter: "html",
+  //   reporter: "html",
   use: {
     baseURL: "http://localhost:3000",
     headless: true,
@@ -22,17 +22,20 @@ const frontendConfig = {
 };
 
 const backendConfig = {
-  testDir: "./test/backend",
+  testDir: "./tests/backend",
   timeout: 30000,
   expect: {
     timeout: 5000,
   },
-  reporter: "html",
+  //   reporter: "html",
   use: {
     baseURL: "http://localhost:8000",
     headless: true,
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
+    // proxy: {
+    //   server: "http://localhost:8000",
+    // },
   },
   projects: [
     {
@@ -42,10 +45,7 @@ const backendConfig = {
   ],
 };
 
-module.exports = {
-  // Merge both configs under one Playwright configuration
-  projects: [
-    frontendConfig.projects[0], // Frontend Project
-    backendConfig.projects[0],  // Backend Project
-  ],
-};
+const selectedConfig =
+  process.env.TEST_ENV === "backend" ? backendConfig : frontendConfig;
+
+module.exports = selectedConfig;
