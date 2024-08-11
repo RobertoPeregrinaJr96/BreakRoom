@@ -5,12 +5,10 @@ const baseURL = "http://localhost:8000";
 test.describe("API Routes", () => {
   // Test the GET /api/test route
 
-  test(`GET ${baseURL}/api/session/test should return gnarly message`, async ({
+  test(`GET ${baseURL}/api/test should return gnarly message`, async ({
     request,
   }) => {
-    const response = await request.get(`${baseURL}/api/session/test`);
-    console.log(`${baseURL}/api/session/test`)
-    console.log(response);
+    const response = await request.get(`${baseURL}/api/test`);
     expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();
     expect(responseBody).toEqual({ message: `this is a gnarly message` });
