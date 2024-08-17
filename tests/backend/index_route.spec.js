@@ -28,6 +28,7 @@ test.describe("API Routes", () => {
     console.log("response: ", response.headers());
     expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();
+    console.log("responseBody: ", responseBody);
     expect(responseBody).toEqual({ requestBody });
   });
   // Test the GET /api/set-token-cookie route
