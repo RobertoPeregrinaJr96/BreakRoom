@@ -3,19 +3,19 @@ const { test, expect } = require("@playwright/test");
 const baseURL = "http://localhost:8000";
 
 test.describe("API Routes", () => {
-  let csrfToken;
+  var csrfTokenTestCase;
 
-  test.beforeAll(async ({ request }) => {
-    // Perform an initial GET request to obtain the CSRF token
-    const response = await request.get(`${baseURL}/api/test`);
-    console.log(" :");
+  // test.beforeAll(async ({ request }) => {
+  //   // Perform an initial GET request to obtain the CSRF token
+  //   const response = await request.get(`${baseURL}/api/set-token-cookie`);
+  //   expect(response.ok()).toBeTruthy();
 
-    expect(response.ok()).toBeTruthy();
-    // Extract the CSRF token from the cookie
-    const cookies = [response.headers()["set-cookie"]];
-    const csrfCookie = cookies.find((cookie) => cookie.includes("_csrf="));
-    csrfToken = csrfCookie.split(";")[0].split("=")[1];
-  });
+  //   // Extract the CSRF token from the cookie
+  //   const cookies = [response.headers()["set-cookie"]];
+  //   const csrfCookie = cookies.find((cookie) => cookie.includes("_csrf="));
+  //   csrfTokenTestCase = csrfCookie.split(";")[0].split("=")[1];
+  //   console.log("csrfTokenTestCase: ", csrfTokenTestCase);
+  // });
 
   test(`GET ${baseURL}/api/test should return gnarly message`, async ({
     request,
@@ -25,6 +25,7 @@ test.describe("API Routes", () => {
     const responseBody = await response.json();
     expect(responseBody).toEqual({ message: `this is a gnarly message` });
   });
+  // not done
   test(`POST ${baseURL}/api/test should return the request body`, async ({
     request,
   }) => {
@@ -33,7 +34,7 @@ test.describe("API Routes", () => {
       data: requestBody,
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken,
+        "X-CSRF-Token": csrfTokenTestCase,
       },
     });
     expect(response.ok()).toBeTruthy();
