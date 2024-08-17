@@ -20,11 +20,12 @@ test.describe("API Routes", () => {
     const requestBody = { Message: `This is a message` };
     const response = await request.post(`${baseURL}/api/test`, {
       data: requestBody,
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   "X-CSRF-Token": csrfTokenTestCase,
-      // },
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": csrfTokenTestCase,
+      },
     });
+    console.log("response: ", response.headers());
     expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();
     expect(responseBody).toEqual({ requestBody });
