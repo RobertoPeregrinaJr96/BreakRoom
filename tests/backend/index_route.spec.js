@@ -5,18 +5,6 @@ const baseURL = "http://localhost:8000";
 test.describe("API Routes", () => {
   var csrfTokenTestCase;
 
-  // test.beforeAll(async ({ request }) => {
-  //   // Perform an initial GET request to obtain the CSRF token
-  //   const response = await request.get(`${baseURL}/api/set-token-cookie`);
-  //   expect(response.ok()).toBeTruthy();
-
-  //   // Extract the CSRF token from the cookie
-  //   const cookies = [response.headers()["set-cookie"]];
-  //   const csrfCookie = cookies.find((cookie) => cookie.includes("_csrf="));
-  //   csrfTokenTestCase = csrfCookie.split(";")[0].split("=")[1];
-  //   console.log("csrfTokenTestCase: ", csrfTokenTestCase);
-  // });
-
   test(`GET ${baseURL}/api/test should return gnarly message`, async ({
     request,
   }) => {
@@ -32,10 +20,10 @@ test.describe("API Routes", () => {
     const requestBody = { Message: `This is a message` };
     const response = await request.post(`${baseURL}/api/test`, {
       data: requestBody,
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfTokenTestCase,
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      //   "X-CSRF-Token": csrfTokenTestCase,
+      // },
     });
     expect(response.ok()).toBeTruthy();
     const responseBody = await response.json();

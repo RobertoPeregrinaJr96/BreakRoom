@@ -41,15 +41,15 @@ const backendConfig = {
     },
   },
   projects: [
+    { name: "setup", testMatch: /.*\.setup\.js/ },
     {
       name: "chromium",
       use: {
-        headless: false,
-        bypassCSP: true, // add this to disable cors
-        launchOptions: {
-          args: ["--disable-web-security"], // add this to disable cors
-        },
+        ...devices["Desktop Chrome"],
+        // Use prepared auth state.
+        storageState: "playwright/.auth/user.json",
       },
+      dependencies: ["setup"],
     },
   ],
 };

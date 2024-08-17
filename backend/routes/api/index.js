@@ -28,14 +28,14 @@ router.use("/review", reviewRouter);
 
 router.use("/menu", menuReducer);
 
-// POST /api/test
-router.post("/test", function (req, res) {
-  res.json({ requestBody: req.body });
-});
 
 // GET /api/test
 router.get("/test", async (req, res) => {
   res.json({ message: "this is a gnarly message" });
+});
+// POST /api/test
+router.post("/test", function (req, res) {
+  res.json({ requestBody: req.body });
 });
 
 // GET /api/set-token-cookie
