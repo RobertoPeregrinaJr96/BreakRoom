@@ -14,39 +14,55 @@ function RightMenu({ items, settings }) {
   const [rotation, setRotation] = useState(`right`);
   const totalPages = ((items.length + itemsPerPage - 1) / itemsPerPage) | 0;
 
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = Math.min(startIndex + itemsPerPage, items.length);
+  const displayedItems = items.slice(startIndex, endIndex);
   const handleRotation = () => {
     switch (rotation) {
       case `right`:
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
+
         break;
       case `left`:
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
         break;
       default:
         break;
     }
   };
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
-  };
-
-  const handlePrevPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-  };
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, items.length);
-  const displayedItems = items.slice(startIndex, endIndex);
 
   const componentLayout = (display, mode) => {
     switch ((display, mode)) {
       case ("block", "light"):
-        break;
-      case ("block", "night"):
-        break;
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+          </>
+        );
+      case ("block", "dark"):
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+          </>
+        );
       case ("grid", "light"):
-        break;
-      case ("grid", "night"):
-        break;
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+          </>
+        );
+      case ("grid", "dark"):
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+          </>
+        );
       default:
-        return <></>;
+        return (
+          <>
+            <h1>Component Layout</h1>
+          </>
+        );
     }
   };
 
