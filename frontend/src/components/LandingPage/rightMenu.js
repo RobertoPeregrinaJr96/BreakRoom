@@ -30,6 +30,16 @@ function RightMenu({ items, settings }) {
         break;
     }
   };
+  const backgroundImage = (item) => {
+    return {
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${item.itemImage})`,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      borderRadius: "10px",
+      borderColor: "white",
+    };
+  };
 
   const componentLayout = (display, mode) => {
     switch ((display, mode)) {
@@ -37,6 +47,17 @@ function RightMenu({ items, settings }) {
         return (
           <>
             <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <>
+                    <li style={backgroundImage(item)}>
+                      {`${item.name}`} {`${item.price.toFixed(2)}`}
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </div>
           </>
         );
       case ("block", "dark"):
@@ -49,6 +70,17 @@ function RightMenu({ items, settings }) {
         return (
           <>
             <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <>
+                    <li>
+                      {`${item.name}`} {`${item.price.toFixed(2)}`}
+                    </li>
+                  </>
+                ))}
+              </ul>
+            </div>
           </>
         );
       case ("grid", "dark"):
@@ -60,7 +92,7 @@ function RightMenu({ items, settings }) {
       default:
         return (
           <>
-            <h1>Component Layout</h1>
+            <h1>something went wrong</h1>
           </>
         );
     }
