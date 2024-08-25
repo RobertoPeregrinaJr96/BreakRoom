@@ -9,3 +9,15 @@
   border-radius: 0%;
   color: white;
 }
+.LP-menu-left-button {
+  display: flex;
+  position: absolute;
+  left: 0px;
+  z-index: 1;
+}
+.LP-menu-right-button {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+}

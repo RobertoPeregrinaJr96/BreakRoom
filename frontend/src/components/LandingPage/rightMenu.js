@@ -14,7 +14,7 @@ function RightMenu({ items, settings }) {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, items.length);
   const displayedItems = items.slice(startIndex, endIndex);
-
+  // add a case where if the last rotation in the pagitation is less than 4 then fill it with something OR make it so it doesent effect the page layout
   const handleRotation = (direction) => {
     if (direction === "right") {
       setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
@@ -22,6 +22,8 @@ function RightMenu({ items, settings }) {
       setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
     }
   };
+
+  // fix this so it is more dynamic-ish idk but inline style shouldnt be my default fix
   const backgroundImage = (item) => {
     return {
       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${item.itemImage})`,
@@ -32,7 +34,7 @@ function RightMenu({ items, settings }) {
       borderColor: "white",
     };
   };
-
+  // a bunch of if statements are not very demure , not very mindfule and should there should be another way to incorparte the display:mode settings without making indivisual jsx for them
   const renderLayout = () => {
     if (display === "block" && mode === "light") {
       return (
@@ -76,13 +78,19 @@ function RightMenu({ items, settings }) {
       return <h1>Something went wrong</h1>;
     }
   };
-
+  // idk what it is but this doesnt seem right yet
   return (
     <>
       <div>{renderLayout()}</div>
       <div>
-        <button onClick={() => handleRotation("left")}>{`<`}</button>
-        <button onClick={() => handleRotation("right")}>{`>`}</button>
+        <button
+          className={`LP-menu-left-button`}
+          onClick={() => handleRotation("left")}
+        >{`<`}</button>
+        <button
+          className={`LP-menu-right-button`}
+          onClick={() => handleRotation("right")}
+        >{`>`}</button>
       </div>
     </>
   );
