@@ -14,16 +14,12 @@ function RightMenu({ items, settings }) {
   const startIndex = currentPage * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, items.length);
   const displayedItems = items.slice(startIndex, endIndex);
-  const handleRotation = () => {
-    switch (rotation) {
-      case `right`:
-        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
-        break;
-      case `left`:
-        setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
-        break;
-      default:
-        break;
+
+  const handleRotation = (direction) => {
+    if (direction === "right") {
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
+    } else if (direction === "left") {
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
     }
   };
   const backgroundImage = (item) => {
