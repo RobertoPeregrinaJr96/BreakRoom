@@ -1,14 +1,11 @@
 import "./style/rightMenu.css";
-import SearchComponent from "../Util/search";
-import OpenModalButton from "../Navigation/OpenModalButton/index";
-import ItemModel from "../ModalComponents/ItemModal";
 import { useState } from "react";
 
 function RightMenu({ items, settings }) {
   items = Object.values(items);
   const { display, mode } = settings;
 
-  const itemsPerPage = 7;
+  let itemsPerPage = 4;
 
   const [currentPage, setCurrentPage] = useState(0);
   const [rotation, setRotation] = useState(`right`);
@@ -21,7 +18,6 @@ function RightMenu({ items, settings }) {
     switch (rotation) {
       case `right`:
         setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1));
-
         break;
       case `left`:
         setCurrentPage((prevPage) => Math.max(prevPage - 1, 0));
@@ -41,64 +37,58 @@ function RightMenu({ items, settings }) {
     };
   };
 
-  const componentLayout = (display, mode) => {
-    switch ((display, mode)) {
-      case ("block", "light"):
-        return (
-          <>
-            <h1>{`${display}:${mode}`}</h1>
-            <div className={`LP-menu-${display}-${mode}`}>
-              <ul>
-                {displayedItems.map((item) => (
-                  <>
-                    <li className={`LP-menu-li-${display}-${mode}`} style={backgroundImage(item)}>
-                      {`${item.name}`} {`${item.price.toFixed(2)}`}
-                    </li>
-                  </>
-                ))}
-              </ul>
-            </div>
-          </>
-        );
-      case ("block", "dark"):
-        return (
-          <>
-            <h1>{`${display}:${mode}`}</h1>
-          </>
-        );
-      case ("grid", "light"):
-        return (
-          <>
-            <h1>{`${display}:${mode}`}</h1>
-            <div className={`LP-menu-${display}-${mode}`}>
-              <ul>
-                {displayedItems.map((item) => (
-                  <>
-                    <li>
-                      {`${item.name}`} {`${item.price.toFixed(2)}`}
-                    </li>
-                  </>
-                ))}
-              </ul>
-            </div>
-          </>
-        );
-      case ("grid", "dark"):
-        return (
-          <>
-            <h1>{`${display}:${mode}`}</h1>
-          </>
-        );
-      default:
-        return (
-          <>
-            <h1>something went wrong</h1>
-          </>
-        );
+  const renderLayout = () => {
+    if (display === "block" && mode === "light") {
+      return (
+        <>
+          <h1>{`${display}:${mode}`}</h1>
+          <div className={`LP-menu-${display}-${mode}`}>
+            <ul>
+              {displayedItems.map((item) => (
+                <li
+                  key={item.id}
+                  className={`LP-menu-li-${display}-${mode}`}
+                  style={backgroundImage(item)}
+                >
+                  {`${item.name}`} {`${item.price.toFixed(2)}`}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      );
+    } else if (display === "block" && mode === "dark") {
+      return <h1>{`${display}:${mode}`}</h1>;
+    } else if (display === "grid" && mode === "light") {
+      return (
+        <>
+          <h1>{`${display}:${mode}`}</h1>
+          <div className={`LP-menu-${display}-${mode}`}>
+            <ul>
+              {displayedItems.map((item) => (
+                <li key={item.id}>
+                  {`${item.name}`} {`${item.price.toFixed(2)}`}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      );
+    } else if (display === "grid" && mode === "dark") {
+      return <h1>{`${display}:${mode}`}</h1>;
+    } else {
+      return <h1>Something went wrong</h1>;
     }
   };
 
-  return componentLayout(display, mode);
+  return (
+    <>
+      <div>{renderLayout()}</div>
+      <div>
+        <button onClick={() => handleRotation("left")}>{`<`}</button>
+        <button onClick={() => handleRotation("right")}>{`>`}</button>
+      </div>
+    </>
+  );
 }
-
 export default RightMenu;
