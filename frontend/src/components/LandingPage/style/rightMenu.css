@@ -1,5 +1,11 @@
- .LP-menu-block-light{
-    display: grid;
-    width: 100%;
-    height: 4rem;
- }
+.LP-menu-block-light {
+  display: grid;
+  width: 100%;
+}
+.LP-menu-li-block-light {
+  display: flex;
+  height: 10rem;
+  border: 1px solid black;
+  border-radius: 0%;
+  color: white;
+}

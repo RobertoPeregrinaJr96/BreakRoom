@@ -51,7 +51,7 @@ function RightMenu({ items, settings }) {
               <ul>
                 {displayedItems.map((item) => (
                   <>
-                    <li style={backgroundImage(item)}>
+                    <li className={`LP-menu-li-${display}-${mode}`} style={backgroundImage(item)}>
                       {`${item.name}`} {`${item.price.toFixed(2)}`}
                     </li>
                   </>

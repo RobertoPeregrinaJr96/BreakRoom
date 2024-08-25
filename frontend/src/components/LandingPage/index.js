@@ -28,7 +28,7 @@ function LandingPage() {
             </span>
             {items ? (
               <span className="right-menu-container">
-                <RightMenu items={items} settings={displaySettings}/>
+                <RightMenu items={items} settings={displaySettings} />
               </span>
             ) : (
               <span></span>
@@ -50,9 +50,9 @@ function LandingPage() {
               <MainContent item={highestAvgItemsData} />
             </span>
             {items ? (
-              <span className="right-menu-container">
-                <RightMenu items={items} settings={displaySettings}/>
-              </span>
+              <div className="right-menu-container">
+                <RightMenu items={items} settings={displaySettings} />
+              </div>
             ) : (
               <span></span>
             )}
