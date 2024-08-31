@@ -14,10 +14,40 @@
   position: absolute;
   left: 0px;
   z-index: 1;
+  height: 1rem;
 }
 .LP-menu-right-button {
   display: flex;
   position: absolute;
   right: 0px;
   z-index: 1;
+  height: 1rem;
+}
+
+/* Dark mode */
+.LP-menu-block-dark {
+  display: grid;
+  width: 100%;
+  transition: ease-in;
+}
+.LP-menu-li-block-dark {
+  display: flex;
+  height: 10rem;
+  border: 1px solid black;
+  border-radius: 0%;
+  color: white;
+}
+.LP-menu-left-button {
+  display: flex;
+  position: absolute;
+  left: 0px;
+  z-index: 1;
+  height: 1rem;
+}
+.LP-menu-right-button {
+  display: flex;
+  position: absolute;
+  right: 0px;
+  z-index: 1;
+  height: 1rem;
 }

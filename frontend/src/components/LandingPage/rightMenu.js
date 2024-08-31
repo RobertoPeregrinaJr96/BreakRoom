@@ -36,52 +36,83 @@ function RightMenu({ items, settings }) {
   };
   // a bunch of if statements are not very demure , not very mindfule and should there should be another way to incorparte the display:mode settings without making indivisual jsx for them
   const renderLayout = () => {
-    if (display === "block" && mode === "light") {
-      return (
-        <>
-          <h1>{`${display}:${mode}`}</h1>
-          <div className={`LP-menu-${display}-${mode}`}>
-            <ul>
-              {displayedItems.map((item) => (
-                <li
-                  key={item.id}
-                  className={`LP-menu-li-${display}-${mode}`}
-                  style={backgroundImage(item)}
-                >
-                  {`${item.name}`} {`${item.price.toFixed(2)}`}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      );
-    } else if (display === "block" && mode === "dark") {
-      return <h1>{`${display}:${mode}`}</h1>;
-    } else if (display === "grid" && mode === "light") {
-      return (
-        <>
-          <h1>{`${display}:${mode}`}</h1>
-          <div className={`LP-menu-${display}-${mode}`}>
-            <ul>
-              {displayedItems.map((item) => (
-                <li key={item.id}>
-                  {`${item.name}`} {`${item.price.toFixed(2)}`}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      );
-    } else if (display === "grid" && mode === "dark") {
-      return <h1>{`${display}:${mode}`}</h1>;
-    } else {
-      return <h1>Something went wrong</h1>;
+    if (display === "block") {
+      if (mode === "light") {
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <li
+                    key={item.id}
+                    className={`LP-menu-li-${display}-${mode}`}
+                    style={backgroundImage(item)}
+                  >
+                    {`${item.name}`} {`${item.price.toFixed(2)}`}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        );
+      } else if (mode === "dark") {
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <li
+                    key={item.id}
+                    className={`LP-menu-li-${display}-${mode}`}
+                    style={backgroundImage(item)}
+                  >
+                    {`${item.name}`} {`${item.price.toFixed(2)}`}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        );
+      }
+    } else if (display === "grid") {
+      if (mode === "light") {
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <li key={item.id}>
+                    {`${item.name}`} {`${item.price.toFixed(2)}`}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        );
+      } else if (mode === "dark") {
+        return (
+          <>
+            <h1>{`${display}:${mode}`}</h1>
+            <div className={`LP-menu-${display}-${mode}`}>
+              <ul>
+                {displayedItems.map((item) => (
+                  <li key={item.id}>
+                    {`${item.name}`} {`${item.price.toFixed(2)}`}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        );
+      }
     }
   };
   // idk what it is but this doesnt seem right yet
   return (
     <>
-      <div>{renderLayout()}</div>
       <div>
         <button
           className={`LP-menu-left-button`}
@@ -91,6 +122,7 @@ function RightMenu({ items, settings }) {
           className={`LP-menu-right-button`}
           onClick={() => handleRotation("right")}
         >{`>`}</button>
+        <div>{renderLayout()}</div>
       </div>
     </>
   );
